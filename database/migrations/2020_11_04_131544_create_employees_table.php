@@ -18,6 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('phone_number')->unique();
+            $table->int('age')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('slug')->nullable();
             $table->foreignId('address_id')->nullable();
