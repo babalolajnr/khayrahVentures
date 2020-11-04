@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Product_Category extends Model
 {
     use HasFactory;
+
+    protected $table = 'products_category';
+
+    public function user() {
+        return $this->belongsTo('App\Models\User');
+    }
 }
