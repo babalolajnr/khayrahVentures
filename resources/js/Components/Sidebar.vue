@@ -18,7 +18,7 @@
         class="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
         href="javascript:void(0)"
       >
-        Tailwind Starter Kit
+        Khayrah Ventures
       </a>
       <!-- User -->
       <ul class="md:hidden items-center flex flex-wrap list-none">
@@ -83,7 +83,7 @@
               class="text-gray-800 hover:text-gray-600 text-xs uppercase py-3 font-bold block"
               href="#/landing"
               ><i class="fas fa-newspaper text-gray-500 mr-2 text-sm"></i>
-              Landing Page</a
+              Add Product Category</a
             >
           </li>
           <li class="items-center">

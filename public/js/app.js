@@ -86,7 +86,7 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "../../../../node_modules/popper.js/dist/esm/popper.js":
+/***/ "../../../node_modules/popper.js/dist/esm/popper.js":
 /*!*******************************************************************!*\
   !*** C:/Users/BABALOLA/node_modules/popper.js/dist/esm/popper.js ***!
   \*******************************************************************/
@@ -2712,7 +2712,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../Desktop/projects/Ongoing-Projects/khayrahVentures/node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../Desktop/projects/khayrahVentures/node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -4902,7 +4902,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! popper.js */ "../../../../node_modules/popper.js/dist/esm/popper.js");
+/* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! popper.js */ "../../../node_modules/popper.js/dist/esm/popper.js");
 //
 //
 //
@@ -5206,7 +5206,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! popper.js */ "../../../../node_modules/popper.js/dist/esm/popper.js");
+/* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! popper.js */ "../../../node_modules/popper.js/dist/esm/popper.js");
 //
 //
 //
@@ -27255,7 +27255,7 @@ var render = function() {
                 "md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0",
               attrs: { href: "javascript:void(0)" }
             },
-            [_vm._v("\n      Tailwind Starter Kit\n    ")]
+            [_vm._v("\n      Khayrah Ventures\n    ")]
           ),
           _vm._v(" "),
           _c(
@@ -27405,7 +27405,7 @@ var staticRenderFns = [
               _c("i", {
                 staticClass: "fas fa-newspaper text-gray-500 mr-2 text-sm"
               }),
-              _vm._v("\n            Landing Page")
+              _vm._v("\n            Add Product Category")
             ]
           )
         ]),
@@ -47601,8 +47601,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\BABALOLA\Desktop\projects\Ongoing-Projects\khayrahVentures\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\BABALOLA\Desktop\projects\Ongoing-Projects\khayrahVentures\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\BABALOLA\Desktop\projects\khayrahVentures\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\BABALOLA\Desktop\projects\khayrahVentures\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
