@@ -22,6 +22,7 @@ class CreateCustomersTable extends Migration
             $table->string('job')->nullable();
             $table->string('slug')->nullable();
             $table->foreignId('address_id')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
     }
