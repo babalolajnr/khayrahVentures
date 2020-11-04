@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('size_id')->nullable();
             $table->foreignId('category_id')->nullable();
             $table->foreignId('brand_id')->nullable();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
