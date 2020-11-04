@@ -16,12 +16,12 @@
 
             <div class="mt-4">
                 <x-jet-label for="lastname" value="{{ __('Lastname') }}" />
-                <x-jet-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus autocomplete="firstname" />
+                <x-jet-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus autocomplete="lastname" />
             </div>
             
             <div class="mt-4">
-                <x-jet-label for="phone_number" value="{{ __('Phone_number') }}" />
-                <x-jet-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" :value="old('phone_number')" required autofocus autocomplete="firstname" />
+                <x-jet-label for="phone_number" value="{{ __('Phone Number') }}" />
+                <x-jet-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" :value="old('phone_number')" required autofocus autocomplete="phone_number" />
             </div>
 
             <div class="mt-4">
