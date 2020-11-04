@@ -18,8 +18,6 @@ class CreateInventoryTable extends Migration
             $table->foreignId('products_id');
             $table->integer('quantity');
             $table->float('total_amount');
-            // $table->integer('quantity_sold');
-            // $table->float('total_amount_sold');
             $table->timestamps();
         });
     }
