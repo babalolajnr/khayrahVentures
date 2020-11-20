@@ -23,3 +23,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/addNewCategory', [ProductCategoriesController::class, 'index']);
+Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);

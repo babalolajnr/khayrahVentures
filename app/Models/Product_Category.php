@@ -11,6 +11,8 @@ class Product_Category extends Model
 
     protected $table = 'products_category';
 
+    protected $fillable = ['name', 'user_id'];
+
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
