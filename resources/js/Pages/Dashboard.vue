@@ -864,13 +864,9 @@
 </template>
 
 <script>
-import LineChartComponent from "@/Components/LineChart.vue";
-import BarChartComponent from "@/Components/BarChart.vue";
 import Layout from "@/Layouts/Layout.vue";
 export default {
   components: {
-    LineChartComponent,
-    BarChartComponent,
     Layout
   },
   data() {
