@@ -3691,6 +3691,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -3704,20 +3712,31 @@ __webpack_require__.r(__webpack_exports__);
       date: new Date().getFullYear(),
       success: false,
       form: {
-        categoryName: ""
-      }
+        categoryName: null
+      },
+      formError: false
     };
   },
   methods: {
     submit: function submit() {
       var _this = this;
 
-      this.$inertia.post("/submitNewCategory", this.form);
-      this.$inertia.on("success", function (event) {
-        _this.success = true;
-        _this.form.categoryName = '';
-        setTimeout(_this.successMessageFade, 2000);
-      });
+      if (this.form.categoryName == null) {
+        this.formError = true;
+      } else {
+        this.formError = false;
+        this.$inertia.post("/submitNewCategory", this.form);
+        this.$inertia.on("success", function (event) {
+          //check if the errors props is empty
+          if (Object.entries(_this.$props.errors).length > 0) {
+            console.log("nice");
+          } else {
+            _this.success = true;
+            _this.form.categoryName = "";
+            setTimeout(_this.successMessageFade, 2000);
+          }
+        });
+      }
     },
     successMessageFade: function successMessageFade() {
       this.success = false;
@@ -27380,7 +27399,8 @@ var render = function() {
                             attrs: {
                               type: "text",
                               id: "category_name",
-                              placeholder: ""
+                              placeholder: "",
+                              required: ""
                             },
                             domProps: { value: _vm.form.categoryName },
                             on: {
@@ -27399,7 +27419,19 @@ var render = function() {
                           _vm._v(" "),
                           _vm.errors.categoryName
                             ? _c("div", { staticClass: "text-red-600" }, [
-                                _vm._v(_vm._s(_vm.errors.categoryName))
+                                _vm._v(
+                                  "\n                      " +
+                                    _vm._s(_vm.errors.categoryName) +
+                                    "\n                    "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.formError
+                            ? _c("div", { staticClass: "text-red-600" }, [
+                                _vm._v(
+                                  "\n                      Form is empty\n                    "
+                                )
                               ])
                             : _vm._e(),
                           _vm._v(" "),

@@ -44,9 +44,17 @@
                         id="category_name"
                         placeholder=""
                         v-model="form.categoryName"
+                        required
                       />
-                      <div v-if="errors.categoryName" class="text-red-600">{{ errors.categoryName }}</div>
-                      <strong v-if="success" class="text-green-500 transition duration-500 ease-in"
+                      <div v-if="errors.categoryName" class="text-red-600">
+                        {{ errors.categoryName }}
+                      </div>
+                      <div v-if="formError" class="text-red-600">
+                        Form is empty
+                      </div>
+                      <strong
+                        v-if="success"
+                        class="text-green-500 transition duration-500 ease-in"
                         >Category Created!</strong
                       >
                     </div>
@@ -74,7 +82,7 @@
 import Layout from "@/Layouts/Layout.vue";
 export default {
   props: {
-    errors: Object
+    errors: Object,
   },
   components: {
     Layout,
@@ -84,24 +92,34 @@ export default {
       date: new Date().getFullYear(),
       success: false,
       form: {
-        categoryName: "",
+        categoryName: null,
       },
+      formError: false,
     };
   },
   methods: {
     submit() {
-      this.$inertia.post("/submitNewCategory", this.form);
-      this.$inertia.on("success", (event) => {
+      if (this.form.categoryName == null) {
+        this.formError = true;
+      } else {
+        this.formError = false;
+        this.$inertia.post("/submitNewCategory", this.form);
+        this.$inertia.on("success", (event) => {
 
-        
-        this.success = true
-        this.form.categoryName = ''
-        setTimeout(this.successMessageFade, 2000)
-      });
+          //check if the errors props is empty
+          if (Object.entries(this.$props.errors).length > 0) {
+            console.log("nice");
+          } else {
+            this.success = true;
+            this.form.categoryName = "";
+            setTimeout(this.successMessageFade, 2000);
+          }
+        });
+      }
     },
     successMessageFade() {
-      this.success = false
-    }
+      this.success = false;
+    },
   },
 };
 </script>
