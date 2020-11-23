@@ -23,13 +23,7 @@ class ProductCategoriesController extends Controller
             'name' => $request->categoryName
         ]);
 
-        // return redirect('/addNewCategory');
-        // return response()->json([
-        //     'success' => 'Category Created!'
-        // ], 200);
-
-        return Inertia::render('AddNewCategory', [
-            'success' => 'Category Created!'
-        ]);
+        return redirect('/addNewCategory');
+        
     }
 }

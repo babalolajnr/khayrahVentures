@@ -3685,22 +3685,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    errors: Object
+  },
   components: {
     Layout: _Layouts_Layout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
       date: new Date().getFullYear(),
+      success: false,
       form: {
-        categoryName: ''
+        categoryName: ""
       }
     };
   },
   methods: {
     submit: function submit() {
-      this.$inertia.post('/submitNewCategory', this.form);
+      var _this = this;
+
+      this.$inertia.post("/submitNewCategory", this.form);
+      this.$inertia.on("success", function (event) {
+        _this.success = true;
+        _this.form.categoryName = '';
+        setTimeout(_this.successMessageFade, 2000);
+      });
+    },
+    successMessageFade: function successMessageFade() {
+      this.success = false;
     }
   }
 });
@@ -27375,7 +27395,24 @@ var render = function() {
                                 )
                               }
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm.errors.categoryName
+                            ? _c("div", { staticClass: "text-red-600" }, [
+                                _vm._v(_vm._s(_vm.errors.categoryName))
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.success
+                            ? _c(
+                                "strong",
+                                {
+                                  staticClass:
+                                    "text-green-500 transition duration-500 ease-in"
+                                },
+                                [_vm._v("Category Created!")]
+                              )
+                            : _vm._e()
                         ])
                       ]),
                       _vm._v(" "),

@@ -10,7 +10,9 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><inertia-link href="/dashboard">Home</inertia-link></li>
+                <li class="breadcrumb-item">
+                  <inertia-link href="/dashboard">Home</inertia-link>
+                </li>
                 <li class="breadcrumb-item active">Add product category</li>
               </ol>
             </div>
@@ -43,6 +45,10 @@
                         placeholder=""
                         v-model="form.categoryName"
                       />
+                      <div v-if="errors.categoryName" class="text-red-600">{{ errors.categoryName }}</div>
+                      <strong v-if="success" class="text-green-500 transition duration-500 ease-in"
+                        >Category Created!</strong
+                      >
                     </div>
                   </div>
                   <!-- /.card-body -->
@@ -67,22 +73,36 @@
 <script>
 import Layout from "@/Layouts/Layout.vue";
 export default {
+  props: {
+    errors: Object
+  },
   components: {
     Layout,
   },
   data() {
     return {
       date: new Date().getFullYear(),
+      success: false,
       form: {
-        categoryName: ''
-      }
+        categoryName: "",
+      },
     };
   },
   methods: {
     submit() {
-      this.$inertia.post('/submitNewCategory', this.form)
+      this.$inertia.post("/submitNewCategory", this.form);
+      this.$inertia.on("success", (event) => {
+
+        
+        this.success = true
+        this.form.categoryName = ''
+        setTimeout(this.successMessageFade, 2000)
+      });
+    },
+    successMessageFade() {
+      this.success = false
     }
-  }
+  },
 };
 </script>
 
