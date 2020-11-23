@@ -15,12 +15,18 @@ class ProductCategoriesController extends Controller
 
     public function store(Request $request) 
     {
+
+        $messages = [
+            'unique' => 'Category Exists'
+        ];
+
         $this->validate($request, array(
-            'categoryName' => 'required'
-        ));
+            'name' => 'required|unique:products_category'
+        ), $messages);
+
 
         Auth::user()->product_categories()->create([
-            'name' => $request->categoryName
+            'name' => $request->name
         ]);
 
         return redirect('/addNewCategory');

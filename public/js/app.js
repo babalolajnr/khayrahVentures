@@ -3712,7 +3712,7 @@ __webpack_require__.r(__webpack_exports__);
       date: new Date().getFullYear(),
       success: false,
       form: {
-        categoryName: null
+        name: null
       },
       formError: false
     };
@@ -3721,7 +3721,7 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      if (this.form.categoryName == null) {
+      if (this.form.name == null) {
         this.formError = true;
       } else {
         this.formError = false;
@@ -3729,10 +3729,10 @@ __webpack_require__.r(__webpack_exports__);
         this.$inertia.on("success", function (event) {
           //check if the errors props is empty
           if (Object.entries(_this.$props.errors).length > 0) {
-            console.log("nice");
+            _this.form.name = "";
           } else {
             _this.success = true;
-            _this.form.categoryName = "";
+            _this.form.name = "";
             setTimeout(_this.successMessageFade, 2000);
           }
         });
@@ -27391,8 +27391,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form.categoryName,
-                                expression: "form.categoryName"
+                                value: _vm.form.name,
+                                expression: "form.name"
                               }
                             ],
                             staticClass: "form-control",
@@ -27402,26 +27402,22 @@ var render = function() {
                               placeholder: "",
                               required: ""
                             },
-                            domProps: { value: _vm.form.categoryName },
+                            domProps: { value: _vm.form.name },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
-                                _vm.$set(
-                                  _vm.form,
-                                  "categoryName",
-                                  $event.target.value
-                                )
+                                _vm.$set(_vm.form, "name", $event.target.value)
                               }
                             }
                           }),
                           _vm._v(" "),
-                          _vm.errors.categoryName
+                          _vm.errors.name
                             ? _c("div", { staticClass: "text-red-600" }, [
                                 _vm._v(
                                   "\n                      " +
-                                    _vm._s(_vm.errors.categoryName) +
+                                    _vm._s(_vm.errors.name) +
                                     "\n                    "
                                 )
                               ])

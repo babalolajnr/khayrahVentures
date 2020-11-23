@@ -43,11 +43,11 @@
                         class="form-control"
                         id="category_name"
                         placeholder=""
-                        v-model="form.categoryName"
+                        v-model="form.name"
                         required
                       />
-                      <div v-if="errors.categoryName" class="text-red-600">
-                        {{ errors.categoryName }}
+                      <div v-if="errors.name" class="text-red-600">
+                        {{ errors.name }}
                       </div>
                       <div v-if="formError" class="text-red-600">
                         Form is empty
@@ -92,26 +92,25 @@ export default {
       date: new Date().getFullYear(),
       success: false,
       form: {
-        categoryName: null,
+        name: null,
       },
       formError: false,
     };
   },
   methods: {
     submit() {
-      if (this.form.categoryName == null) {
+      if (this.form.name == null) {
         this.formError = true;
       } else {
         this.formError = false;
         this.$inertia.post("/submitNewCategory", this.form);
         this.$inertia.on("success", (event) => {
-
           //check if the errors props is empty
           if (Object.entries(this.$props.errors).length > 0) {
-            console.log("nice");
+            this.form.name = "";
           } else {
             this.success = true;
-            this.form.categoryName = "";
+            this.form.name = "";
             setTimeout(this.successMessageFade, 2000);
           }
         });
