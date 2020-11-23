@@ -222,18 +222,25 @@
                       <p>Add New Category</p>
                     </inertia-link>
                   </li>
+                 
+                </ul>
+              </li>
+              <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Brand
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./index2.html" class="nav-link">
+                    <inertia-link href="/addNewBrand" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Dashboard v2</p>
-                    </a>
+                      <p>Add New Brand</p>
+                    </inertia-link>
                   </li>
-                  <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Dashboard v3</p>
-                    </a>
-                  </li>
+                 
                 </ul>
               </li>
               <li class="nav-item">
@@ -257,7 +264,7 @@
       <!-- /.content-wrapper -->
       <footer class="main-footer">
         <strong
-          >Copyright &copy; 2014-2019
+          >Copyright &copy; {{date}}
           <a href="http://adminlte.io">AdminLTE.io</a>.</strong
         >
         All rights reserved.
@@ -283,30 +290,25 @@ export default {};
 </style>
 
 <script>
-// import NavbarComponent from "@/Components/Navbar.vue";
-// import SidebarComponent from "@/Components/Sidebar.vue";
-// export default {
-//   components: {
-//     NavbarComponent,
-//     SidebarComponent
-//   },
-//   data() {
-//     return {
-//       date: new Date().getFullYear(),
-//     };
-//   },
-//   props: {
-//     title: String,
-//   },
-//   watch: {
-//     title: {
-//       immediate: true,
-//       handler(title) {
-//         document.title = title;
-//       },
-//     },
-//   },
-// };
+
+export default {
+  data() {
+    return {
+      date: new Date().getFullYear(),
+    };
+  },
+  props: {
+    title: String,
+  },
+  watch: {
+    title: {
+      immediate: true,
+      handler(title) {
+        document.title = title;
+      },
+    },
+  },
+};
 </script>
 
 <style>

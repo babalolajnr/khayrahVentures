@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductCategoriesController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/addNewCategory', [ProductCategoriesController::class, 'index']);
+Route::get('/addNewBrand', [BrandController::class, 'index']);
 Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
+Route::post('/submitNewBrand', [BrandController::class, 'store']);

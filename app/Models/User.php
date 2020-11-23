@@ -66,5 +66,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Product_Category');
     }
+
+    public function brands()
+    {
+        return $this->hasMany('App\Models\Brand');
+    }
     
 }

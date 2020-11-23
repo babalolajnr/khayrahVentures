@@ -2970,9 +2970,11 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Layouts/Layout.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -3257,30 +3259,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// import NavbarComponent from "@/Components/Navbar.vue";
-// import SidebarComponent from "@/Components/Sidebar.vue";
-// export default {
-//   components: {
-//     NavbarComponent,
-//     SidebarComponent
-//   },
-//   data() {
-//     return {
-//       date: new Date().getFullYear(),
-//     };
-//   },
-//   props: {
-//     title: String,
-//   },
-//   watch: {
-//     title: {
-//       immediate: true,
-//       handler(title) {
-//         document.title = title;
-//       },
-//     },
-//   },
-// };
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      date: new Date().getFullYear()
+    };
+  },
+  props: {
+    title: String
+  },
+  watch: {
+    title: {
+      immediate: true,
+      handler: function handler(title) {
+        document.title = title;
+      }
+    }
+  }
+});
 
 /***/ }),
 
@@ -3711,16 +3714,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -3734,7 +3727,8 @@ __webpack_require__.r(__webpack_exports__);
       date: new Date().getFullYear(),
       success: false,
       form: {
-        name: null
+        name: null,
+        short_name: null
       },
       formError: false
     };
@@ -3747,14 +3741,16 @@ __webpack_require__.r(__webpack_exports__);
         this.formError = true;
       } else {
         this.formError = false;
-        this.$inertia.post("/submitNewCategory", this.form);
+        this.$inertia.post("/submitNewBrand", this.form);
         this.$inertia.on("success", function (event) {
           //check if the errors props is empty
           if (Object.entries(_this.$props.errors).length > 0) {
             _this.form.name = "";
+            _this.form.short_name = "";
           } else {
             _this.success = true;
             _this.form.name = "";
+            _this.form.short_name = "";
             setTimeout(_this.successMessageFade, 2000);
           }
         });
@@ -26298,16 +26294,44 @@ var render = function() {
                                 )
                               ],
                               1
-                            ),
-                            _vm._v(" "),
-                            _vm._m(4),
-                            _vm._v(" "),
-                            _vm._m(5)
+                            )
                           ])
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._m(6)
+                      _c(
+                        "li",
+                        { staticClass: "nav-item has-treeview menu-open" },
+                        [
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _c("ul", { staticClass: "nav nav-treeview" }, [
+                            _c(
+                              "li",
+                              { staticClass: "nav-item" },
+                              [
+                                _c(
+                                  "inertia-link",
+                                  {
+                                    staticClass: "nav-link",
+                                    attrs: { href: "/addNewBrand" }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "far fa-circle nav-icon"
+                                    }),
+                                    _vm._v(" "),
+                                    _c("p", [_vm._v("Add New Brand")])
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(5)
                     ]
                   )
                 ])
@@ -26317,7 +26341,17 @@ var render = function() {
           _vm._v(" "),
           _vm._t("default"),
           _vm._v(" "),
-          _vm._m(7),
+          _c("footer", { staticClass: "main-footer" }, [
+            _c("strong", [
+              _vm._v("Copyright © " + _vm._s(_vm.date) + "\n        "),
+              _c("a", { attrs: { href: "http://adminlte.io" } }, [
+                _vm._v("AdminLTE.io")
+              ]),
+              _vm._v(".")
+            ]),
+            _vm._v("\n      All rights reserved.\n      "),
+            _vm._m(6)
+          ]),
           _vm._v(" "),
           _c("aside", { staticClass: "control-sidebar control-sidebar-dark" })
         ],
@@ -26708,23 +26742,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "./index2.html" } }, [
-        _c("i", { staticClass: "far fa-circle nav-icon" }),
-        _vm._v(" "),
-        _c("p", [_vm._v("Dashboard v2")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "./index3.html" } }, [
-        _c("i", { staticClass: "far fa-circle nav-icon" }),
-        _vm._v(" "),
-        _c("p", [_vm._v("Dashboard v3")])
+    return _c("a", { staticClass: "nav-link active", attrs: { href: "#" } }, [
+      _c("i", { staticClass: "nav-icon fas fa-tachometer-alt" }),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("\n                  Brand\n                  "),
+        _c("i", { staticClass: "right fas fa-angle-left" })
       ])
     ])
   },
@@ -26753,19 +26776,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "main-footer" }, [
-      _c("strong", [
-        _vm._v("Copyright © 2014-2019\n        "),
-        _c("a", { attrs: { href: "http://adminlte.io" } }, [
-          _vm._v("AdminLTE.io")
-        ]),
-        _vm._v(".")
-      ]),
-      _vm._v("\n      All rights reserved.\n      "),
-      _c("div", { staticClass: "float-right d-none d-sm-inline-block" }, [
-        _c("b", [_vm._v("Version")]),
-        _vm._v(" 3.0.5\n      ")
-      ])
+    return _c("div", { staticClass: "float-right d-none d-sm-inline-block" }, [
+      _c("b", [_vm._v("Version")]),
+      _vm._v(" 3.0.5\n      ")
     ])
   }
 ]
@@ -27557,7 +27570,6 @@ var render = function() {
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              id: "name",
                               placeholder: "e.g Vitafoam Nigeria PLC",
                               required: ""
                             },
@@ -27580,30 +27592,11 @@ var render = function() {
                                     "\n                    "
                                 )
                               ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.formError
-                            ? _c("div", { staticClass: "text-red-600" }, [
-                                _vm._v(
-                                  "\n                      Form is empty\n                    "
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.success
-                            ? _c(
-                                "strong",
-                                {
-                                  staticClass:
-                                    "text-green-500 transition duration-500 ease-in"
-                                },
-                                [_vm._v("Category Created!")]
-                              )
                             : _vm._e()
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "Brand-name" } }, [
+                          _c("label", { attrs: { for: "Brand short name" } }, [
                             _vm._v("Brand Short Name")
                           ]),
                           _vm._v(" "),
@@ -27619,7 +27612,6 @@ var render = function() {
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              id: "name",
                               placeholder: "e.g Vitafoam",
                               required: ""
                             },
@@ -44015,9 +44007,7 @@ component.options.__file = "resources/js/Layouts/Layout.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Layout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Layout.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Layouts/Layout.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Layout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Layout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Layout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Layout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Layout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Layout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

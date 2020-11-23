@@ -41,7 +41,6 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="name"
                         placeholder="e.g Vitafoam Nigeria PLC"
                         v-model="form.name"
                         required
@@ -49,21 +48,12 @@
                       <div v-if="errors.name" class="text-red-600">
                         {{ errors.name }}
                       </div>
-                      <div v-if="formError" class="text-red-600">
-                        Form is empty
-                      </div>
-                      <strong
-                        v-if="success"
-                        class="text-green-500 transition duration-500 ease-in"
-                        >Category Created!</strong
-                      >
                     </div>
                     <div class="form-group">
-                      <label for="Brand-name">Brand Short Name</label>
+                      <label for="Brand short name">Brand Short Name</label>
                       <input
                         type="text"
                         class="form-control"
-                        id="name"
                         placeholder="e.g Vitafoam"
                         v-model="form.short_name"
                         required
@@ -115,6 +105,7 @@ export default {
       success: false,
       form: {
         name: null,
+        short_name: null,
       },
       formError: false,
     };
@@ -125,21 +116,24 @@ export default {
         this.formError = true;
       } else {
         this.formError = false;
-        this.$inertia.post("/submitNewCategory", this.form);
+        this.$inertia.post("/submitNewBrand", this.form);
         this.$inertia.on("success", (event) => {
           //check if the errors props is empty
           if (Object.entries(this.$props.errors).length > 0) {
             this.form.name = "";
+            this.form.short_name = ""
+
           } else {
             this.success = true;
             this.form.name = "";
+            this.form.short_name = ""
             setTimeout(this.successMessageFade, 2000);
           }
         });
       }
     },
     successMessageFade() {
-      this.success = false; 
+      this.success = false;
     },
   },
 };
