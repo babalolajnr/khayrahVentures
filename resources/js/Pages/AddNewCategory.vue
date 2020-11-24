@@ -62,8 +62,19 @@
                   <!-- /.card-body -->
 
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">
-                      Submit
+                     <button
+                      type="submit"
+                      class="btn btn-primary btn-block flex"
+                      :disabled = "loading"
+                    >
+                      <fulfilling-square-spinner
+                        :animation-duration="2000"
+                        :size="20"
+                        color="#fff"
+                        class="mx-auto"
+                        v-if="loading"
+                      />
+                      <span class="mx-auto" v-else> Submit </span>
                     </button>
                   </div>
                 </form>
@@ -80,12 +91,14 @@
 
 <script>
 import Layout from "@/Layouts/Layout.vue";
+import { FulfillingSquareSpinner } from "epic-spinners";
 export default {
   props: {
     errors: Object,
   },
   components: {
     Layout,
+    FulfillingSquareSpinner,
   },
   data() {
     return {
@@ -94,11 +107,13 @@ export default {
       form: {
         name: null,
       },
+      loading: false,
       formError: false,
     };
   },
   methods: {
     submit() {
+      this.loading = true;
       if (this.form.name == null) {
         this.formError = true;
       } else {
@@ -115,6 +130,7 @@ export default {
           }
         });
       }
+      this.loading = false;
     },
     successMessageFade() {
       this.success = false;

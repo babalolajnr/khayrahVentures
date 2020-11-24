@@ -282,15 +282,10 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
-
 <style>
 </style>
 
 <script>
-
 export default {
   data() {
     return {
@@ -307,7 +302,7 @@ export default {
         document.title = title;
       },
     },
-  },
+  }
 };
 </script>
 
