@@ -1,19 +1,19 @@
 <template>
-  <layout title="Add New Brand">
+  <layout title="Add New Size">
     <div class="content-wrapper" style="min-height: 1244.06px">
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Add Brand</h1>
+              <h1>Add sizes</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item">
                   <inertia-link href="/dashboard">Home</inertia-link>
                 </li>
-                <li class="breadcrumb-item active">Add Brand</li>
+                <li class="breadcrumb-item active">Add sizes</li>
               </ol>
             </div>
           </div>
@@ -30,36 +30,23 @@
               <!-- general form elements -->
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3>New Brand</h3>
+                  <h3>New Size</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form role="form" @submit.prevent="submit">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="Brand-name">Brand Name</label>
+                      <label for="name">Size name 1</label>
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="e.g Vitafoam Nigeria PLC"
+                        placeholder=""
                         v-model="form.name"
                         required
                       />
                       <div v-if="errors.name" class="text-red-600">
                         {{ errors.name }}
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="Brand short name">Brand Short Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="e.g Vitafoam"
-                        v-model="form.short_name"
-                        required
-                      />
-                      <div v-if="errors.short_name" class="text-red-600">
-                        {{ errors.short_name }}
                       </div>
                       <div v-if="formError" class="text-red-600">
                         Form is empty
@@ -67,14 +54,56 @@
                       <strong
                         v-if="success"
                         class="text-green-500 transition duration-500 ease-in"
-                        >Brand Created!</strong
+                        >Size Created!</strong
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Size name 1</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder=""
+                        v-model="form.name"
+                        required
+                      />
+                      <div v-if="errors.name" class="text-red-600">
+                        {{ errors.name }}
+                      </div>
+                      <div v-if="formError" class="text-red-600">
+                        Form is empty
+                      </div>
+                      <strong
+                        v-if="success"
+                        class="text-green-500 transition duration-500 ease-in"
+                        >Size Created!</strong
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Size name 1</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder=""
+                        v-model="form.name"
+                        required
+                      />
+                      <div v-if="errors.name" class="text-red-600">
+                        {{ errors.name }}
+                      </div>
+                      <div v-if="formError" class="text-red-600">
+                        Form is empty
+                      </div>
+                      <strong
+                        v-if="success"
+                        class="text-green-500 transition duration-500 ease-in"
+                        >Size Created!</strong
                       >
                     </div>
                   </div>
                   <!-- /.card-body -->
 
                   <div class="card-footer">
-                    <button
+                     <button
                       type="submit"
                       class="btn btn-primary btn-block flex"
                       :disabled = "loading"
@@ -118,34 +147,31 @@ export default {
       success: false,
       form: {
         name: null,
-        short_name: null,
       },
-      formError: false,
       loading: false,
+      formError: false,
     };
   },
   methods: {
     submit() {
-      this.loading = true
+      this.loading = true;
       if (this.form.name == null) {
         this.formError = true;
       } else {
         this.formError = false;
-        this.$inertia.post("/submitNewBrand", this.form);
+        this.$inertia.post("/submitNewCategory", this.form);
         this.$inertia.on("success", (event) => {
           //check if the errors props is empty
           if (Object.entries(this.$props.errors).length > 0) {
             this.form.name = "";
-            this.form.short_name = "";
           } else {
             this.success = true;
             this.form.name = "";
-            this.form.short_name = "";
             setTimeout(this.successMessageFade, 2000);
           }
         });
       }
-      this.loading = false
+      this.loading = false;
     },
     successMessageFade() {
       this.success = false;

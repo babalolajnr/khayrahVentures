@@ -1,5 +1,5 @@
 <template>
-  <layout title="AddNewCategory">
+  <layout title="Add New Category">
     <div class="content-wrapper" style="min-height: 1244.06px">
       <!-- Content Header (Page header) -->
       <section class="content-header">
