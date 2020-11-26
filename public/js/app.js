@@ -3278,14 +3278,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      date: new Date().getFullYear()
+      date: new Date().getFullYear(),
+      currentRoute: route().current()
     };
   },
   props: {
     title: String
+  },
+  computed: {
+    ProductsActive: function ProductsActive() {
+      var activeClass = "active";
+      var currentRoute = this.currentRoute;
+
+      if (currentRoute == "AddNewCategory" || currentRoute == "AddNewSize") {
+        return activeClass;
+      } else {
+        return "";
+      }
+    }
   },
   watch: {
     title: {
@@ -32453,7 +32470,21 @@ var render = function() {
                         "li",
                         { staticClass: "nav-item has-treeview menu-open" },
                         [
-                          _vm._m(3),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link",
+                              class: _vm.ProductsActive,
+                              attrs: { href: "#" }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "nav-icon fas fa-tachometer-alt"
+                              }),
+                              _vm._v(" "),
+                              _vm._m(3)
+                            ]
+                          ),
                           _vm._v(" "),
                           _c("ul", { staticClass: "nav nav-treeview" }, [
                             _c(
@@ -32513,7 +32544,23 @@ var render = function() {
                         "li",
                         { staticClass: "nav-item has-treeview menu-open" },
                         [
-                          _vm._m(4),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link",
+                              class: _vm.route().current("AddNewBrand")
+                                ? "active"
+                                : "",
+                              attrs: { href: "#" }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "nav-icon fas fa-tachometer-alt"
+                              }),
+                              _vm._v(" "),
+                              _vm._m(4)
+                            ]
+                          ),
                           _vm._v(" "),
                           _c("ul", { staticClass: "nav nav-treeview" }, [
                             _c(
@@ -32942,26 +32989,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link active", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-tachometer-alt" }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n                  Products\n                  "),
-        _c("i", { staticClass: "right fas fa-angle-left" })
-      ])
+    return _c("p", [
+      _vm._v("\n                  Products\n                  "),
+      _c("i", { staticClass: "right fas fa-angle-left" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "nav-link active", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "nav-icon fas fa-tachometer-alt" }),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("\n                  Brand\n                  "),
-        _c("i", { staticClass: "right fas fa-angle-left" })
-      ])
+    return _c("p", [
+      _vm._v("\n                  Brand\n                  "),
+      _c("i", { staticClass: "right fas fa-angle-left" })
     ])
   },
   function() {

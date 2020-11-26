@@ -208,7 +208,7 @@
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
               <li class="nav-item has-treeview menu-open">
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link" :class="ProductsActive">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Products
@@ -239,7 +239,11 @@
                 </ul>
               </li>
               <li class="nav-item has-treeview menu-open">
-                <a href="#" class="nav-link active">
+                <a
+                  href="#"
+                  class="nav-link"
+                  :class="route().current('AddNewBrand') ? 'active' : ''"
+                >
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Brand
@@ -306,10 +310,23 @@ export default {
   data() {
     return {
       date: new Date().getFullYear(),
+      currentRoute: route().current(),
     };
   },
   props: {
     title: String,
+  },
+  computed: {
+    ProductsActive() {
+      let activeClass = "active";
+      let currentRoute = this.currentRoute;
+
+      if (currentRoute == "AddNewCategory" || currentRoute == "AddNewSize") {
+        return activeClass;
+      } else {
+        return "";
+      }
+    },
   },
   watch: {
     title: {
