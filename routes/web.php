@@ -24,8 +24,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::get('/addNewCategory', [ProductCategoriesController::class, 'index'])->name('AddNewCategory');
-Route::get('/addNewBrand', [BrandController::class, 'index'])->name('AddNewBrand');
-Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
-Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
-Route::post('/submitNewBrand', [BrandController::class, 'store']);
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/addNewCategory', [ProductCategoriesController::class, 'index'])->name('AddNewCategory');
+    Route::get('/addNewBrand', [BrandController::class, 'index'])->name('AddNewBrand');
+    Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
+    Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
+    Route::post('/submitNewBrand', [BrandController::class, 'store']);
+});

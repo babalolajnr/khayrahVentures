@@ -58,16 +58,16 @@
                       >
                     </div>
                     <div class="form-group">
-                      <label for="name">Size name 2</label>
+                      <label for="name2">Size name 2</label>
                       <input
                         type="text"
                         class="form-control"
                         placeholder=""
-                        v-model="form.name"
+                        v-model="form.name2"
                         required
                       />
-                      <div v-if="errors.name" class="text-red-600">
-                        {{ errors.name }}
+                      <div v-if="errors.name2" class="text-red-600">
+                        {{ errors.name2 }}
                       </div>
                       <div v-if="formError" class="text-red-600">
                         Form is empty
@@ -79,16 +79,41 @@
                       >
                     </div>
                     <div class="form-group">
-                      <label for="name">Size name 3</label>
+                      <label for="name3">Size name 3</label>
                       <input
                         type="text"
                         class="form-control"
                         placeholder=""
-                        v-model="form.name"
+                        v-model="form.name3"
                         required
                       />
-                      <div v-if="errors.name" class="text-red-600">
-                        {{ errors.name }}
+                      <div v-if="errors.name3" class="text-red-600">
+                        {{ errors.name3 }}
+                      </div>
+                      <div v-if="formError" class="text-red-600">
+                        Form is empty
+                      </div>
+                      <strong
+                        v-if="success"
+                        class="text-green-500 transition duration-500 ease-in"
+                        >Size Created!</strong
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label for="category">Category</label>
+                      <select
+                        class="custom-select"
+                        v-model="form.productCategory"
+                      >
+                        <option
+                          v-for="category in categories"
+                          :key="category.id"
+                        >
+                          {{ category.name }}
+                        </option>
+                      </select>
+                      <div v-if="errors.name3" class="text-red-600">
+                        {{ errors.name3 }}
                       </div>
                       <div v-if="formError" class="text-red-600">
                         Form is empty
@@ -136,6 +161,7 @@ import { FulfillingSquareSpinner } from "epic-spinners";
 export default {
   props: {
     errors: Object,
+    productCategories: Array,
   },
   components: {
     Layout,
@@ -145,8 +171,12 @@ export default {
     return {
       date: new Date().getFullYear(),
       success: false,
+      categories: null,
       form: {
         name: null,
+        name2: null,
+        name3: null,
+        productCategory: null,
       },
       loading: false,
       formError: false,
@@ -176,8 +206,13 @@ export default {
     successMessageFade() {
       this.success = false;
     },
+    getCategories() {
+      this.categories = this.$props.productCategories;
+    },
   },
-  
+  mounted() {
+    this.getCategories();
+  },
 };
 </script>
 
