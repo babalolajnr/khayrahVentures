@@ -72,4 +72,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Brand');
     }
     
+    public function sizes()
+    {
+        return $this->hasMany('App\Models\Size');
+    }
+    
 }

@@ -58,7 +58,7 @@
                       >
                     </div>
                     <div class="form-group">
-                      <label for="name">Size name 1</label>
+                      <label for="name">Size name 2</label>
                       <input
                         type="text"
                         class="form-control"
@@ -79,7 +79,7 @@
                       >
                     </div>
                     <div class="form-group">
-                      <label for="name">Size name 1</label>
+                      <label for="name">Size name 3</label>
                       <input
                         type="text"
                         class="form-control"
@@ -103,10 +103,10 @@
                   <!-- /.card-body -->
 
                   <div class="card-footer">
-                     <button
+                    <button
                       type="submit"
                       class="btn btn-primary btn-block flex"
-                      :disabled = "loading"
+                      :disabled="loading"
                     >
                       <fulfilling-square-spinner
                         :animation-duration="2000"
@@ -177,6 +177,7 @@ export default {
       this.success = false;
     },
   },
+  
 };
 </script>
 

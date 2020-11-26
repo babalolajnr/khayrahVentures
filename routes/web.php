@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductCategoriesController;
+use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::get('/addNewCategory', [ProductCategoriesController::class, 'index']);
-Route::get('/addNewBrand', [BrandController::class, 'index']);
+Route::get('/addNewCategory', [ProductCategoriesController::class, 'index'])->name('AddNewCategory');
+Route::get('/addNewBrand', [BrandController::class, 'index'])->name('AddNewBrand');
+Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
 Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
 Route::post('/submitNewBrand', [BrandController::class, 'store']);

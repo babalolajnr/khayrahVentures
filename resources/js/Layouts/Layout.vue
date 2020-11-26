@@ -217,12 +217,25 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <inertia-link href="/addNewCategory" class="nav-link active">
+                    <inertia-link
+                      href="/addNewCategory"
+                      :class="route().current('AddNewCategory') ? 'active' : ''"
+                      class="nav-link"
+                    >
                       <i class="far fa-circle nav-icon"></i>
                       <p>Add New Category</p>
                     </inertia-link>
                   </li>
-                 
+                  <li class="nav-item">
+                    <inertia-link
+                      href="/addNewSize"
+                      :class="route().current('AddNewSize') ? 'active' : ''"
+                      class="nav-link"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add New Size</p>
+                    </inertia-link>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item has-treeview menu-open">
@@ -235,12 +248,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <inertia-link href="/addNewBrand" class="nav-link">
+                    <inertia-link
+                      href="/addNewBrand"
+                      :class="route().current('AddNewBrand') ? 'active' : ''"
+                      class="nav-link"
+                    >
                       <i class="far fa-circle nav-icon"></i>
                       <p>Add New Brand</p>
                     </inertia-link>
                   </li>
-                 
                 </ul>
               </li>
               <li class="nav-item">
@@ -264,7 +280,7 @@
       <!-- /.content-wrapper -->
       <footer class="main-footer">
         <strong
-          >Copyright &copy; {{date}}
+          >Copyright &copy; {{ date }}
           <a href="http://adminlte.io">AdminLTE.io</a>.</strong
         >
         All rights reserved.
@@ -302,7 +318,7 @@ export default {
         document.title = title;
       },
     },
-  }
+  },
 };
 </script>
 
