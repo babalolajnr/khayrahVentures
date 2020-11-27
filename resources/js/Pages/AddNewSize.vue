@@ -51,11 +51,6 @@
                       <div v-if="formError" class="text-red-600">
                         Form is empty
                       </div>
-                      <strong
-                        v-if="success"
-                        class="text-green-500 transition duration-500 ease-in"
-                        >Size Created!</strong
-                      >
                     </div>
                     <div class="form-group">
                       <label for="name2">Size name 2</label>
@@ -64,7 +59,6 @@
                         class="form-control"
                         placeholder=""
                         v-model="form.name2"
-                        required
                       />
                       <div v-if="errors.name2" class="text-red-600">
                         {{ errors.name2 }}
@@ -72,11 +66,6 @@
                       <div v-if="formError" class="text-red-600">
                         Form is empty
                       </div>
-                      <strong
-                        v-if="success"
-                        class="text-green-500 transition duration-500 ease-in"
-                        >Size Created!</strong
-                      >
                     </div>
                     <div class="form-group">
                       <label for="name3">Size name 3</label>
@@ -85,7 +74,6 @@
                         class="form-control"
                         placeholder=""
                         v-model="form.name3"
-                        required
                       />
                       <div v-if="errors.name3" class="text-red-600">
                         {{ errors.name3 }}
@@ -93,11 +81,6 @@
                       <div v-if="formError" class="text-red-600">
                         Form is empty
                       </div>
-                      <strong
-                        v-if="success"
-                        class="text-green-500 transition duration-500 ease-in"
-                        >Size Created!</strong
-                      >
                     </div>
                     <div class="form-group">
                       <label for="category">Category</label>
@@ -112,8 +95,8 @@
                           {{ category.name }}
                         </option>
                       </select>
-                      <div v-if="errors.name3" class="text-red-600">
-                        {{ errors.name3 }}
+                      <div v-if="errors.productCategory" class="text-red-600">
+                        {{ errors.productCategory }}
                       </div>
                       <div v-if="formError" class="text-red-600">
                         Form is empty
@@ -189,14 +172,14 @@ export default {
         this.formError = true;
       } else {
         this.formError = false;
-        this.$inertia.post("/submitNewCategory", this.form);
+        this.$inertia.post("/submitNewSize", this.form);
         this.$inertia.on("success", (event) => {
           //check if the errors props is empty
           if (Object.entries(this.$props.errors).length > 0) {
-            this.form.name = "";
+            this.clearForm();
           } else {
             this.success = true;
-            this.form.name = "";
+            this.clearForm();
             setTimeout(this.successMessageFade, 2000);
           }
         });
@@ -208,6 +191,11 @@ export default {
     },
     getCategories() {
       this.categories = this.$props.productCategories;
+    },
+    clearForm() {
+      this.form.name = "";
+      this.form.name2 = "";
+      this.form.name3 = "";
     },
   },
   mounted() {

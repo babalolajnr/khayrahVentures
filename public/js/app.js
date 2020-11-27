@@ -4119,23 +4119,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4172,14 +4155,16 @@ __webpack_require__.r(__webpack_exports__);
         this.formError = true;
       } else {
         this.formError = false;
-        this.$inertia.post("/submitNewCategory", this.form);
+        this.$inertia.post("/submitNewSize", this.form);
         this.$inertia.on("success", function (event) {
           //check if the errors props is empty
           if (Object.entries(_this.$props.errors).length > 0) {
-            _this.form.name = "";
+            _this.clearForm();
           } else {
             _this.success = true;
-            _this.form.name = "";
+
+            _this.clearForm();
+
             setTimeout(_this.successMessageFade, 2000);
           }
         });
@@ -4192,6 +4177,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     getCategories: function getCategories() {
       this.categories = this.$props.productCategories;
+    },
+    clearForm: function clearForm() {
+      this.form.name = "";
+      this.form.name2 = "";
+      this.form.name3 = "";
     }
   },
   mounted: function mounted() {
@@ -34291,17 +34281,6 @@ var render = function() {
                                   "\n                      Form is empty\n                    "
                                 )
                               ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.success
-                            ? _c(
-                                "strong",
-                                {
-                                  staticClass:
-                                    "text-green-500 transition duration-500 ease-in"
-                                },
-                                [_vm._v("Size Created!")]
-                              )
                             : _vm._e()
                         ]),
                         _vm._v(" "),
@@ -34320,11 +34299,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "",
-                              required: ""
-                            },
+                            attrs: { type: "text", placeholder: "" },
                             domProps: { value: _vm.form.name2 },
                             on: {
                               input: function($event) {
@@ -34352,17 +34327,6 @@ var render = function() {
                                   "\n                      Form is empty\n                    "
                                 )
                               ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.success
-                            ? _c(
-                                "strong",
-                                {
-                                  staticClass:
-                                    "text-green-500 transition duration-500 ease-in"
-                                },
-                                [_vm._v("Size Created!")]
-                              )
                             : _vm._e()
                         ]),
                         _vm._v(" "),
@@ -34381,11 +34345,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "",
-                              required: ""
-                            },
+                            attrs: { type: "text", placeholder: "" },
                             domProps: { value: _vm.form.name3 },
                             on: {
                               input: function($event) {
@@ -34413,17 +34373,6 @@ var render = function() {
                                   "\n                      Form is empty\n                    "
                                 )
                               ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.success
-                            ? _c(
-                                "strong",
-                                {
-                                  staticClass:
-                                    "text-green-500 transition duration-500 ease-in"
-                                },
-                                [_vm._v("Size Created!")]
-                              )
                             : _vm._e()
                         ]),
                         _vm._v(" "),
@@ -34477,11 +34426,11 @@ var render = function() {
                             0
                           ),
                           _vm._v(" "),
-                          _vm.errors.name3
+                          _vm.errors.productCategory
                             ? _c("div", { staticClass: "text-red-600" }, [
                                 _vm._v(
                                   "\n                      " +
-                                    _vm._s(_vm.errors.name3) +
+                                    _vm._s(_vm.errors.productCategory) +
                                     "\n                    "
                                 )
                               ])
