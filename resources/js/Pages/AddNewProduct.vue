@@ -127,10 +127,10 @@
                       <label for="size">Size</label>
                       <select class="custom-select" v-model="form.size">
                         <option
-                          v-for="category in categories"
-                          :key="category.id"
+                          v-for="size in sizes"
+                          :key="size.id"
                         >
-                          {{ category.name }}
+                          {{ size.name }}
                         </option>
                       </select>
                       <div v-if="errors.size" class="text-red-600">
@@ -141,10 +141,10 @@
                       <label for="brand">Brand</label>
                       <select class="custom-select" v-model="form.brand">
                         <option
-                          v-for="category in categories"
-                          :key="category.id"
+                          v-for="brand in brands"
+                          :key="brand.id"
                         >
-                          {{ category.name }}
+                          {{ brand.name }}
                         </option>
                       </select>
                       <div v-if="errors.brand" class="text-red-600">
@@ -198,12 +198,14 @@
 </template>
 
 <script>
-import Layout from "@/Layouts/Layout.vue";
-import { FulfillingSquareSpinner } from "epic-spinners";
+import Layout from "@/Layouts/Layout.vue"
+import { FulfillingSquareSpinner } from "epic-spinners"
 export default {
   props: {
     errors: Object,
     productCategories: Array,
+    sizes: Array,
+    brands: Array
   },
   components: {
     Layout,
@@ -214,6 +216,8 @@ export default {
       date: new Date().getFullYear(),
       success: false,
       categories: null,
+      sizes: null,
+      brands: null,
       form: {
         name: null,
         code: null,
@@ -227,51 +231,53 @@ export default {
       },
       loading: false,
       formError: false,
-    };
+    }
   },
   methods: {
     submit() {
-      this.loading = true;
+      this.loading = true
       if (this.form.name == null) {
-        this.formError = true;
+        this.formError = true
       } else {
-        this.formError = false;
-        this.$inertia.post("/submitNewSize", this.form);
+        this.formError = false
+        this.$inertia.post("/submitNewSize", this.form)
         this.$inertia.on("success", (event) => {
           //check if the errors props is empty
           if (Object.entries(this.$props.errors).length > 0) {
-            // this.clearForm();
+            // this.clearForm()
           } else {
-            this.success = true;
-            this.clearForm();
-            setTimeout(this.successMessageFade, 2000);
+            this.success = true
+            this.clearForm()
+            setTimeout(this.successMessageFade, 2000)
           }
-        });
+        })
       }
-      this.loading = false;
+      this.loading = false
     },
     successMessageFade() {
-      this.success = false;
+      this.success = false
     },
-    getCategories() {
-      this.categories = this.$props.productCategories;
+    loadDropdowns() {
+      this.categories = this.$props.productCategories
+      this.sizes = this.$props.sizes
+      this.brands = this.$props.brands
     },
     clearForm() {
-      this.form.name = "";
-      this.form.code = "";
-      this.form.color = "";
-      this.form.wholesale = "";
-      this.form.retail = "";
-      this.form.productCategory = "";
-      this.form.size = "";
-      this.form.brand = "";
-      this.form.description = "";
+      this.form.name = ""
+      this.form.code = ""
+      this.form.color = ""
+      this.form.wholesale = ""
+      this.form.retail = ""
+      this.form.productCategory = ""
+      this.form.size = ""
+      this.form.brand = ""
+      this.form.description = ""
     },
   },
   mounted() {
-    this.getCategories();
+    this.loadDropdowns()
   },
-};
+}
 </script>
 
 <style>

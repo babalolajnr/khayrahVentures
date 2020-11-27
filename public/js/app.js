@@ -4204,7 +4204,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     errors: Object,
-    productCategories: Array
+    productCategories: Array,
+    sizes: Array,
+    brands: Array
   },
   components: {
     Layout: _Layouts_Layout_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -4215,6 +4217,8 @@ __webpack_require__.r(__webpack_exports__);
       date: new Date().getFullYear(),
       success: false,
       categories: null,
+      sizes: null,
+      brands: null,
       form: {
         name: null,
         code: null,
@@ -4243,7 +4247,7 @@ __webpack_require__.r(__webpack_exports__);
         this.$inertia.post("/submitNewSize", this.form);
         this.$inertia.on("success", function (event) {
           //check if the errors props is empty
-          if (Object.entries(_this.$props.errors).length > 0) {// this.clearForm();
+          if (Object.entries(_this.$props.errors).length > 0) {// this.clearForm()
           } else {
             _this.success = true;
 
@@ -4259,8 +4263,10 @@ __webpack_require__.r(__webpack_exports__);
     successMessageFade: function successMessageFade() {
       this.success = false;
     },
-    getCategories: function getCategories() {
+    loadDropdowns: function loadDropdowns() {
       this.categories = this.$props.productCategories;
+      this.sizes = this.$props.sizes;
+      this.brands = this.$props.brands;
     },
     clearForm: function clearForm() {
       this.form.name = "";
@@ -4275,7 +4281,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getCategories();
+    this.loadDropdowns();
   }
 });
 
@@ -34882,11 +34888,11 @@ var render = function() {
                                 }
                               }
                             },
-                            _vm._l(_vm.categories, function(category) {
-                              return _c("option", { key: category.id }, [
+                            _vm._l(_vm.sizes, function(size) {
+                              return _c("option", { key: size.id }, [
                                 _vm._v(
                                   "\n                        " +
-                                    _vm._s(category.name) +
+                                    _vm._s(size.name) +
                                     "\n                      "
                                 )
                               ])
@@ -34943,11 +34949,11 @@ var render = function() {
                                 }
                               }
                             },
-                            _vm._l(_vm.categories, function(category) {
-                              return _c("option", { key: category.id }, [
+                            _vm._l(_vm.brands, function(brand) {
+                              return _c("option", { key: brand.id }, [
                                 _vm._v(
                                   "\n                        " +
-                                    _vm._s(category.name) +
+                                    _vm._s(brand.name) +
                                     "\n                      "
                                 )
                               ])
