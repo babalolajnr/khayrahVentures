@@ -13,7 +13,7 @@ class SizeController extends Controller
     {
         $productCategories = Product_Category::all();
         // dd($productCategories);
-        
+
         return Inertia::render('AddNewSize', [
             'productCategories' => $productCategories
         ]);
@@ -23,12 +23,12 @@ class SizeController extends Controller
     {
         $messages = [
             'unique' => 'Size Exists'
-        ];  
+        ];
 
-        $this->validate($request, array(
-            'name' => 'required|unique:sizes',
-            'productCategory' => 'required'
-        ), $messages);
+        $this->validate($request, ([
+            'name' => ['required', 'unique:sizes', 'regex:/^[0-9]{1,2}[in]+[x ]+[0-9]{1,2}[in]+[x ]+[0-9]{1,2}[in]{2}/m'],
+            'productCategory' => ['required']
+        ]), $messages);
 
         $productCategory = $request->productCategory;
         $productCategoryID = Product_Category::where('name', $productCategory)->first();
@@ -36,11 +36,10 @@ class SizeController extends Controller
         // dd($productCategoryID->id);
 
         Auth::user()->sizes()->create([
-            'name'              => $request->name, 
+            'name'              => $request->name,
             'products_category_id'   => $productCategoryID
         ]);
 
         return redirect('/addNewSize');
-
     }
 }
