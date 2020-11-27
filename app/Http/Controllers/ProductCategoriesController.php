@@ -25,7 +25,7 @@ class ProductCategoriesController extends Controller
         ), $messages);
 
 
-        Auth::user()->product_categories()->create([
+        Auth::user()->productCategories()->create([
             'name' => $request->name
         ]);
 

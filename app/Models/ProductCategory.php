@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product_Category extends Model
+class ProductCategory extends Model
 {
     use HasFactory;
 
@@ -20,5 +20,10 @@ class Product_Category extends Model
     public function sizes()
     {
         return $this->hasMany('App\Models\Size');
+    }
+
+    public function products()
+    {
+        return $this->hasMany('App\Models\Produts');
     }
 }

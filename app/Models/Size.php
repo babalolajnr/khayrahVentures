@@ -17,7 +17,12 @@ class Size extends Model
         return $this->belongsTo('App\Models\User');
     }
     
-    public function product_category() {
-        return $this->belongsTo('App\Models\Product_Category');
+    public function productCategory() {
+        return $this->belongsTo('App\Models\ProductCategory');
+    }
+
+    public function products()
+    {
+        return $this->hasMany('App\Models\Produts');
     }
 }

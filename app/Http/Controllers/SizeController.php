@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product_Category;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -11,7 +11,7 @@ class SizeController extends Controller
 {
     public function index()
     {
-        $productCategories = Product_Category::all();
+        $productCategories = ProductCategory::all();
         // dd($productCategories);
 
         return Inertia::render('AddNewSize', [
@@ -35,7 +35,7 @@ class SizeController extends Controller
         ]), $messages);
 
         $productCategory = $request->productCategory;
-        $productCategoryID = Product_Category::where('name', $productCategory)->first();
+        $productCategoryID = ProductCategory::where('name', $productCategory)->first();
         $productCategoryID = $productCategoryID->id;
         // dd($productCategoryID->id);
 

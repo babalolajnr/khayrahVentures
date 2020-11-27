@@ -62,9 +62,9 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function product_categories()
+    public function productCategories()
     {
-        return $this->hasMany('App\Models\Product_Category');
+        return $this->hasMany('App\Models\ProductCategory');
     }
 
     public function brands()
@@ -75,6 +75,11 @@ class User extends Authenticatable
     public function sizes()
     {
         return $this->hasMany('App\Models\Size');
+    }
+
+    public function products()
+    {
+        return $this->hasMany('App\Models\Produts');
     }
     
 }
