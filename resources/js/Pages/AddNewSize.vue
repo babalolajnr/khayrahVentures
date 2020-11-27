@@ -37,7 +37,7 @@
                 <form role="form" @submit.prevent="submit">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="name">Size name 1</label>
+                      <label for="name">Size</label>
                       <input
                         type="text"
                         class="form-control"
@@ -45,6 +45,7 @@
                         v-model="form.name"
                         required
                       />
+                      <small id="sizeHelp" class="form-text text-muted">e.g 75in x 54in x 10in </small>
                       <div v-if="errors.name" class="text-red-600">
                         {{ errors.name }}
                       </div>

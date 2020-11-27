@@ -4089,6 +4089,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34202,7 +34203,7 @@ var render = function() {
                       _c("div", { staticClass: "card-body" }, [
                         _c("div", { staticClass: "form-group" }, [
                           _c("label", { attrs: { for: "name" } }, [
-                            _vm._v("Size name 1")
+                            _vm._v("Size")
                           ]),
                           _vm._v(" "),
                           _c("input", {
@@ -34230,6 +34231,15 @@ var render = function() {
                               }
                             }
                           }),
+                          _vm._v(" "),
+                          _c(
+                            "small",
+                            {
+                              staticClass: "form-text text-muted",
+                              attrs: { id: "sizeHelp" }
+                            },
+                            [_vm._v("e.g 75in x 54in x 10in ")]
+                          ),
                           _vm._v(" "),
                           _vm.errors.name
                             ? _c("div", { staticClass: "text-red-600" }, [
