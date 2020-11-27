@@ -23,11 +23,14 @@ class SizeController extends Controller
     {
         $messages = [
             'unique' => 'Size Exists',
-            'regex' => 'Invalid Size. The size should not have spaces in between the characters. Small letter x should be used instead of *. The unit should be in inches written as (in)'
+            'regex' => 'Invalid Size. The size should not have spaces in between the characters.
+                         Small letter x should be used instead of *. 
+                         The unit should be in inches written as (in)'
         ];
 
         $this->validate($request, ([
-            'name' => ['required', 'unique:sizes', 'regex:/^[0-9]{1,2}[in]+[x]+[0-9]{1,2}[in]+[x]+[0-9]{1,2}[in]{2}/m'],
+            'name' => ['required', 'unique:sizes', 
+                        'regex:/^[0-9]{1,2}[in]+[x]+[0-9]{1,2}[in]+[x]+[0-9]{1,2}[in]{2}/m'],
             'productCategory' => ['required']
         ]), $messages);
 
