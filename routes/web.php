@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductCategoriesController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/addNewCategory', [ProductCategoriesController::class, 'index'])->name('AddNewCategory');
     Route::get('/addNewBrand', [BrandController::class, 'index'])->name('AddNewBrand');
     Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
+    Route::get('/addNewProduct', [ProductController::class, 'index'])->name('AddNewProduct');
+
     Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
     Route::post('/submitNewBrand', [BrandController::class, 'store']);
     Route::post('/submitNewSize', [SizeController::class, 'store']);
