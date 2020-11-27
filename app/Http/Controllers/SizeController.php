@@ -27,8 +27,6 @@ class SizeController extends Controller
 
         $this->validate($request, array(
             'name' => 'required|unique:sizes',
-            'name2' => 'unique:sizes',
-            'name3' => 'unique:sizes',
             'productCategory' => 'required'
         ), $messages);
 
@@ -39,8 +37,6 @@ class SizeController extends Controller
 
         Auth::user()->sizes()->create([
             'name'              => $request->name, 
-            'name2'                 => $request->name2,
-            'name3'                  => $request->name3,
             'products_category_id'   => $productCategoryID
         ]);
 
