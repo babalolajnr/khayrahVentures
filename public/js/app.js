@@ -4127,8 +4127,7 @@ __webpack_require__.r(__webpack_exports__);
         this.$inertia.post("/submitNewSize", this.form);
         this.$inertia.on("success", function (event) {
           //check if the errors props is empty
-          if (Object.entries(_this.$props.errors).length > 0) {
-            _this.clearForm();
+          if (Object.entries(_this.$props.errors).length > 0) {// this.clearForm();
           } else {
             _this.success = true;
 
@@ -34238,7 +34237,7 @@ var render = function() {
                               staticClass: "form-text text-muted",
                               attrs: { id: "sizeHelp" }
                             },
-                            [_vm._v("e.g 75in x 54in x 10in ")]
+                            [_vm._v("e.g 75inx54inx10in ")]
                           ),
                           _vm._v(" "),
                           _vm.errors.name

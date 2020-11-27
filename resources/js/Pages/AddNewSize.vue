@@ -45,7 +45,7 @@
                         v-model="form.name"
                         required
                       />
-                      <small id="sizeHelp" class="form-text text-muted">e.g 75in x 54in x 10in </small>
+                      <small id="sizeHelp" class="form-text text-muted">e.g 75inx54inx10in </small>
                       <div v-if="errors.name" class="text-red-600">
                         {{ errors.name }}
                       </div>
@@ -145,7 +145,7 @@ export default {
         this.$inertia.on("success", (event) => {
           //check if the errors props is empty
           if (Object.entries(this.$props.errors).length > 0) {
-            this.clearForm();
+            // this.clearForm();
           } else {
             this.success = true;
             this.clearForm();
