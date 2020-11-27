@@ -4089,36 +4089,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4137,8 +4107,6 @@ __webpack_require__.r(__webpack_exports__);
       categories: null,
       form: {
         name: null,
-        name2: null,
-        name3: null,
         productCategory: null
       },
       loading: false,
@@ -4180,8 +4148,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     clearForm: function clearForm() {
       this.form.name = "";
-      this.form.name2 = "";
-      this.form.name3 = "";
     }
   },
   mounted: function mounted() {
@@ -34270,98 +34236,6 @@ var render = function() {
                                 _vm._v(
                                   "\n                      " +
                                     _vm._s(_vm.errors.name) +
-                                    "\n                    "
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.formError
-                            ? _c("div", { staticClass: "text-red-600" }, [
-                                _vm._v(
-                                  "\n                      Form is empty\n                    "
-                                )
-                              ])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "name2" } }, [
-                            _vm._v("Size name 2")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.name2,
-                                expression: "form.name2"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", placeholder: "" },
-                            domProps: { value: _vm.form.name2 },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(_vm.form, "name2", $event.target.value)
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.errors.name2
-                            ? _c("div", { staticClass: "text-red-600" }, [
-                                _vm._v(
-                                  "\n                      " +
-                                    _vm._s(_vm.errors.name2) +
-                                    "\n                    "
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.formError
-                            ? _c("div", { staticClass: "text-red-600" }, [
-                                _vm._v(
-                                  "\n                      Form is empty\n                    "
-                                )
-                              ])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "name3" } }, [
-                            _vm._v("Size name 3")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.name3,
-                                expression: "form.name3"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text", placeholder: "" },
-                            domProps: { value: _vm.form.name3 },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(_vm.form, "name3", $event.target.value)
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.errors.name3
-                            ? _c("div", { staticClass: "text-red-600" }, [
-                                _vm._v(
-                                  "\n                      " +
-                                    _vm._s(_vm.errors.name3) +
                                     "\n                    "
                                 )
                               ])

@@ -53,36 +53,6 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="name2">Size name 2</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder=""
-                        v-model="form.name2"
-                      />
-                      <div v-if="errors.name2" class="text-red-600">
-                        {{ errors.name2 }}
-                      </div>
-                      <div v-if="formError" class="text-red-600">
-                        Form is empty
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="name3">Size name 3</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder=""
-                        v-model="form.name3"
-                      />
-                      <div v-if="errors.name3" class="text-red-600">
-                        {{ errors.name3 }}
-                      </div>
-                      <div v-if="formError" class="text-red-600">
-                        Form is empty
-                      </div>
-                    </div>
-                    <div class="form-group">
                       <label for="category">Category</label>
                       <select
                         class="custom-select"
@@ -157,8 +127,6 @@ export default {
       categories: null,
       form: {
         name: null,
-        name2: null,
-        name3: null,
         productCategory: null,
       },
       loading: false,
@@ -194,8 +162,6 @@ export default {
     },
     clearForm() {
       this.form.name = "";
-      this.form.name2 = "";
-      this.form.name3 = "";
     },
   },
   mounted() {
