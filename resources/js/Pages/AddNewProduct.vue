@@ -1,19 +1,19 @@
 <template>
-  <layout title="Add New Size">
+  <layout title="Add New Product">
     <div class="content-wrapper" style="min-height: 1244.06px">
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Add sizes</h1>
+              <h1>Add Product</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item">
                   <inertia-link href="/dashboard">Home</inertia-link>
                 </li>
-                <li class="breadcrumb-item active">Add sizes</li>
+                <li class="breadcrumb-item active">Add Product</li>
               </ol>
             </div>
           </div>
@@ -30,14 +30,14 @@
               <!-- general form elements -->
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3>New Size</h3>
+                  <h3>New Product</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form role="form" @submit.prevent="submit">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="name">Size</label>
+                      <label for="name">Name</label>
                       <input
                         type="text"
                         class="form-control"
@@ -45,12 +45,64 @@
                         v-model="form.name"
                         required
                       />
-                      <small id="sizeHelp" class="form-text text-muted">e.g 75inx54inx10in </small>
+                      <small id="nameHelp" class="form-text text-muted"
+                        >e.g Vita Grand
+                      </small>
                       <div v-if="errors.name" class="text-red-600">
                         {{ errors.name }}
                       </div>
-                      <div v-if="formError" class="text-red-600">
-                        Form is empty
+                    </div>
+                    <div class="form-group">
+                      <label for="Code">Code</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder=""
+                        v-model="form.code"
+                      />
+                      <small id="codeHelp" class="form-text text-muted"
+                        >e.g M1VS
+                      </small>
+                      <div v-if="errors.code" class="text-red-600">
+                        {{ errors.code }}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="Color">Color</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder=""
+                        v-model="form.color"
+                      />
+                      <div v-if="errors.color" class="text-red-600">
+                        {{ errors.color }}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="Wholesale">Wholesale price</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder=""
+                        v-model="form.wholesale"
+                        required
+                      />
+                      <div v-if="errors.wholesale" class="text-red-600">
+                        {{ errors.wholesale }}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="Retail">Retail price</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder=""
+                        v-model="form.retail"
+                        required
+                      />
+                      <div v-if="errors.retail" class="text-red-600">
+                        {{ errors.retail }}
                       </div>
                     </div>
                     <div class="form-group">
@@ -69,14 +121,50 @@
                       <div v-if="errors.productCategory" class="text-red-600">
                         {{ errors.productCategory }}
                       </div>
-                      <div v-if="formError" class="text-red-600">
-                        Form is empty
+                      
+                    </div>
+                    <div class="form-group">
+                      <label for="size">Size</label>
+                      <select class="custom-select" v-model="form.size">
+                        <option
+                          v-for="category in categories"
+                          :key="category.id"
+                        >
+                          {{ category.name }}
+                        </option>
+                      </select>
+                      <div v-if="errors.size" class="text-red-600">
+                        {{ errors.size }}
                       </div>
-                      <strong
-                        v-if="success"
-                        class="text-green-500 transition duration-500 ease-in"
-                        >Size Created!</strong
-                      >
+                    </div>
+                    <div class="form-group">
+                      <label for="brand">Brand</label>
+                      <select class="custom-select" v-model="form.brand">
+                        <option
+                          v-for="category in categories"
+                          :key="category.id"
+                        >
+                          {{ category.name }}
+                        </option>
+                      </select>
+                      <div v-if="errors.brand" class="text-red-600">
+                        {{ errors.brand }}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Description</label>
+                      <textarea
+                        class="form-control"
+                        rows="3"
+                        v-model="form.description"
+                        placeholder="Enter description of the product"
+                      ></textarea>
+                      <div v-if="errors.description" class="text-red-600">
+                        {{ errors.description }}
+                      </div>
+                    </div>
+                    <div v-if="formError" class="text-red-600">
+                      Form is empty
                     </div>
                   </div>
                   <!-- /.card-body -->
@@ -128,7 +216,14 @@ export default {
       categories: null,
       form: {
         name: null,
+        code: null,
+        color: null,
+        wholesale: null,
+        retail: null,
         productCategory: null,
+        size: null,
+        brand: null,  
+        description: null
       },
       loading: false,
       formError: false,
@@ -163,6 +258,14 @@ export default {
     },
     clearForm() {
       this.form.name = "";
+      this.form.code = "";
+      this.form.color = "";
+      this.form.wholesale = "";
+      this.form.retail = "";
+      this.form.productCategory = "";
+      this.form.size = "";
+      this.form.brand = "";
+      this.form.description = "";
     },
   },
   mounted() {
