@@ -218,6 +218,16 @@
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <inertia-link
+                      href="/addNewProduct"
+                      :class="route().current('AddNewCategory') ? 'active' : ''"
+                      class="nav-link"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add New Product</p>
+                    </inertia-link>
+                  </li>
+                  <li class="nav-item">
+                    <inertia-link
                       href="/addNewCategory"
                       :class="route().current('AddNewCategory') ? 'active' : ''"
                       class="nav-link"
@@ -264,12 +274,18 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a href="pages/widgets.html" class="nav-link">
+                <a href="3" class="nav-link">
                   <i class="nav-icon fas fa-th"></i>
                   <p>
                     Widgets
                     <span class="right badge badge-danger">New</span>
                   </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a @click="logout()" class="nav-link cursor-pointer">
+                  <i class="nav-icon fas fa-door-open"></i>
+                  <p>Logout</p>
                 </a>
               </li>
             </ul>
@@ -334,6 +350,11 @@ export default {
       handler(title) {
         document.title = title;
       },
+    },
+  },
+  methods: {
+    logout() {
+      this.$inertia.post("/logout");
     },
   },
 };

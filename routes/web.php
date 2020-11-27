@@ -31,3 +31,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/submitNewBrand', [BrandController::class, 'store']);
     Route::post('/submitNewSize', [SizeController::class, 'store']);
 });
+
