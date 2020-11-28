@@ -53,31 +53,7 @@
                         Form is empty
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="category">Category</label>
-                      <select
-                        class="custom-select"
-                        v-model="form.productCategory"
-                      >
-                        <option
-                          v-for="category in categories"
-                          :key="category.id"
-                        >
-                          {{ category.name }}
-                        </option>
-                      </select>
-                      <div v-if="errors.productCategory" class="text-red-600">
-                        {{ errors.productCategory }}
-                      </div>
-                      <div v-if="formError" class="text-red-600">
-                        Form is empty
-                      </div>
-                      <strong
-                        v-if="success"
-                        class="text-green-500 transition duration-500 ease-in"
-                        >Size Created!</strong
-                      >
-                    </div>
+                   
                   </div>
                   <!-- /.card-body -->
 
@@ -115,7 +91,6 @@ import { FulfillingSquareSpinner } from "epic-spinners";
 export default {
   props: {
     errors: Object,
-    productCategories: Array,
   },
   components: {
     Layout,
@@ -128,7 +103,6 @@ export default {
       categories: null,
       form: {
         name: null,
-        productCategory: null,
       },
       loading: false,
       formError: false,
@@ -158,15 +132,10 @@ export default {
     successMessageFade() {
       this.success = false;
     },
-    getCategories() {
-      this.categories = this.$props.productCategories;
-    },
+    
     clearForm() {
       this.form.name = "";
     },
-  },
-  mounted() {
-    this.getCategories();
   },
 };
 </script>
