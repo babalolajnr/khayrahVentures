@@ -79,7 +79,7 @@ class User extends Authenticatable
 
     public function products()
     {
-        return $this->hasMany('App\Models\Produts');
+        return $this->hasMany('App\Models\Product');
     }
     
 }
