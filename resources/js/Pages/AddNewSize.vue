@@ -52,6 +52,9 @@
                       <div v-if="formError" class="text-red-600">
                         Form is empty
                       </div>
+                      <div v-if="success" class="text-green-400">
+                        Size Created!
+                      </div>
                     </div>
                    
                   </div>

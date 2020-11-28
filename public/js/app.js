@@ -4385,6 +4385,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35164,6 +35167,14 @@ var render = function() {
                             ? _c("div", { staticClass: "text-red-600" }, [
                                 _vm._v(
                                   "\n                      Form is empty\n                    "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.success
+                            ? _c("div", { staticClass: "text-green-400" }, [
+                                _vm._v(
+                                  "\n                      Size Created!\n                    "
                                 )
                               ])
                             : _vm._e()
