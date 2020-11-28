@@ -17,11 +17,6 @@ class ProductCategory extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function sizes()
-    {
-        return $this->hasMany('App\Models\Size');
-    }
-
     public function products()
     {
         return $this->hasMany('App\Models\Produts');
