@@ -14,9 +14,7 @@ class SizeController extends Controller
         $productCategories = ProductCategory::all();
         // dd($productCategories);
 
-        return Inertia::render('AddNewSize', [
-            'productCategories' => $productCategories
-        ]);
+        return Inertia::render('AddNewSize');
     }
 
     public function store(Request $request)
@@ -31,17 +29,10 @@ class SizeController extends Controller
         $this->validate($request, ([
             'name' => ['required', 'unique:sizes', 
                         'regex:/^[0-9]{1,2}[in]+[x]+[0-9]{1,2}[in]+[x]+[0-9]{1,2}[in]{2}/m'],
-            'productCategory' => ['required']
         ]), $messages);
 
-        $productCategory = $request->productCategory;
-        $productCategoryID = ProductCategory::where('name', $productCategory)->first();
-        $productCategoryID = $productCategoryID->id;
-        // dd($productCategoryID->id);
-
         Auth::user()->sizes()->create([
-            'name'              => $request->name,
-            'products_category_id'   => $productCategoryID
+            'name'              => $request->name
         ]);
 
         return redirect('/addNewSize');
