@@ -4244,7 +4244,7 @@ __webpack_require__.r(__webpack_exports__);
         this.formError = true;
       } else {
         this.formError = false;
-        this.$inertia.post("/submitNewSize", this.form);
+        this.$inertia.post("/submitNewProduct", this.form);
         this.$inertia.on("success", function (event) {
           //check if the errors props is empty
           if (Object.entries(_this.$props.errors).length > 0) {// this.clearForm()

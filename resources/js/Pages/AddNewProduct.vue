@@ -240,7 +240,7 @@ export default {
         this.formError = true
       } else {
         this.formError = false
-        this.$inertia.post("/submitNewSize", this.form)
+        this.$inertia.post("/submitNewProduct", this.form)
         this.$inertia.on("success", (event) => {
           //check if the errors props is empty
           if (Object.entries(this.$props.errors).length > 0) {
