@@ -22,12 +22,10 @@ class CreateProductsTable extends Migration
             $table->float('retail_price');
             $table->float('wholesale_price');
             $table->string('color')->nullable();
-            $table->foreignId('size_id')->nullable()->constrained('sizes')->onUpdate('cascade')->onDelete('set null');
-            $table->foreignId('product_category_id')->nullable()->constrained('products_category')->onUpdate('cascade')->onDelete('set null');
-            $table->foreignId('brand_id')->nullable()->constrained('brands')->onUpdate('cascade')->onDelete('set null');
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
+            
         });
+       
     }
 
     /**
