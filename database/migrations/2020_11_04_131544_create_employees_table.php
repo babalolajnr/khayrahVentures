@@ -21,8 +21,8 @@ class CreateEmployeesTable extends Migration
             $table->integer('age')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('slug')->nullable();
-            $table->foreignId('address_id')->nullable();
-            $table->foreignId('user_id')->nullable();
+            $table->text('address')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }
