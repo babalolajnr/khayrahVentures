@@ -16,7 +16,7 @@ class CreateDeliveredProductsTable extends Migration
         Schema::create('delivered_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('set null');
             $table->integer('quantity');
             $table->float('amount');
             $table->timestamps();
