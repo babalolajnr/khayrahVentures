@@ -18,7 +18,7 @@ class CreateDepositsTable extends Migration
             $table->foreignId('customer_id');
             $table->float('amount');
             $table->foreignId('product_id');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('set null');
             $table->float('reminder');
             $table->timestamps();
         });
