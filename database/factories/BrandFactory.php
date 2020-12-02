@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Brand;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class BrandFactory extends Factory
 {
@@ -23,9 +24,10 @@ class BrandFactory extends Factory
     public function definition()
     {
         $userID = User::pluck('id')->all();
+        $name = $this->faker->unique()->company;
         return [
-            'name'          => $this->faker->unique()->company,
-            'slug'          => 'alslallalalala',
+            'name'          => $name,
+            'slug'          => Str::of($name)->slug('-'),
             'user_id'       => $this->faker->randomElement($userID)
         ];
     }
