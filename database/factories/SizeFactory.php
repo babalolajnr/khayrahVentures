@@ -23,8 +23,22 @@ class SizeFactory extends Factory
     public function definition()
     {
         $userID = User::pluck('id')->all();
+        $sizes = [
+            '75inx54inx6in',
+            '75inx48inx6in',
+            '75inx42inx6in',
+            '75inx36inx6in',
+            '75inx54inx8in',
+            '75inx54inx8in',
+            '75inx48inx8in',
+            '75inx42inx8in',
+            '75inx36inx8in',
+            '75inx36inx4in',
+            '75inx30inx4in',
+            '75inx30inx3in',
+        ];
         return [
-            'name'      => '6x6x9',
+            'name'      => $this->faker->unique()->randomElement($sizes),
             'user_id'   => $this->faker->randomElement($userID),
         ];
     }
