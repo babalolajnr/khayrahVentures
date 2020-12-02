@@ -3761,21 +3761,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3791,8 +3776,7 @@ __webpack_require__.r(__webpack_exports__);
       date: new Date().getFullYear(),
       success: false,
       form: {
-        name: null,
-        short_name: null
+        name: null
       },
       formError: false,
       loading: false
@@ -3813,11 +3797,9 @@ __webpack_require__.r(__webpack_exports__);
           //check if the errors props is empty
           if (Object.entries(_this.$props.errors).length > 0) {
             _this.form.name = "";
-            _this.form.short_name = "";
           } else {
             _this.success = true;
             _this.form.name = "";
-            _this.form.short_name = "";
             setTimeout(_this.successMessageFade, 2000);
           }
         });
@@ -34171,70 +34153,16 @@ var render = function() {
                             : _vm._e()
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { attrs: { for: "Brand short name" } }, [
-                            _vm._v("Brand Short Name")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
+                        _vm.success
+                          ? _c(
+                              "strong",
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.short_name,
-                                expression: "form.short_name"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "e.g Vitafoam",
-                              required: ""
-                            },
-                            domProps: { value: _vm.form.short_name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "short_name",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.errors.short_name
-                            ? _c("div", { staticClass: "text-red-600" }, [
-                                _vm._v(
-                                  "\n                      " +
-                                    _vm._s(_vm.errors.short_name) +
-                                    "\n                    "
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.formError
-                            ? _c("div", { staticClass: "text-red-600" }, [
-                                _vm._v(
-                                  "\n                      Form is empty\n                    "
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.success
-                            ? _c(
-                                "strong",
-                                {
-                                  staticClass:
-                                    "text-green-500 transition duration-500 ease-in"
-                                },
-                                [_vm._v("Brand Created!")]
-                              )
-                            : _vm._e()
-                        ])
+                                staticClass:
+                                  "text-green-500 transition duration-500 ease-in"
+                              },
+                              [_vm._v("Brand Created!")]
+                            )
+                          : _vm._e()
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "card-footer" }, [

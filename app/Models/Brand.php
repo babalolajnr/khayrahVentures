@@ -19,7 +19,7 @@ class Brand extends Model
     {
         return [
             'slug' => [
-                'source' => 'short_name'
+                'source' => 'name'
             ]
         ];
     }

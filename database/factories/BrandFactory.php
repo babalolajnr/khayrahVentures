@@ -25,10 +25,8 @@ class BrandFactory extends Factory
         $userID = User::pluck('id')->all();
         return [
             'name'          => $this->faker->unique()->company,
-            'short_name'    => $this->faker->unique()->companySuffix,
             'slug'          => 'alslallalalala',
             'user_id'       => $this->faker->randomElement($userID)
-            
         ];
     }
 }

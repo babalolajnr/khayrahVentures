@@ -49,27 +49,12 @@
                         {{ errors.name }}
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="Brand short name">Brand Short Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="e.g Vitafoam"
-                        v-model="form.short_name"
-                        required
-                      />
-                      <div v-if="errors.short_name" class="text-red-600">
-                        {{ errors.short_name }}
-                      </div>
-                      <div v-if="formError" class="text-red-600">
-                        Form is empty
-                      </div>
-                      <strong
-                        v-if="success"
-                        class="text-green-500 transition duration-500 ease-in"
-                        >Brand Created!</strong
-                      >
-                    </div>
+
+                    <strong
+                      v-if="success"
+                      class="text-green-500 transition duration-500 ease-in"
+                      >Brand Created!</strong
+                    >
                   </div>
                   <!-- /.card-body -->
 
@@ -77,7 +62,7 @@
                     <button
                       type="submit"
                       class="btn btn-primary btn-block flex"
-                      :disabled = "loading"
+                      :disabled="loading"
                     >
                       <fulfilling-square-spinner
                         :animation-duration="2000"
@@ -118,7 +103,6 @@ export default {
       success: false,
       form: {
         name: null,
-        short_name: null,
       },
       formError: false,
       loading: false,
@@ -126,7 +110,7 @@ export default {
   },
   methods: {
     submit() {
-      this.loading = true
+      this.loading = true;
       if (this.form.name == null) {
         this.formError = true;
       } else {
@@ -136,16 +120,14 @@ export default {
           //check if the errors props is empty
           if (Object.entries(this.$props.errors).length > 0) {
             this.form.name = "";
-            this.form.short_name = "";
           } else {
             this.success = true;
             this.form.name = "";
-            this.form.short_name = "";
             setTimeout(this.successMessageFade, 2000);
           }
         });
       }
-      this.loading = false
+      this.loading = false;
     },
     successMessageFade() {
       this.success = false;

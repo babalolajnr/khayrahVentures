@@ -24,12 +24,10 @@ class BrandController extends Controller
 
         $this->validate($request, array(
             'name' => 'required|unique:brands',
-            'short_name' => 'required|unique:brands'
         ), $messages);
 
         Auth::user()->brands()->create([
             'name' => $request->name, 
-            'short_name' => $request->short_name
         ]);
 
         return redirect('/addNewBrand');
