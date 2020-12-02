@@ -9,6 +9,7 @@ use App\Models\Size;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 
 class ProductFactory extends Factory
@@ -44,35 +45,63 @@ class ProductFactory extends Factory
                 'Vitacool',
                 'Flamingo',
                 'Gazelle',
-            ]
+            ],
+            ['Bedsheet']
         ];
-        $selectedName = $this->faker->randomElement($name);
+        $randomArrayCategory = Arr::random($name);
+        if ($randomArrayCategory == $name[0]) {
+            //mattress
+            $code = [
+                'M1SH',
+                'M2SH',
+                'M3SH',
+                'M4SH',
+                'M5SH',
+                'M1SH8',
+                'M2SH8',
+                'M3SH8',
+                'M4SH8',
+                'M9SH',
+                'M10SH',
+                'M15SH',
+                'M5SH8',
+            ];
+            $code = $this->faker->randomElement($code);
+            $selectedName = $this->faker->randomElement($randomArrayCategory);
+            $color = $this->faker->colorName;
+            $size = $this->faker->randomElement($size);
+            $categoryID = ProductCategory::where('name', 'Mattresses')->first();
+            $categoryID = $categoryID->id;
+        } elseif ($randomArrayCategory == $name[1]) {
+            //pillow
+            $code = null;
+            $color = null;
+            $size = null;
+            $selectedName = $this->faker->randomElement($randomArrayCategory);
+            $categoryID = ProductCategory::where('name', 'Pillows')->first();
+            $categoryID = $categoryID->id;
+        } else {
+            //bedsheet
+            $code = null;
+            $size = $this->faker->randomElement($size);
+            $color = $this->faker->colorName;
+            $selectedName = $this->faker->randomElement($randomArrayCategory);
+            $categoryID = ProductCategory::where('name', 'Bedsheets')->first();
+            $categoryID = $categoryID->id;
+        }
+
         $slug = Str::of($selectedName)->slug('-');
-        $code = [
-            'M1SH',
-            'M2SH',
-            'M3SH',
-            'M4SH',
-            'M5SH',
-            'M1SH8',
-            'M2SH8',
-            'M3SH8',
-            'M4SH8',
-            'M9SH',
-            'M10SH',
-            'M15SH',
-            'M5SH8',
-        ];
+
 
         return [
             'name'                  => $selectedName,
             'slug'                  => $slug,
-            'code'                  => $this->faker->unique()->randomElement($code),
+            'code'                  => $code,
             'retail_price'          => 2000,
             'wholesale_price'       => 3000,
-            'color'                 => $this->faker->colorName,
-            'size_id'               => $this->faker->randomElement($size),
-            'product_category_id'   => $this->faker->randomElement($category),
+            'color'                 => $color,
+            'size_id'               => $size,
+            'product_category_id'   => $categoryID,
             'brand_id'              => $this->faker->randomElement($brand),
             'user_id'               => $this->faker->randomElement($userID),
 
