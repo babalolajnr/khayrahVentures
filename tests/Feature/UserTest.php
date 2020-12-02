@@ -14,6 +14,8 @@ class UserTest extends TestCase
      *
      * @return void
      */
+    use RefreshDatabase;
+    
     public function testUserLogin()
     {
         $user = User::factory()->create();

@@ -14,7 +14,7 @@ class ProductCategoriesTest extends TestCase
      *
      * @return void
      */
-
+    use RefreshDatabase;
 
     public function testStoreMethod()
     {
