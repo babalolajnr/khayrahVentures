@@ -23,9 +23,9 @@ class ProductCategoryFactory extends Factory
     public function definition()
     {
         $userID = User::pluck('id')->all();
-
+        $categories = ['Mattresses', 'Pillows', 'Bedsheets', 'Duvets'];
         return [
-            'name'      => 'Mattresses',
+            'name'      => $this->faker->unique()->randomElement($categories),
             'user_id'   => $this->faker->randomElement($userID)
         ];
     }
