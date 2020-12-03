@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->text('description')->nullable();
             $table->string('code')->unique()->nullable();
-            $table->float('retail_price');
-            $table->float('wholesale_price');
+            $table->double('retail_price');
+            $table->double('wholesale_price');
             $table->string('color')->nullable();
             $table->timestamps();
             
