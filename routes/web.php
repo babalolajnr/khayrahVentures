@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductCategoriesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
@@ -29,10 +30,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/addNewBrand', [BrandController::class, 'index'])->name('AddNewBrand');
     Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
     Route::get('/addNewProduct', [ProductController::class, 'index'])->name('AddNewProduct');
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('Inventory');
 
     Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
     Route::post('/submitNewBrand', [BrandController::class, 'store']);
     Route::post('/submitNewSize', [SizeController::class, 'store']);
     Route::post('/submitNewProduct', [ProductController::class, 'store']);
+    Route::post('/submitInventory', [InventoryController::class, 'store']);
 });
 
