@@ -8,6 +8,7 @@ use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 use Validator;
 
 class ProductController extends Controller
@@ -56,19 +57,21 @@ class ProductController extends Controller
         $brand = $request->brand;
         $brandID = Brand::where('name', $brand)->first();
         $brandID = $brandID->id;
+        $slug = Str::of($request->name)->slug('-');
+
 
         // dd($productCategoryID->id);
 
         Auth::user()->products()->create([
-            'name'              => $request->name,
-            'slug'              => 'lllll',
-            'code'              => $request->code,
-            'color'             => $request->color,
-            'wholesale_price'         => $request->wholesale,
-            'retail_price'            => $request->retail,
-            'size_id'           => $sizeID,
-            'brand_id'          => $brandID,
-            'product_category_id'   => $productCategoryID
+            'name'                      => $request->name,
+            'slug'                      => $slug,
+            'code'                      => $request->code,
+            'color'                     => $request->color,
+            'wholesale_price'           => $request->wholesale,
+            'retail_price'              => $request->retail,
+            'size_id'                   => $sizeID,
+            'brand_id'                  => $brandID,
+            'product_category_id'       => $productCategoryID
         ]);
 
         return redirect('/addNewProduct');
