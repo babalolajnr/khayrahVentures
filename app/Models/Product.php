@@ -32,4 +32,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Size');
     }
+
+    public function inventories()
+    {
+        return $this->hasOne('App\Models\Inventory');
+    }
 }
