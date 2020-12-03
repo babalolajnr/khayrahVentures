@@ -32,7 +32,7 @@ class SizeController extends Controller
         ]), $messages);
 
         Auth::user()->sizes()->create([
-            'name'              => $request->name
+            'name' => $request->name
         ]);
 
         return redirect('/addNewSize');
