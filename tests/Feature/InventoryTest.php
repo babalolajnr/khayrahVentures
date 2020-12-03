@@ -16,6 +16,8 @@ class InventoryTest extends TestCase
      *
      * @return void
      */
+
+     //SEED DATABASE BEFORE RUNNING TESTS
     public function testInventoryStoreMethod()
     {
         $user = User::factory()->create();

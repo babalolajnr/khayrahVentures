@@ -16,6 +16,7 @@ class ProductCategoriesTest extends TestCase
      */
     use RefreshDatabase;
 
+    //SEED DATABASE BEFORE RUNNING TESTS
     public function testStoreMethod()
     {
 
