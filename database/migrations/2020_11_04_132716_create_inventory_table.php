@@ -17,7 +17,6 @@ class CreateInventoryTable extends Migration
             $table->id();
             $table->foreignId('products_id')->constrained('products')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('quantity');
-            $table->float('total_amount');
             $table->timestamps();
         });
     }
