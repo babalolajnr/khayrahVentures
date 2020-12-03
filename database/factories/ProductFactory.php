@@ -90,14 +90,16 @@ class ProductFactory extends Factory
         }
 
         $slug = Str::of($selectedName)->slug('-');
-
+        $wholesalePrice = $this->faker->randomNumber(6);
+        $retailPrice = $wholesalePrice*3/100+$wholesalePrice;
+        
 
         return [
             'name'                  => $selectedName,
             'slug'                  => $slug,
             'code'                  => $code,
-            'retail_price'          => 2000,
-            'wholesale_price'       => 3000,
+            'wholesale_price'       => $wholesalePrice,
+            'retail_price'          => $retailPrice,
             'color'                 => $color,
             'size_id'               => $size,
             'product_category_id'   => $categoryID,
