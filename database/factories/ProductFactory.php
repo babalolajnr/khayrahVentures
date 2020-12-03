@@ -30,7 +30,6 @@ class ProductFactory extends Factory
     {
         $userID = User::pluck('id')->all();
         $size = Size::pluck('id')->all();
-        $category = ProductCategory::pluck('id')->all();
         $brand = Brand::pluck('id')->all();
         $name = [
             [
