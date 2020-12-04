@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Size;
 use Illuminate\Http\Request;
@@ -29,23 +30,9 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $messages = [
-            'unique'            => 'Size Exists',
-            'code.required_if'  => 'Code field required when product category is mattresses',
-            'color.required_if' => 'Color field required when product category is mattresses'
-        ];
 
-        $this->validate($request, ([
-            'name'              => ['required'],
-            'code'              => ['required_if:productCategory,==, Mattresses'],
-            'productCategory'   => ['required'],
-            'color'             => ['required_if:productCategory,==, Mattresses'],
-            'wholesale'         =>  ['required'],
-            'retail'            =>  ['required'],
-            'size'              =>  ['required_if:productCategory,==, Mattresses'],
-            'brand'             =>  ['required']
-        ]), $messages);
-
+        Product::validateIncomingRequest($request);
+        
         $productCategory = $request->productCategory;
         $productCategoryID = ProductCategory::where('name', $productCategory)->first();
         $productCategoryID = $productCategoryID->id;
@@ -76,5 +63,35 @@ class ProductController extends Controller
 
         return redirect('/addNewProduct');
         
+    }
+
+    public function edit ($id)
+    {
+       $product = Product::find($id);
+
+       return Inertia::render('EditProduct', [
+           'product' => $product
+       ]);
+
+    }
+
+    public function update (Request $request)
+    {
+        $messages = [
+            'unique'            => 'Size Exists',
+            'code.required_if'  => 'Code field required when product category is mattresses',
+            'color.required_if' => 'Color field required when product category is mattresses'
+        ];
+
+        $this->validate($request, ([
+            'name'              => ['required'],
+            'code'              => ['required_if:productCategory,==, Mattresses'],
+            'productCategory'   => ['required'],
+            'color'             => ['required_if:productCategory,==, Mattresses'],
+            'wholesale'         =>  ['required'],
+            'retail'            =>  ['required'],
+            'size'              =>  ['required_if:productCategory,==, Mattresses'],
+            'brand'             =>  ['required']
+        ]), $messages);
     }
 }
