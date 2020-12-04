@@ -37,4 +37,26 @@ class Product extends Model
     {
         return $this->hasOne('App\Models\Inventory');
     }
+
+    public static function validateIncomingRequest($request)
+    {
+        $messages = [
+            'unique'            => 'Size Exists',
+            'code.required_if'  => 'Code field required when product category is mattresses',
+            'color.required_if' => 'Color field required when product category is mattresses'
+        ];
+
+        $validator =  $request->validate(([
+            'name'              => ['required'],
+            'code'              => ['required_if:productCategory,==, Mattresses'],
+            'productCategory'   => ['required'],
+            'color'             => ['required_if:productCategory,==, Mattresses'],
+            'wholesale'         =>  ['required'],
+            'retail'            =>  ['required'],
+            'size'              =>  ['required_if:productCategory,==, Mattresses'],
+            'brand'             =>  ['required']
+        ]), $messages);
+
+        return $validator;
+    }
 }
