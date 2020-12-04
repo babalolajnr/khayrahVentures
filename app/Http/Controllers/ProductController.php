@@ -75,23 +75,38 @@ class ProductController extends Controller
 
     }
 
-    public function update (Request $request)
+    public function update (Request $request, $id)
     {
-        $messages = [
-            'unique'            => 'Size Exists',
-            'code.required_if'  => 'Code field required when product category is mattresses',
-            'color.required_if' => 'Color field required when product category is mattresses'
-        ];
+        Product::validateIncomingRequest($request);
 
-        $this->validate($request, ([
-            'name'              => ['required'],
-            'code'              => ['required_if:productCategory,==, Mattresses'],
-            'productCategory'   => ['required'],
-            'color'             => ['required_if:productCategory,==, Mattresses'],
-            'wholesale'         =>  ['required'],
-            'retail'            =>  ['required'],
-            'size'              =>  ['required_if:productCategory,==, Mattresses'],
-            'brand'             =>  ['required']
-        ]), $messages);
+        $productCategory = $request->productCategory;
+        $productCategoryID = ProductCategory::where('name', $productCategory)->first();
+        $productCategoryID = $productCategoryID->id;
+        
+        $size = $request->size;
+        $sizeID = Size::where('name', $size)->first();
+        $sizeID = $sizeID->id;
+        
+        $brand = $request->brand;
+        $brandID = Brand::where('name', $brand)->first();
+        $brandID = $brandID->id;
+        $slug = Str::of($request->name)->slug('-');
+
+
+        // dd($productCategoryID->id);
+
+        Auth::user()->products()->where('id', $id)->update([
+            'name'                      => $request->name,
+            'slug'                      => $slug,
+            'code'                      => $request->code,
+            'color'                     => $request->color,
+            'wholesale_price'           => $request->wholesale,
+            'retail_price'              => $request->retail,
+            'size_id'                   => $sizeID,
+            'brand_id'                  => $brandID,
+            'product_category_id'       => $productCategoryID
+        ]);
+
+        return redirect('/editProduct/'.$id);
     }
 }
