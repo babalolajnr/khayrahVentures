@@ -27,15 +27,20 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/addNewCategory', [ProductCategoriesController::class, 'index'])->name('AddNewCategory');
-    Route::get('/addNewBrand', [BrandController::class, 'index'])->name('AddNewBrand');
-    Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
-    Route::get('/addNewProduct', [ProductController::class, 'index'])->name('AddNewProduct');
-    Route::get('/inventory', [InventoryController::class, 'index'])->name('Inventory');
-
     Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
+
+    Route::get('/addNewBrand', [BrandController::class, 'index'])->name('AddNewBrand');
     Route::post('/submitNewBrand', [BrandController::class, 'store']);
+
+    Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
     Route::post('/submitNewSize', [SizeController::class, 'store']);
+
+    Route::get('/addNewProduct', [ProductController::class, 'index'])->name('AddNewProduct');
+    Route::get('/editProduct', [ProductController::class, 'edit'])->name('EditProduct');
     Route::post('/submitNewProduct', [ProductController::class, 'store']);
+
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('Inventory');
     Route::post('/submitInventory', [InventoryController::class, 'store']);
+
 });
 
