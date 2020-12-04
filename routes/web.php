@@ -36,8 +36,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/submitNewSize', [SizeController::class, 'store']);
 
     Route::get('/addNewProduct', [ProductController::class, 'index'])->name('AddNewProduct');
-    Route::get('/editProduct', [ProductController::class, 'edit'])->name('EditProduct');
+    Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->name('EditProduct');
     Route::post('/submitNewProduct', [ProductController::class, 'store']);
+    Route::patch('/updateProduct/{id}', [ProductController::class, 'update']);
 
     Route::get('/inventory', [InventoryController::class, 'index'])->name('Inventory');
     Route::post('/submitInventory', [InventoryController::class, 'store']);
