@@ -11,9 +11,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Arr;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ProductTest extends TestCase
 {
+    // use RefreshDatabase;
+    use DatabaseTransactions;
+
     public function testProductStoreMethod()
     {
         $user = User::factory()->create();
@@ -26,7 +30,7 @@ class ProductTest extends TestCase
 
         $request = $this->actingAs($user)->post('/submitNewProduct', [
             'name'              => 'Vita Galaxy',
-            'code'              => 'M9SH10',
+            'code'              => 'M9SH44',
             'productCategory'   => $productCategory,
             'color'             => 'darkslateblue',
             'wholesale'         => '7000',
@@ -39,7 +43,7 @@ class ProductTest extends TestCase
         
     }
 
-    public function testProductStoreMethodValidationWorks()
+    public function testProductStoreMethodValidation()
     {
         $user = User::factory()->create();
         $brand = Brand::pluck('name')->all();
@@ -61,5 +65,31 @@ class ProductTest extends TestCase
         ]);
 
         $request->assertSessionHasErrors();
+    }
+
+    public function testUpdateProductMethod()
+    {
+        $user = User::factory()->create();
+        $brand = Brand::pluck('name')->all();
+        $brandName = Arr::random($brand);
+        $size = Size::pluck('name')->all();
+        $sizeName = Arr::random($size);
+        $productCategory = ProductCategory::pluck('name')->all();
+        $productCategory = Arr::random($productCategory);
+        $product = Product::find(1);
+        $product = $product->id;
+
+        $request = $this->actingAs($user)->patch('/updateProduct/'.$product, [
+            'name'              => 'Vita Supreme',
+            'code'              => 'M9SG',
+            'productCategory'   => $productCategory,
+            'color'             => 'darkslateblue',
+            'wholesale'         => '7000',
+            'retail'            => '10000',
+            'size'              => $sizeName,
+            'brand'             => $brandName,
+        ]);
+
+        $request->assertStatus(302);
     }
 }
