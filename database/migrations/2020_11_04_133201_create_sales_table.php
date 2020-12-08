@@ -18,7 +18,7 @@ class CreateSalesTable extends Migration
             $table->foreignId('products_id');
             $table->integer('quantity_sold');
             $table->float('amount');
-            $table->foreignId('employee_id')->nullable()->constrained('employees')->onDelete('set null')->onUpdate('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }
