@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\UserType;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
+
 
 class UserTypeFactory extends Factory
 {
@@ -21,8 +23,10 @@ class UserTypeFactory extends Factory
      */
     public function definition()
     {
+        $user = ['Admin', 'Employee'];
+        $user = Arr::random($user);
         return [
-            //
+            'name'  => $user
         ];
     }
 }
