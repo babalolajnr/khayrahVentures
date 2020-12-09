@@ -14,7 +14,7 @@ class AddUserTypeIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('user_type_id')->constrained('users')->onUpdate('cascade');
+            $table->foreignId('user_type_id')->constrained('user_types')->onUpdate('cascade');
         });
     }
 
