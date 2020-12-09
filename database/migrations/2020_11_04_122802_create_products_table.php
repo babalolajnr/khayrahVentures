@@ -23,6 +23,8 @@ class CreateProductsTable extends Migration
             $table->double('wholesale_price');
             $table->string('color')->nullable();
             $table->timestamps();
+
+            $table->index(['name', 'code']);
             
         });
        
