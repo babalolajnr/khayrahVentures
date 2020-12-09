@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\UserType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class UserTypeSeeder extends Seeder
 {
@@ -14,6 +15,12 @@ class UserTypeSeeder extends Seeder
      */
     public function run()
     {
-        UserType::factory()->times(2)->create();
+        
+        $userArray = ['Admin', 'Employee'];
+        $userArrayLength = count($userArray);
+        for ($i=0; $i < $userArrayLength; $i++) { 
+            $user = $userArray[$i];
+            UserType::updateOrCreate(['name' => $user]);
+        }
     }
 }
