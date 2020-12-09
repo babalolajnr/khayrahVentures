@@ -33,6 +33,9 @@ class AddForeignColumnsToProducts extends Migration
             $table->dropColumn('product_category_id');
             $table->dropColumn('brand_id');
             $table->dropColumn('user_id');
+
+            $table->index(['name', 'code', 'size_id', 'product_category_id']);
+
         });
     }
 }

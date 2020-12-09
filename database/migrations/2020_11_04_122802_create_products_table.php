@@ -24,7 +24,6 @@ class CreateProductsTable extends Migration
             $table->string('color')->nullable();
             $table->timestamps();
 
-            $table->index(['name', 'code']);
             
         });
        
