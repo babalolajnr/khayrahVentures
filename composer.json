@@ -17,6 +17,7 @@
         "laravel/framework": "^8.12",
         "laravel/jetstream": "^1.6",
         "laravel/sanctum": "^2.6",
+        "laravel/telescope": "^4.3",
         "laravel/tinker": "^2.5",
         "tightenco/ziggy": "^0.9.4"
     },
