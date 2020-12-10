@@ -51,7 +51,7 @@ class ProductController extends Controller
 
         // dd($productCategoryID->id);
 
-        Auth::user()->products()->create([
+        $newProduct =  Auth::user()->products()->create([
             'name'                      => $request->name,
             'slug'                      => $slug,
             'code'                      => $request->code,
@@ -61,6 +61,11 @@ class ProductController extends Controller
             'size_id'                   => $sizeID,
             'brand_id'                  => $brandID,
             'product_category_id'       => $productCategoryID
+        ]);
+
+        Auth::user()->inventories()->create([
+            'products_id'   =>  $newProduct->id,
+            'quantity'      =>  0
         ]);
 
         return redirect('/addNewProduct');
@@ -114,11 +119,11 @@ class ProductController extends Controller
     public function destroy($id, Product $product)
     {
         $this->authorize('delete', $product);
-        
+
         $product = Product::find($id);
         // dd($product);
         $product->delete();
-        
+
         return response(200);
     }
 }
