@@ -35,7 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
     Route::post('/submitNewSize', [SizeController::class, 'store']);
 
-    Route::get('/addNewProduct', [ProductController::class, 'index'])->name('AddNewProduct');
+    Route::get('/addNewProduct', [ProductController::class, 'index'])->middleware('can:create,App\Models\Product')->name('AddNewProduct');
     Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->name('EditProduct');
     Route::post('/submitNewProduct', [ProductController::class, 'store']);
     Route::patch('/updateProduct/{id}', [ProductController::class, 'update']);
