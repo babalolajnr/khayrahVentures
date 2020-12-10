@@ -60,7 +60,7 @@ class ProductTest extends TestCase
         $product = Product::find(1);
         $product = $product->id;
 
-        $request = $this->actingAs($user)->patch('/updateProduct/'.$product, [
+        $request = $this->actingAs($user)->patch('/updateProduct/' . $product, [
             'name'              => 'Vita Supreme',
             'code'              => 'M9SG',
             'productCategory'   => $productCategory,
@@ -98,13 +98,11 @@ class ProductTest extends TestCase
         ]);
 
         $request->assertStatus(302)->assertSessionHasNoErrors();
-        
-
     }
 
-    public function testEmployeeCannotCreateProduct()
+    public function testNonAdminCannotCreateProduct()
     {
-        $userType = UserType::where('name', 'Employee')->first();
+        $userType = UserType::where('name', '!=', 'Admin')->first();
         $userType = $userType->id;
         $user = User::factory()->create(['user_type_id' => $userType]);
         $brand = Brand::pluck('name')->all();
@@ -126,7 +124,29 @@ class ProductTest extends TestCase
         ]);
 
         $request->assertStatus(403);
-        
+    }
 
+    public function testAdminCanDeleteProduct()
+    {
+        $userType = UserType::where('name', 'Admin')->first();
+        $userType = $userType->id;
+        $user = User::factory()->create(['user_type_id' => $userType]);
+        $product = Product::factory()->create();
+        $productID = $product->id;
+        $request = $this->actingAs($user)->delete('/deleteProduct/' . $productID);
+        
+        $request->assertStatus(200);
+    }
+
+    public function testNonAdminCannotDeleteProduct()
+    {
+        $userType = UserType::where('name', '!=', 'Admin')->first();
+        $userType = $userType->id;
+        $user = User::factory()->create(['user_type_id' => $userType]);
+        $product = Product::factory()->create();
+        $productID = $product->id;
+        $request = $this->actingAs($user)->delete('/deleteProduct/' . $productID);
+        
+        $request->assertStatus(403);
     }
 }
