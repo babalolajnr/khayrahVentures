@@ -19,45 +19,45 @@ class InventoryTest extends TestCase
      */
 
      //SEED DATABASE BEFORE RUNNING TESTS
-    public function testInventoryStoreMethod()
-    {
-        $user = User::factory()->create();
-        $product = Product::pluck('name')->all();
+    // public function testInventoryStoreMethod()
+    // {
+    //     $user = User::factory()->create();
+    //     $product = Product::pluck('name')->all();
         
-        $product = Arr::random($product);
-        $quantity = mt_rand(0,100);
+    //     $product = Arr::random($product);
+    //     $quantity = mt_rand(0,100);
 
-        $response = $this->actingAs($user)->post('/submitInventory',[
-            'product'   => $product,
-            'quantity'  => $quantity
-        ]);
+    //     $response = $this->actingAs($user)->post('/submitInventory',[
+    //         'product'   => $product,
+    //         'quantity'  => $quantity
+    //     ]);
 
-        $response->assertStatus(302);
-    }
+    //     $response->assertStatus(302);
+    // }
 
-    public function testInventoryValidatesUniqueId()
-    {
-        $user = User::factory()->create();
+    // public function testInventoryValidatesUniqueId()
+    // {
+    //     $user = User::factory()->create();
 
-        $productID = Inventory::pluck('products_id')->all();
+    //     $productID = Inventory::pluck('products_id')->all();
 
-        $productID = Arr::random($productID);
+    //     $productID = Arr::random($productID);
 
-        $product = Product::where('id', $productID)->first();
+    //     $product = Product::where('id', $productID)->first();
 
-        $product = $product->name;
+    //     $product = $product->name;
 
-        $quantity = mt_rand(0,100);
+    //     $quantity = mt_rand(0,100);
 
-        $response = $this->actingAs($user)->post('/submitInventory', [
-            'product' => $product,
-            'quantity' => $quantity
-        ]);
+    //     $response = $this->actingAs($user)->post('/submitInventory', [
+    //         'product' => $product,
+    //         'quantity' => $quantity
+    //     ]);
 
-        // $response->assertSessionHasErrors('product');
-        $response->assertSessionHasErrors('product');
+    //     // $response->assertSessionHasErrors('product');
+    //     $response->assertSessionHasErrors('product');
         
-    }
+    // }
 
     // public function testInventoryValidationFailure()
     // {
