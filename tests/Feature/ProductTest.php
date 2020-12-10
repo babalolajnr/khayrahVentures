@@ -48,7 +48,9 @@ class ProductTest extends TestCase
 
     public function testUpdateProductMethod()
     {
-        $user = User::factory()->create();
+        $userType = UserType::where('name', 'Admin')->first();
+        $userType = $userType->id;
+        $user = User::factory()->create(['user_type_id' => $userType]);
         $brand = Brand::pluck('name')->all();
         $brandName = Arr::random($brand);
         $size = Size::pluck('name')->all();
