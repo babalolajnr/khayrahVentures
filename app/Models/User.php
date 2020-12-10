@@ -51,6 +51,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'user_type_id'      => 'integer',
     ];
 
     /**
@@ -90,5 +91,16 @@ class User extends Authenticatable
     public function userType()
     {
         return $this->belongsTo('App\Models\UserType');
+    }
+
+    //check if user is an admin
+    public function isAdmin()
+    {
+       return $this->userType()->where('name', 'Admin')->exists();
+    }
+
+    public function isEmployee()
+    {
+       return $this->userType()->where('name', 'Employee')->exists();
     }
 }
