@@ -77,8 +77,9 @@ class ProductController extends Controller
 
     }
 
-    public function update (Request $request, $id)
+    public function update (Request $request, $id, Product $product)
     {
+        $this->authorize('update', $product);
         Product::validateIncomingRequest($request);
 
         $productCategory = $request->productCategory;
