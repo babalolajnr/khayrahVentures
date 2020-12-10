@@ -19,34 +19,12 @@ class ProductTest extends TestCase
     // use RefreshDatabase;
     use DatabaseTransactions;
 
-    public function testProductStoreMethod()
-    {
-        $user = User::factory()->create();
-        $brand = Brand::pluck('name')->all();
-        $brandName = Arr::random($brand);
-        $size = Size::pluck('name')->all();
-        $sizeName = Arr::random($size);
-        $productCategory = ProductCategory::pluck('name')->all();
-        $productCategory = Arr::random($productCategory);
-
-        $request = $this->actingAs($user)->post('/submitNewProduct', [
-            'name'              => 'Vita Galaxy',
-            'code'              => 'M9SH34',
-            'productCategory'   => $productCategory,
-            'color'             => 'darkslateblue',
-            'wholesale'         => '7000',
-            'retail'            => '10000',
-            'size'              => $sizeName,
-            'brand'             => $brandName,
-        ]);
-
-        $request->assertStatus(302)->assertSessionHasNoErrors();
-        
-    }
 
     public function testProductStoreMethodValidation()
     {
-        $user = User::factory()->create();
+        $userType = UserType::where('name', 'Admin')->first();
+        $userType = $userType->id;
+        $user = User::factory()->create(['user_type_id' => $userType]);
         $brand = Brand::pluck('name')->all();
         $brandName = Arr::random($brand);
         $size = Size::pluck('name')->all();
