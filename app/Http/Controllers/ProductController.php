@@ -31,6 +31,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
+        $this->authorize('create', Product::class);
+
         Product::validateIncomingRequest($request);
         
         $productCategory = $request->productCategory;
@@ -67,7 +69,7 @@ class ProductController extends Controller
 
     public function edit ($id)
     {
-       $product = Product::find($id);
+       $product = Product::findorFail($id);
 
        return Inertia::render('EditProduct', [
            'product' => $product
