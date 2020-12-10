@@ -34,15 +34,15 @@ class ProductController extends Controller
         $this->authorize('create', Product::class);
 
         Product::validateIncomingRequest($request);
-        
+
         $productCategory = $request->productCategory;
         $productCategoryID = ProductCategory::where('name', $productCategory)->first();
         $productCategoryID = $productCategoryID->id;
-        
+
         $size = $request->size;
         $sizeID = Size::where('name', $size)->first();
         $sizeID = $sizeID->id;
-        
+
         $brand = $request->brand;
         $brandID = Brand::where('name', $brand)->first();
         $brandID = $brandID->id;
@@ -64,20 +64,18 @@ class ProductController extends Controller
         ]);
 
         return redirect('/addNewProduct');
-        
     }
 
-    public function edit ($id)
+    public function edit($id)
     {
-       $product = Product::findorFail($id);
+        $product = Product::findorFail($id);
 
-       return Inertia::render('EditProduct', [
-           'product' => $product
-       ]);
-
+        return Inertia::render('EditProduct', [
+            'product' => $product
+        ]);
     }
 
-    public function update (Request $request, $id, Product $product)
+    public function update(Request $request, $id, Product $product)
     {
         $this->authorize('update', $product);
         Product::validateIncomingRequest($request);
@@ -85,11 +83,11 @@ class ProductController extends Controller
         $productCategory = $request->productCategory;
         $productCategoryID = ProductCategory::where('name', $productCategory)->first();
         $productCategoryID = $productCategoryID->id;
-        
+
         $size = $request->size;
         $sizeID = Size::where('name', $size)->first();
         $sizeID = $sizeID->id;
-        
+
         $brand = $request->brand;
         $brandID = Brand::where('name', $brand)->first();
         $brandID = $brandID->id;
@@ -110,6 +108,17 @@ class ProductController extends Controller
             'product_category_id'       => $productCategoryID
         ]);
 
-        return redirect('/editProduct/'.$id);
+        return redirect('/editProduct/' . $id);
+    }
+
+    public function destroy($id, Product $product)
+    {
+        $this->authorize('delete', $product);
+        
+        $product = Product::find($id);
+        // dd($product);
+        $product->delete();
+        
+        return response(200);
     }
 }
