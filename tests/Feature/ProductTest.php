@@ -46,7 +46,7 @@ class ProductTest extends TestCase
         $request->assertSessionHasErrors();
     }
 
-    public function testUpdateProductMethod()
+    public function testAdminCanUpdateProduct()
     {
         $userType = UserType::where('name', 'Admin')->first();
         $userType = $userType->id;
@@ -74,6 +74,34 @@ class ProductTest extends TestCase
         $request->assertStatus(302);
     }
 
+    public function testNonAdminCannotUpdateProduct()
+    {
+        $userType = UserType::where('name', '!=', 'Admin')->first();
+        $userType = $userType->id;
+        $user = User::factory()->create(['user_type_id' => $userType]);
+        $brand = Brand::pluck('name')->all();
+        $brandName = Arr::random($brand);
+        $size = Size::pluck('name')->all();
+        $sizeName = Arr::random($size);
+        $productCategory = ProductCategory::pluck('name')->all();
+        $productCategory = Arr::random($productCategory);
+        $product = Product::find(1);
+        $product = $product->id;
+
+        $request = $this->actingAs($user)->patch('/updateProduct/' . $product, [
+            'name'              => 'Vita Supreme',
+            'code'              => 'M9SG',
+            'productCategory'   => $productCategory,
+            'color'             => 'darkslateblue',
+            'wholesale'         => '7000',
+            'retail'            => '10000',
+            'size'              => $sizeName,
+            'brand'             => $brandName,
+        ]);
+
+        $request->assertStatus(403);
+    }
+
     public function testAdminCanCreateProduct()
     {
         $userType = UserType::where('name', 'Admin')->first();
@@ -88,13 +116,14 @@ class ProductTest extends TestCase
 
         $request = $this->actingAs($user)->post('/submitNewProduct', [
             'name'              => 'Vita Galaxy',
-            'code'              => 'M9SG4',
+            'code'              => 'M9Sk4',
             'productCategory'   => $productCategory,
             'color'             => 'darkslateblue',
             'wholesale'         => '7000',
             'retail'            => '10000',
             'size'              => $sizeName,
             'brand'             => $brandName,
+            'quantity'          => 24
         ]);
 
         $request->assertStatus(302)->assertSessionHasNoErrors();
