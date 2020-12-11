@@ -13,7 +13,11 @@ class InventoryController extends Controller
 {
     public function index()
     {
-        //
+        // $inventory = Product::with(['inventories', 'sizes', 'productCategory', 'brand'])->all(); 
+        // $inventory = Product::with('inventories')->get();
+        $inventory = Inventory::with('products')->get();
+        // dd($inventory);
+        return response($inventory, 200);
     }
 
     // public function store(Request $request)
