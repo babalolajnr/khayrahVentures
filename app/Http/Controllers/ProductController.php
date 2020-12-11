@@ -70,7 +70,6 @@ class ProductController extends Controller
             $quantity = $request->quantity;
         }
 
-        dd($quantity);
         Auth::user()->inventories()->create([
             'products_id'   =>  $newProduct->id,
             'quantity'      =>  $quantity,
