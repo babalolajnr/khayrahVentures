@@ -46,4 +46,10 @@ class InventoryController extends Controller
     //         return redirect('/inventory');
     //     }
     // }
+
+    public function edit ($id)
+    {
+        $product = Inventory::findorFail($id);
+        return response(302);
+    }
 }
