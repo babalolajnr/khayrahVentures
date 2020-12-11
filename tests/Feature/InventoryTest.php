@@ -19,21 +19,14 @@ class InventoryTest extends TestCase
      */
 
      //SEED DATABASE BEFORE RUNNING TESTS
-    // public function testInventoryStoreMethod()
-    // {
-    //     $user = User::factory()->create();
-    //     $product = Product::pluck('name')->all();
-        
-    //     $product = Arr::random($product);
-    //     $quantity = mt_rand(0,100);
 
-    //     $response = $this->actingAs($user)->post('/submitInventory',[
-    //         'product'   => $product,
-    //         'quantity'  => $quantity
-    //     ]);
-
-    //     $response->assertStatus(302);
-    // }
+     public function testUserCanViewInventory()
+     {
+        $user = User::factory()->create();
+        // $user= User::find(1);
+        $request = $this->actingAs($user)->get('/inventory');
+        $request->assertStatus(200);
+     }
 
     // public function testInventoryValidatesUniqueId()
     // {
@@ -59,11 +52,4 @@ class InventoryTest extends TestCase
         
     // }
 
-    // public function testInventoryValidationFailure()
-    // {
-    //     $user = User::factory()->create();
-    //     $product = Product::pluck('name')->all();
-
-    //     $product = Arr::random($product);
-    // }
 }
