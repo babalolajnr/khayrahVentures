@@ -63,9 +63,17 @@ class ProductController extends Controller
             'product_category_id'       => $productCategoryID
         ]);
 
+        //check if user filled in the quantity
+        if (empty($request->quantity)) {
+            $quantity = 0;
+        }else {
+            $quantity = $request->quantity;
+        }
+
+        dd($quantity);
         Auth::user()->inventories()->create([
             'products_id'   =>  $newProduct->id,
-            'quantity'      =>  0
+            'quantity'      =>  $quantity,
         ]);
 
         return redirect('/addNewProduct');
