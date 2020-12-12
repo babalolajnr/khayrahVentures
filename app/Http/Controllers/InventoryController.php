@@ -25,4 +25,19 @@ class InventoryController extends Controller
         $product = Inventory::findorFail($id);
         return response(302);
     }
+
+    public function update(Request $request, $id, Inventory $inventory)
+    {
+        $this->authorize('update', $inventory);
+        
+        $this->validate($request, ([
+            'quantity'  => ['required', 'integer']
+        ]));
+
+        Auth::user()->inventories()->where('id', $id)->update([
+            'quantity' => $request->quantity
+        ]);
+
+        return response(200);
+    }
 }
