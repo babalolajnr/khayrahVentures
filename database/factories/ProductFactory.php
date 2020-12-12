@@ -65,7 +65,7 @@ class ProductFactory extends Factory
                 'M15SH',
                 'M5SH8',
             ];
-            $code = $this->faker->randomElement($code);
+            $code = $this->faker->unique()->randomElement($code);
             $selectedName = $this->faker->randomElement($randomArrayCategory);
             $color = $this->faker->colorName;
             $size = $this->faker->randomElement($size);
@@ -76,7 +76,7 @@ class ProductFactory extends Factory
             $code = null;
             $color = null;
             $size = null;
-            $selectedName = $this->faker->randomElement($randomArrayCategory);
+            $selectedName = $this->faker->unique()->randomElement($randomArrayCategory);
             $categoryID = ProductCategory::where('name', 'Pillows')->first();
             $categoryID = $categoryID->id;
         } else {
