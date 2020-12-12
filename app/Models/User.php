@@ -93,6 +93,16 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\UserType');
     }
 
+    public function customers()
+    {
+        return $this->hasMany('App\Models\Customer');
+    }
+
+    public function sales()
+    {
+        return $this->hasMany('App\Models\Sales');
+    }
+
     //check if user is an admin
     public function isAdmin()
     {
