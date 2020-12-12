@@ -19,10 +19,12 @@ class SalesTest extends TestCase
         $products = Inventory::where('quantity', '>', 0)->get();
         $product = $products->random();
         $productID = $product->id;
+        $quantity = $product->quantity;
+        $quantity = $quantity - 1;
 
         $request = $this->actingAs($user)->post('/sell', [
             'product_id'            => $productID,
-            'quantity'              => 110,
+            'quantity'              => $quantity,
             'customer_firstname'    => $this->faker->firstName(),
             'customer_lastname'     => $this->faker->lastName,
             'customer_phone_number' => $this->faker->e164PhoneNumber,
@@ -30,6 +32,6 @@ class SalesTest extends TestCase
             'address'               => $this->faker->address
         ]);
 
-        $request->assertStatus(200)->assertSessionHasErrors();
+        $request->assertStatus(200);
     }
 }
