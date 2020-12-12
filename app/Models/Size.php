@@ -11,7 +11,7 @@ class Size extends Model
 
     protected $table = 'sizes';
 
-    protected $fillable = ['name', 'user_id', 'name2', 'name3', 'products_category_id'];
+    protected $fillable = ['name', 'user_id', 'products_category_id'];
 
     public function user() {
         return $this->belongsTo('App\Models\User');
