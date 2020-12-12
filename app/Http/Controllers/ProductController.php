@@ -71,7 +71,7 @@ class ProductController extends Controller
         }
 
         Auth::user()->inventories()->create([
-            'products_id'   =>  $newProduct->id,
+            'product_id'   =>  $newProduct->id,
             'quantity'      =>  $quantity,
         ]);
 
