@@ -56,7 +56,8 @@ class Product extends Model
             'wholesale'         =>  ['required'],
             'retail'            =>  ['required'],
             'size'              =>  ['required_if:productCategory,==, Mattresses'],
-            'brand'             =>  ['required']
+            'brand'             =>  ['required'],
+            'quantity'          =>  ['integer']
         ]), $messages);
 
         return $validator;

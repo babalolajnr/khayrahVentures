@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Inventory;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\UserType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -28,28 +29,34 @@ class InventoryTest extends TestCase
         $request->assertStatus(200);
      }
 
-    // public function testInventoryValidatesUniqueId()
-    // {
-    //     $user = User::factory()->create();
+    public function testAdminCanUpdateInventory()
+    {
+        $userType = UserType::where('name', 'Admin')->first();
+        $userType = $userType->id;
+        $user = User::factory()->create(['user_type_id' => $userType]);
+        $inventory = Inventory::pluck('id')->all();
+        $randomInventoryModel = Arr::random($inventory);
 
-    //     $productID = Inventory::pluck('products_id')->all();
+        $request = $this->actingAs($user)->patch('/updateInventory/'.$randomInventoryModel, [
+            'quantity' => 30
+        ]);
 
-    //     $productID = Arr::random($productID);
+        $request->assertStatus(200);
+    }
 
-    //     $product = Product::where('id', $productID)->first();
+    public function testNonAdminCannotUpdateInventory()
+    {
+        $userType = UserType::where('name', '!=', 'Admin')->first();
+        $userType = $userType->id;
+        $user = User::factory()->create(['user_type_id' => $userType]);
+        $inventory = Inventory::pluck('id')->all();
+        $randomInventoryModel = Arr::random($inventory);
 
-    //     $product = $product->name;
+        $request = $this->actingAs($user)->patch('/updateInventory/'.$randomInventoryModel, [
+            'quantity' => 30
+        ]);
 
-    //     $quantity = mt_rand(0,100);
-
-    //     $response = $this->actingAs($user)->post('/submitInventory', [
-    //         'product' => $product,
-    //         'quantity' => $quantity
-    //     ]);
-
-    //     // $response->assertSessionHasErrors('product');
-    //     $response->assertSessionHasErrors('product');
-        
-    // }
+        $request->assertStatus(403);
+    }
 
 }

@@ -40,8 +40,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/submitNewProduct', [ProductController::class, 'store']);
     Route::patch('/updateProduct/{id}', [ProductController::class, 'update']);
     Route::delete('/deleteProduct/{id}', [ProductController::class, 'destroy']);
-
+    
     Route::get('/inventory', [InventoryController::class, 'index'])->name('Inventory');
     Route::get('/editInventory', [InventoryController::class, 'edit'])->name('EditInventory');
     Route::post('/submitInventory', [InventoryController::class, 'store']);
+    Route::patch('/updateInventory/{id}', [InventoryController::class, 'update']);
 });
