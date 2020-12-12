@@ -100,7 +100,7 @@ class User extends Authenticatable
 
     public function sales()
     {
-        return $this->hasMany('App\Models\Sales');
+        return $this->hasMany('App\Models\Sale');
     }
 
     //check if user is an admin
