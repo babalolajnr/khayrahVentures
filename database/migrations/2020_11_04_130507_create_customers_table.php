@@ -19,7 +19,6 @@ class CreateCustomersTable extends Migration
             $table->string('lastname');
             $table->string('phone_number')->unique();
             $table->string('email')->unique()->nullable();
-            $table->string('job')->nullable();
             $table->string('slug')->nullable();
             $table->text('address')->nullable();
             $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('set null');
