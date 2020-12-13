@@ -22,7 +22,7 @@ class SalesTest extends TestCase
         $product = $products->random();
         $productID = $product->id;
         $quantity = $product->quantity;
-        $quantity = $quantity - 1;
+        $quantity = $quantity - mt_rand(1, $quantity);
 
         $request = $this->actingAs($user)->post('/sell', [
             'product_id'            => $productID,
