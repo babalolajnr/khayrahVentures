@@ -15,6 +15,8 @@ class SalesTest extends TestCase
 
     public function testSalesStoreMethod()
     {
+        // $this->withoutExceptionHandling();
+
         $user = User::factory()->create();
         $products = Inventory::where('quantity', '>', 0)->get();
         $product = $products->random();
