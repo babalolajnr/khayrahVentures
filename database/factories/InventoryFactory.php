@@ -31,7 +31,7 @@ class InventoryFactory extends Factory
         $userID = Arr::random($user);
         return [
             'quantity' => $quantity,
-            'products_id' => $productID,
+            'product_id' => $productID,
             'user_id' => $userID
         ];
     }

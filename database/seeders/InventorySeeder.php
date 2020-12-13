@@ -31,7 +31,7 @@ class InventorySeeder extends Seeder
             $userID = Arr::random($user);
 
             Inventory::UpdateorCreate([
-                'products_id' => $product[$i]
+                'product_id' => $product[$i]
             ], [
                 'quantity'  => $quantity,
                 'user_id'   => $userID
