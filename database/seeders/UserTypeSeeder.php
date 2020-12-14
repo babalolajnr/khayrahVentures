@@ -15,9 +15,11 @@ class UserTypeSeeder extends Seeder
      */
     public function run()
     {
-        
+        //user types
         $userArray = ['Admin', 'Employee'];
         $userArrayLength = count($userArray);
+
+        //loop throught the array to create all the user types available
         for ($i=0; $i < $userArrayLength; $i++) { 
             $user = $userArray[$i];
             UserType::updateOrCreate(['name' => $user]);
