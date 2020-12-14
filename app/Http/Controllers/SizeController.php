@@ -9,6 +9,17 @@ use Inertia\Inertia;
 
 class SizeController extends Controller
 {
+    /**
+     * DONE
+     * index
+     * store
+     * 
+     * TODO
+     * edit
+     * update
+     * destroy
+     */
+
     public function index()
     {
         $productCategories = ProductCategory::all();

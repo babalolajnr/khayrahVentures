@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
 {
+    /**
+     * DONE
+     * store
+     * 
+     * TODO
+     * index
+     * edit
+     * update
+     * destroy
+     */
+
     public function store(Request $request)
     {
         $productAvailableQuantity = Inventory::where('product_id', $request->product_id)->pluck('quantity')->first();

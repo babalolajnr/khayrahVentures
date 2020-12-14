@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Inventory;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Size;
@@ -14,6 +15,18 @@ use Validator;
 
 class ProductController extends Controller
 {
+    
+    /**
+     * DONE
+     * index
+     * store
+     * edit
+     * update
+     * destroy
+     * 
+     * TODO
+     */
+
     public function index()
     {
 
@@ -128,8 +141,12 @@ class ProductController extends Controller
         $this->authorize('delete', $product);
 
         $product = Product::find($id);
-        // dd($product);
         $product->delete();
+
+        //delete the product from the inventory
+        $inventory = Inventory::where('product_id', $id)->delete();
+
+        // $inventory->delete();
 
         return response(200);
     }
