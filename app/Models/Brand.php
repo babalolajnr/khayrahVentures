@@ -29,9 +29,21 @@ class Brand extends Model
         return $this->hasMany('App\Models\Produts');
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\Models\User');
     }
 
+    public static function validateIncomingRequest($request)
+    {
+        $messages = [
+            'unique' => 'Brand Exists'
+        ];
 
+        $validator = $request->validate(array(
+            'name' => 'required|unique:brands',
+        ), $messages);
+
+        return $validator;
+    }
 }

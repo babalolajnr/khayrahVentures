@@ -6,6 +6,8 @@ use App\Models\Inventory;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\UserType;
+use App\Utilities\TestUserGenerator;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -19,21 +21,19 @@ class InventoryTest extends TestCase
      * @return void
      */
 
+     use DatabaseTransactions;
      //SEED DATABASE BEFORE RUNNING TESTS
 
      public function testUserCanViewInventory()
      {
-        $user = User::factory()->create();
-        // $user= User::find(1);
+        $user = TestUserGenerator::generateAnyUser();
         $request = $this->actingAs($user)->get('/inventory');
         $request->assertStatus(200);
      }
 
     public function testAdminCanUpdateInventory()
     {
-        $userType = UserType::where('name', 'Admin')->first();
-        $userType = $userType->id;
-        $user = User::factory()->create(['user_type_id' => $userType]);
+        $user = TestUserGenerator::generateAdminUser();
         $inventory = Inventory::pluck('id')->all();
         $randomInventoryModel = Arr::random($inventory);
 
@@ -46,9 +46,7 @@ class InventoryTest extends TestCase
 
     public function testNonAdminCannotUpdateInventory()
     {
-        $userType = UserType::where('name', '!=', 'Admin')->first();
-        $userType = $userType->id;
-        $user = User::factory()->create(['user_type_id' => $userType]);
+        $user = TestUserGenerator::generateNonAdminUser();
         $inventory = Inventory::pluck('id')->all();
         $randomInventoryModel = Arr::random($inventory);
 
