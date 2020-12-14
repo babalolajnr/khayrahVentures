@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Models\Inventory;
 use App\Models\Product;
 use App\Models\User;
+use App\Utilities\TestUserGenerator;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -12,12 +14,13 @@ use Tests\TestCase;
 class SalesTest extends TestCase
 {
     use WithFaker;
+    use DatabaseTransactions;
 
     public function testSalesStoreMethod()
     {
         // $this->withoutExceptionHandling();
 
-        $user = User::factory()->create();
+        $user = TestUserGenerator::generateAnyUser();
         $products = Inventory::where('quantity', '>', 0)->get();
         $product = $products->random();
         $productID = $product->id;

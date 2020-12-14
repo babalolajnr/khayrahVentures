@@ -8,6 +8,7 @@ use App\Models\ProductCategory;
 use App\Models\Size;
 use App\Models\User;
 use App\Models\UserType;
+use App\Utilities\TestUserGenerator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -22,9 +23,7 @@ class ProductTest extends TestCase
 
     public function testProductStoreMethodValidation()
     {
-        $userType = UserType::where('name', 'Admin')->first();
-        $userType = $userType->id;
-        $user = User::factory()->create(['user_type_id' => $userType]);
+        $user = TestUserGenerator::generateAdminUser();
         $brand = Brand::pluck('name')->all();
         $brandName = Arr::random($brand);
         $size = Size::pluck('name')->all();
@@ -48,9 +47,7 @@ class ProductTest extends TestCase
 
     public function testAdminCanUpdateProduct()
     {
-        $userType = UserType::where('name', 'Admin')->first();
-        $userType = $userType->id;
-        $user = User::factory()->create(['user_type_id' => $userType]);
+        $user = TestUserGenerator::generateAdminUser();
         $brand = Brand::pluck('name')->all();
         $brandName = Arr::random($brand);
         $size = Size::pluck('name')->all();
@@ -76,9 +73,7 @@ class ProductTest extends TestCase
 
     public function testNonAdminCannotUpdateProduct()
     {
-        $userType = UserType::where('name', '!=', 'Admin')->first();
-        $userType = $userType->id;
-        $user = User::factory()->create(['user_type_id' => $userType]);
+        $user = TestUserGenerator::generateNonAdminUser();
         $brand = Brand::pluck('name')->all();
         $brandName = Arr::random($brand);
         $size = Size::pluck('name')->all();
@@ -104,9 +99,7 @@ class ProductTest extends TestCase
 
     public function testAdminCanCreateProduct()
     {
-        $userType = UserType::where('name', 'Admin')->first();
-        $userType = $userType->id;
-        $user = User::factory()->create(['user_type_id' => $userType]);
+        $user = TestUserGenerator::generateAdminUser();
         $brand = Brand::pluck('name')->all();
         $brandName = Arr::random($brand);
         $size = Size::pluck('name')->all();
@@ -131,9 +124,7 @@ class ProductTest extends TestCase
 
     public function testNonAdminCannotCreateProduct()
     {
-        $userType = UserType::where('name', '!=', 'Admin')->first();
-        $userType = $userType->id;
-        $user = User::factory()->create(['user_type_id' => $userType]);
+        $user = TestUserGenerator::generateNonAdminUser();
         $brand = Brand::pluck('name')->all();
         $brandName = Arr::random($brand);
         $size = Size::pluck('name')->all();
@@ -157,9 +148,7 @@ class ProductTest extends TestCase
 
     public function testAdminCanDeleteProduct()
     {
-        $userType = UserType::where('name', 'Admin')->first();
-        $userType = $userType->id;
-        $user = User::factory()->create(['user_type_id' => $userType]);
+        $user = TestUserGenerator::generateAdminUser();
         $product = Product::factory()->create();
         $productID = $product->id;
         $request = $this->actingAs($user)->delete('/deleteProduct/' . $productID);
@@ -169,9 +158,7 @@ class ProductTest extends TestCase
 
     public function testNonAdminCannotDeleteProduct()
     {
-        $userType = UserType::where('name', '!=', 'Admin')->first();
-        $userType = $userType->id;
-        $user = User::factory()->create(['user_type_id' => $userType]);
+        $user = TestUserGenerator::generateNonAdminUser();
         $product = Product::factory()->create();
         $productID = $product->id;
         $request = $this->actingAs($user)->delete('/deleteProduct/' . $productID);

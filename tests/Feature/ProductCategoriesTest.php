@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use App\Utilities\TestUserGenerator;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -14,13 +16,15 @@ class ProductCategoriesTest extends TestCase
      *
      * @return void
      */
-    use RefreshDatabase;
+    // use RefreshDatabase;
+    use DatabaseTransactions;
 
     //SEED DATABASE BEFORE RUNNING TESTS
     public function testStoreMethod()
     {
 
-        $user = User::find(1);
+        // $this->withoutExceptionHandling();
+        $user = TestUserGenerator::generateAnyUser();
 
         $response = $this->actingAs($user)->post('/submitNewCategory', [
             'name' => 'Pillows'
@@ -31,7 +35,8 @@ class ProductCategoriesTest extends TestCase
 
     public function testFailedValidationMethod()
     {
-        $user = User::find(1);
+        // $this->withoutExceptionHandling();
+        $user = TestUserGenerator::generateAnyUser();
         $response = $this->actingAs($user)->post('/submitNewCategory', []);
 
         $response->assertSessionHasErrors('name');
