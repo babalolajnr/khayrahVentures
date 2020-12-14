@@ -20,13 +20,7 @@ class BrandController extends Controller
     {
         $this->authorize('create', Product::class );
 
-        $messages = [
-            'unique' => 'Brand Exists'
-        ];
-
-        $this->validate($request, array(
-            'name' => 'required|unique:brands',
-        ), $messages);
+        Brand::validateIncomingRequest($request);
 
         Auth::user()->brands()->create([
             'name' => $request->name,
@@ -39,5 +33,22 @@ class BrandController extends Controller
     {
         $brand = Brand::findOrFail($id);
         return response(200);
+    }
+
+    public function update($id, Request $request, Brand $brand)
+    {
+        $this->authorize('update', $brand);
+
+        Brand::validateIncomingRequest($request);
+
+        $brand = Brand::where('id', $id)->first();
+
+        $brand->name = $request->name;
+
+        $brand->save();
+
+        return response(200);
+
+
     }
 }
