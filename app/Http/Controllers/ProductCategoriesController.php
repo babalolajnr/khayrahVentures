@@ -8,6 +8,17 @@ use Inertia\Inertia;
 
 class ProductCategoriesController extends Controller
 {
+    
+    /**
+     * DONE
+     * index
+     * store
+     * 
+     * TODO
+     * edit
+     * update
+     * destroy
+     */
     public function index () 
     {
         return Inertia::render('AddNewCategory');
