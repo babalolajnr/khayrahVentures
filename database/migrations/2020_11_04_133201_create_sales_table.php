@@ -18,6 +18,7 @@ class CreateSalesTable extends Migration
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('quantity_sold');
             $table->double('amount');
+            $table->string('reference');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
