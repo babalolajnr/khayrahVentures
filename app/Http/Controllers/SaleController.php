@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inventory;
 use App\Models\Product;
+use App\Models\Sale;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -52,11 +53,17 @@ class SaleController extends Controller
         $quantity = $request->quantity;
         $amount = $productPrice * $quantity;
 
+        do {
+            $reference = Str::random(10);
+            $checkReference = Sale::where('reference', $reference)->get();
+        } while (!$checkReference->isEmpty());
+
         $sale = Auth::user()->sales()->create([
             'product_id'    => $productID,
             'quantity_sold' => $quantity,
             'amount'        => $amount,
             'customer_id'   => $customer->id,
+            'reference'     => $reference,
         ]);
 
 
