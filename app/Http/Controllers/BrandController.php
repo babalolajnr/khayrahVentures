@@ -51,4 +51,13 @@ class BrandController extends Controller
 
 
     }
+
+    public function destroy($id, Brand $brand)
+    {
+        $this->authorize('delete', $brand);
+        $brand = Brand::findorFail($id);
+        $brand->delete();
+
+        return response(200);
+    }
 }
