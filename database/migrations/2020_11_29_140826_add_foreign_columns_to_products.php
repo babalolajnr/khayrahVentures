@@ -15,7 +15,7 @@ class AddForeignColumnsToProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->foreignId('size_id')->nullable()->constrained('sizes')->onUpdate('cascade')->onDelete('set null');
-            $table->foreignId('product_category_id')->nullable()->constrained('products_category')->onUpdate('cascade')->onDelete('set null');
+            $table->foreignId('product_category_id')->constrained('products_category')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('brand_id')->nullable()->constrained('brands')->onUpdate('cascade')->onDelete('set null');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
         });
