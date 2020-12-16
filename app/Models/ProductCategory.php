@@ -21,4 +21,17 @@ class ProductCategory extends Model
     {
         return $this->hasMany('App\Models\Produts');
     }
+
+    public static function validateIncomingRequest($request)
+    {
+        $messages = [
+            'unique' => 'Category Exists'
+        ];
+
+        $validator = $request->validate(([
+            'name' => 'required|unique:products_category'
+        ]), $messages);
+
+        return $validator;
+    }
 }
