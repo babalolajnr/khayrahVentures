@@ -19,6 +19,7 @@ class CreateBrandsTable extends Migration
             $table->string('slug');
             $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
