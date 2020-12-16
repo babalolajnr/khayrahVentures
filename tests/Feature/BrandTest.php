@@ -60,4 +60,14 @@ class BrandTest extends TestCase
 
         $request->assertStatus(200);
     }
+
+    public function testAdminCanDeleteBrand()
+    {
+        $this->withoutExceptionHandling();
+        $user = TestUserGenerator::generateAdminUser();
+        $brand = Brand::factory()->create();
+        $brandID = $brand->id;
+        $request = $this->actingAs($user)->delete('/deleteBrand/'. $brandID);
+        $request->assertStatus(200);
+    }
 }
