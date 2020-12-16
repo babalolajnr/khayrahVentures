@@ -28,7 +28,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/addNewCategory', [ProductCategoriesController::class, 'index'])->name('AddNewCategory');
+    Route::get('/editProductCategory/{id}', [ProductCategoriesController::class, 'edit']);
     Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
+    Route::patch('/updateProductCategory/{id}', [ProductCategoriesController::class, 'update']);
+    Route::delete('/deleteProductCategory/{id}', [ProductCategoriesController::class, 'destroy']);
 
     Route::get('/addNewBrand', [BrandController::class, 'index'])->name('AddNewBrand');
     Route::get('/editBrand/{id}', [BrandController::class, 'edit'])->name('EditBrand');
