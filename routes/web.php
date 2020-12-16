@@ -34,6 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/editBrand/{id}', [BrandController::class, 'edit'])->name('EditBrand');
     Route::post('/submitNewBrand', [BrandController::class, 'store']);
     Route::patch('/updateBrand/{id}', [BrandController::class, 'update']);
+    Route::delete('/deleteBrand/{id}', [BrandController::class, 'destroy']);
 
     Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
     Route::post('/submitNewSize', [SizeController::class, 'store']);
