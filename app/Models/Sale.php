@@ -27,4 +27,20 @@ class Sale extends Model
     {
         return $this->belongsTo('App\Models\Customer');
     }
+
+    public static function validateIncomingRequest($request, $productAvailableQuantity)
+    {
+
+        $validator = $request->validate([
+            'product_id'                => ['required', 'integer'],
+            'quantity'                  => ['required', 'integer', 'max:' . $productAvailableQuantity],
+            'customer_firstname'        => ['required', 'string'],
+            'customer_lastname'         => ['required', 'string'],
+            'customer_phone_number'     => ['required', 'unique:customers,phone_number'],
+            'customer_email'            => ['required', 'unique:customers,email', 'email'],
+            'address'                   => ['string']
+        ]);
+
+        return $validator;
+    }
 }
