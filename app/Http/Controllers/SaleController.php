@@ -27,15 +27,7 @@ class SaleController extends Controller
     {
         $productAvailableQuantity = Inventory::where('product_id', $request->product_id)->pluck('quantity')->first();
 
-        $this->validate($request, ([
-            'product_id'                => ['required', 'integer'],
-            'quantity'                  => ['required', 'integer', 'max:' . $productAvailableQuantity],
-            'customer_firstname'        => ['required', 'string'],
-            'customer_lastname'         => ['required', 'string'],
-            'customer_phone_number'     => ['required', 'unique:customers,phone_number'],
-            'customer_email'            => ['required', 'unique:customers,email', 'email'],
-            'address'                   => ['string']
-        ]));
+        Sale::validateIncomingRequest($request, $productAvailableQuantity);
 
         //create customer
         $customer = Auth::user()->customers()->create([
@@ -76,4 +68,24 @@ class SaleController extends Controller
 
         return response(200);
     }
+
+    public function edit($id)
+    {
+        $sale = Sale::findorFail($id);
+
+        return response(200);
+    }
+
+    // public function update($id, Request $request, Sale $sale)
+    // {
+    //     $this->authorize('update', $sale);
+        
+    //     $productAvailableQuantity = Inventory::where('product_id', $request->product_id)->pluck('quantity')->first();
+    //     Sale::validateIncomingRequest($request, $productAvailableQuantity);
+
+    //     $sale = Sale::where('id', $id)->first();
+    //     $sale->quantity_sold = $request->quantity;
+    //     $sale->amount = $request->amount;
+
+    // }
 }
