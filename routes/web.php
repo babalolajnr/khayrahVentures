@@ -40,6 +40,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/deleteBrand/{id}', [BrandController::class, 'destroy']);
 
     Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
+    Route::get('/editSize/{id}', [SizeController::class, 'edit'])->name('EditSize');
     Route::post('/submitNewSize', [SizeController::class, 'store']);
 
     Route::get('/addNewProduct', [ProductController::class, 'index'])->name('AddNewProduct');
