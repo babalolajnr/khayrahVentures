@@ -76,4 +76,24 @@ class SaleController extends Controller
 
         return response(200);
     }
+
+    // public function edit($id)
+    // {
+    //     $sale = Sale::findorFail($id);
+
+    //     return response(200);
+    // }
+
+    // public function update($id, Request $request, Sale $sale)
+    // {
+    //     $this->authorize('update', $sale);
+        
+    //     $productAvailableQuantity = Inventory::where('product_id', $request->product_id)->pluck('quantity')->first();
+    //     Sale::validateIncomingRequest($request, $productAvailableQuantity);
+
+    //     $sale = Sale::where('id', $id)->first();
+    //     $sale->quantity_sold = $request->quantity;
+    //     $sale->amount = $request->amount;
+
+    // }
 }
