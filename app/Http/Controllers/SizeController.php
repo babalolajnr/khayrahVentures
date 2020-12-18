@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -47,5 +48,12 @@ class SizeController extends Controller
         ]);
 
         return redirect('/addNewSize');
+    }
+
+    public function edit($id)
+    {
+        $size = Size::findorFail($id);
+        
+        return response(200);
     }
 }
