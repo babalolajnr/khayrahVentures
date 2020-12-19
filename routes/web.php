@@ -27,23 +27,23 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/addNewCategory', [ProductCategoriesController::class, 'index'])->name('AddNewCategory');
+    Route::get('/addNewCategory', [ProductCategoriesController::class, 'create'])->name('AddNewCategory');
     Route::get('/editProductCategory/{id}', [ProductCategoriesController::class, 'edit']);
     Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
     Route::patch('/updateProductCategory/{id}', [ProductCategoriesController::class, 'update']);
     Route::delete('/deleteProductCategory/{id}', [ProductCategoriesController::class, 'destroy']);
 
-    Route::get('/addNewBrand', [BrandController::class, 'index'])->name('AddNewBrand');
+    Route::get('/addNewBrand', [BrandController::class, 'create'])->name('AddNewBrand');
     Route::get('/editBrand/{id}', [BrandController::class, 'edit'])->name('EditBrand');
     Route::post('/submitNewBrand', [BrandController::class, 'store']);
     Route::patch('/updateBrand/{id}', [BrandController::class, 'update']);
     Route::delete('/deleteBrand/{id}', [BrandController::class, 'destroy']);
 
-    Route::get('/addNewSize', [SizeController::class, 'index'])->name('AddNewSize');
+    Route::get('/addNewSize', [SizeController::class, 'create'])->name('AddNewSize');
     Route::get('/editSize/{id}', [SizeController::class, 'edit'])->name('EditSize');
     Route::post('/submitNewSize', [SizeController::class, 'store']);
 
-    Route::get('/addNewProduct', [ProductController::class, 'index'])->name('AddNewProduct');
+    Route::get('/addNewProduct', [ProductController::class, 'create'])->name('AddNewProduct');
     Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->name('EditProduct');
     Route::post('/submitNewProduct', [ProductController::class, 'store']);
     Route::patch('/updateProduct/{id}', [ProductController::class, 'update']);
