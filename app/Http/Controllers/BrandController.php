@@ -11,7 +11,7 @@ use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class BrandController extends Controller
 {
-    public function index()
+    public function create()
     {
         return Inertia::render('AddNewBrand');
     }

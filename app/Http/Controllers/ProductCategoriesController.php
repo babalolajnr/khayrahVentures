@@ -20,7 +20,7 @@ class ProductCategoriesController extends Controller
      * update
      * destroy
      */
-    public function index()
+    public function create()
     {
         return Inertia::render('AddNewCategory');
     }

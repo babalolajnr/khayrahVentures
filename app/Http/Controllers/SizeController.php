@@ -21,7 +21,7 @@ class SizeController extends Controller
      * destroy
      */
 
-    public function index()
+    public function create()
     {
         $productCategories = ProductCategory::all();
         // dd($productCategories);
