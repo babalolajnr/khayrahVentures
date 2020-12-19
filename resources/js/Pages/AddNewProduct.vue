@@ -112,7 +112,7 @@
                         v-model="form.productCategory"
                       >
                         <option
-                          v-for="category in categories"
+                          v-for="category in this.$props.productCategories"
                           :key="category.id"
                         >
                           {{ category.name }}
@@ -127,7 +127,7 @@
                       <label for="size">Size</label>
                       <select class="custom-select" v-model="form.size">
                         <option
-                          v-for="size in sizes"
+                          v-for="size in this.$props.sizes"
                           :key="size.id"
                         >
                           {{ size.name }}
@@ -141,7 +141,7 @@
                       <label for="brand">Brand</label>
                       <select class="custom-select" v-model="form.brand">
                         <option
-                          v-for="brand in brands"
+                          v-for="brand in this.$props.brands"
                           :key="brand.id"
                         >
                           {{ brand.name }}
@@ -215,9 +215,6 @@ export default {
     return {
       date: new Date().getFullYear(),
       success: false,
-      categories: null,
-      sizes: null,
-      brands: null,
       form: {
         name: null,
         code: null,
@@ -257,11 +254,11 @@ export default {
     successMessageFade() {
       this.success = false
     },
-    loadDropdowns() {
-      this.categories = this.$props.productCategories
-      this.sizes = this.$props.sizes
-      this.brands = this.$props.brands
-    },
+    // loadDropdowns() {
+    //   this.categories = this.$props.productCategories
+    //   this.sizes = this.$props.sizes
+    //   this.brands = this.$props.brands
+    // },
     clearForm() {
       this.form.name = ""
       this.form.code = ""
@@ -273,10 +270,7 @@ export default {
       this.form.brand = ""
       this.form.description = ""
     },
-  },
-  mounted() {
-    this.loadDropdowns()
-  },
+  }
 }
 </script>
 
