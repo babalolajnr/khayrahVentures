@@ -4198,9 +4198,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       date: new Date().getFullYear(),
       success: false,
-      categories: null,
-      sizes: null,
-      brands: null,
       form: {
         name: null,
         code: null,
@@ -4245,11 +4242,11 @@ __webpack_require__.r(__webpack_exports__);
     successMessageFade: function successMessageFade() {
       this.success = false;
     },
-    loadDropdowns: function loadDropdowns() {
-      this.categories = this.$props.productCategories;
-      this.sizes = this.$props.sizes;
-      this.brands = this.$props.brands;
-    },
+    // loadDropdowns() {
+    //   this.categories = this.$props.productCategories
+    //   this.sizes = this.$props.sizes
+    //   this.brands = this.$props.brands
+    // },
     clearForm: function clearForm() {
       this.form.name = "";
       this.form.code = "";
@@ -4261,9 +4258,6 @@ __webpack_require__.r(__webpack_exports__);
       this.form.brand = "";
       this.form.description = "";
     }
-  },
-  mounted: function mounted() {
-    this.loadDropdowns();
   }
 });
 
@@ -34726,7 +34720,9 @@ var render = function() {
                                 }
                               }
                             },
-                            _vm._l(_vm.categories, function(category) {
+                            _vm._l(this.$props.productCategories, function(
+                              category
+                            ) {
                               return _c("option", { key: category.id }, [
                                 _vm._v(
                                   "\n                        " +
@@ -34787,7 +34783,7 @@ var render = function() {
                                 }
                               }
                             },
-                            _vm._l(_vm.sizes, function(size) {
+                            _vm._l(this.$props.sizes, function(size) {
                               return _c("option", { key: size.id }, [
                                 _vm._v(
                                   "\n                        " +
@@ -34848,7 +34844,7 @@ var render = function() {
                                 }
                               }
                             },
-                            _vm._l(_vm.brands, function(brand) {
+                            _vm._l(this.$props.brands, function(brand) {
                               return _c("option", { key: brand.id }, [
                                 _vm._v(
                                   "\n                        " +
