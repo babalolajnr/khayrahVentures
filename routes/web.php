@@ -26,7 +26,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'handleInertiaRequests'])->group(function () {
     Route::get('/addNewCategory', [ProductCategoriesController::class, 'create'])->name('AddNewCategory');
     Route::get('/editProductCategory/{id}', [ProductCategoriesController::class, 'edit']);
     Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
