@@ -121,7 +121,6 @@
                       <div v-if="errors.productCategory" class="text-red-600">
                         {{ errors.productCategory }}
                       </div>
-                      
                     </div>
                     <div class="form-group">
                       <label for="size">Size</label>
@@ -169,7 +168,7 @@
                   </div>
                   <!-- /.card-body -->
 
-                  <div class="card-footer">
+                  <div class="card-footer" v-if="checkIfUserIsAuthorized">
                     <button
                       type="submit"
                       class="btn btn-primary btn-block flex"
@@ -185,6 +184,15 @@
                       <span class="mx-auto" v-else> Submit </span>
                     </button>
                   </div>
+                  <div class="card-footer" v-else>
+                    <button
+                      type="submit"
+                      class="btn btn-danger btn-block flex"
+                      disabled
+                    >
+                      <span class="mx-auto"> You are not authorized</span>
+                    </button>
+                  </div>
                 </form>
               </div>
               <!-- /.card -->
@@ -198,8 +206,8 @@
 </template>
 
 <script>
-import Layout from "@/Layouts/Layout.vue"
-import { FulfillingSquareSpinner } from "epic-spinners"
+import Layout from "@/Layouts/Layout.vue";
+import { FulfillingSquareSpinner } from "epic-spinners";
 export default {
   props: {
     errors: Object,
@@ -223,55 +231,57 @@ export default {
         retail: null,
         productCategory: null,
         size: null,
-        brand: null,  
-        description: null
+        brand: null,
+        description: null,
       },
       loading: false,
       formError: false,
-    }
+    };
   },
   methods: {
     submit() {
-      this.loading = true
+      this.loading = true;
       if (this.form.name == null) {
-        this.formError = true
+        this.formError = true;
       } else {
-        this.formError = false
-        this.$inertia.post("/submitNewProduct", this.form)
+        this.formError = false;
+        this.$inertia.post("/submitNewProduct", this.form);
         this.$inertia.on("success", (event) => {
           //check if the errors props is empty
           if (Object.entries(this.$props.errors).length > 0) {
             // this.clearForm()
           } else {
-            this.success = true
-            this.clearForm()
-            setTimeout(this.successMessageFade, 2000)
+            this.success = true;
+            this.clearForm();
+            setTimeout(this.successMessageFade, 2000);
           }
-        })
+        });
       }
-      this.loading = false
+      this.loading = false;
     },
     successMessageFade() {
-      this.success = false
+      this.success = false;
     },
-    // loadDropdowns() {
-    //   this.categories = this.$props.productCategories
-    //   this.sizes = this.$props.sizes
-    //   this.brands = this.$props.brands
-    // },
     clearForm() {
-      this.form.name = ""
-      this.form.code = ""
-      this.form.color = ""
-      this.form.wholesale = ""
-      this.form.retail = ""
-      this.form.productCategory = ""
-      this.form.size = ""
-      this.form.brand = ""
-      this.form.description = ""
+      this.form.name = "";
+      this.form.code = "";
+      this.form.color = "";
+      this.form.wholesale = "";
+      this.form.retail = "";
+      this.form.productCategory = "";
+      this.form.size = "";
+      this.form.brand = "";
+      this.form.description = "";
     },
-  }
-}
+  },
+  computed: {
+    checkIfUserIsAuthorized() {
+      if (this.$page.user.can.createProduct) {
+        return true;
+      }
+    },
+  },
+};
 </script>
 
 <style>

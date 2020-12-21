@@ -3298,19 +3298,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       date: new Date().getFullYear(),
-      currentRoute: route().current(),
-      canCreateProduct: null
+      currentRoute: route().current()
     };
   },
   props: {
     title: String
   },
   computed: {
+    // set active navigation
     ProductsActive: function ProductsActive() {
       var activeClass = "active";
       var currentRoute = this.currentRoute;
@@ -3333,14 +3332,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     logout: function logout() {
       this.$inertia.post("/logout");
-    } // getCan() {
-    //   this.data.canCreateProduct =  this.$props.user.can.create_product
-    // }
-
-  } // mounted: {
-  //   this.getCan();
-  // }
-
+    }
+  }
 });
 
 /***/ }),
@@ -4189,6 +4182,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4250,11 +4251,6 @@ __webpack_require__.r(__webpack_exports__);
     successMessageFade: function successMessageFade() {
       this.success = false;
     },
-    // loadDropdowns() {
-    //   this.categories = this.$props.productCategories
-    //   this.sizes = this.$props.sizes
-    //   this.brands = this.$props.brands
-    // },
     clearForm: function clearForm() {
       this.form.name = "";
       this.form.code = "";
@@ -4265,6 +4261,13 @@ __webpack_require__.r(__webpack_exports__);
       this.form.size = "";
       this.form.brand = "";
       this.form.description = "";
+    }
+  },
+  computed: {
+    checkIfUserIsAuthorized: function checkIfUserIsAuthorized() {
+      if (this.$page.user.can.createProduct) {
+        return true;
+      }
     }
   }
 });
@@ -32753,34 +32756,30 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("ul", { staticClass: "nav nav-treeview" }, [
-                            this.$page.user.can.create_product
-                              ? _c(
-                                  "li",
-                                  { staticClass: "nav-item" },
+                            _c(
+                              "li",
+                              { staticClass: "nav-item" },
+                              [
+                                _c(
+                                  "inertia-link",
+                                  {
+                                    staticClass: "nav-link",
+                                    class: _vm.route().current("AddNewCategory")
+                                      ? "active"
+                                      : "",
+                                    attrs: { href: "/addNewProduct" }
+                                  },
                                   [
-                                    _c(
-                                      "inertia-link",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: _vm
-                                          .route()
-                                          .current("AddNewCategory")
-                                          ? "active"
-                                          : "",
-                                        attrs: { href: "/addNewProduct" }
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "far fa-circle nav-icon"
-                                        }),
-                                        _vm._v(" "),
-                                        _c("p", [_vm._v("Add New Product")])
-                                      ]
-                                    )
-                                  ],
-                                  1
+                                    _c("i", {
+                                      staticClass: "far fa-circle nav-icon"
+                                    }),
+                                    _vm._v(" "),
+                                    _c("p", [_vm._v("Add New Product")])
+                                  ]
                                 )
-                              : _vm._e(),
+                              ],
+                              1
+                            ),
                             _vm._v(" "),
                             _c(
                               "li",
@@ -34933,30 +34932,45 @@ var render = function() {
                           : _vm._e()
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "card-footer" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary btn-block flex",
-                            attrs: { type: "submit", disabled: _vm.loading }
-                          },
-                          [
-                            _vm.loading
-                              ? _c("fulfilling-square-spinner", {
-                                  staticClass: "mx-auto",
-                                  attrs: {
-                                    "animation-duration": 2000,
-                                    size: 20,
-                                    color: "#fff"
-                                  }
-                                })
-                              : _c("span", { staticClass: "mx-auto" }, [
-                                  _vm._v(" Submit ")
+                      _vm.checkIfUserIsAuthorized
+                        ? _c("div", { staticClass: "card-footer" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary btn-block flex",
+                                attrs: { type: "submit", disabled: _vm.loading }
+                              },
+                              [
+                                _vm.loading
+                                  ? _c("fulfilling-square-spinner", {
+                                      staticClass: "mx-auto",
+                                      attrs: {
+                                        "animation-duration": 2000,
+                                        size: 20,
+                                        color: "#fff"
+                                      }
+                                    })
+                                  : _c("span", { staticClass: "mx-auto" }, [
+                                      _vm._v(" Submit ")
+                                    ])
+                              ],
+                              1
+                            )
+                          ])
+                        : _c("div", { staticClass: "card-footer" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger btn-block flex",
+                                attrs: { type: "submit", disabled: "" }
+                              },
+                              [
+                                _c("span", { staticClass: "mx-auto" }, [
+                                  _vm._v(" You are not authorized")
                                 ])
-                          ],
-                          1
-                        )
-                      ])
+                              ]
+                            )
+                          ])
                     ]
                   )
                 ])
