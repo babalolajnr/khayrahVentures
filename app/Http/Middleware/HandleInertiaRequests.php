@@ -21,7 +21,7 @@ class HandleInertiaRequests
                     'email' => $user->email,
                     'userType' => $user->userType->name,
                     'can' => [
-                        'create_product' => $user->can('create', Product::class),
+                        'createProduct' => $user->can('create', Product::class),
                     ]
                 ] : null;
             }
