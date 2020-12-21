@@ -5384,6 +5384,290 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36663,7 +36947,683 @@ var render = function() {
         _c("section", { staticClass: "content" }, [
           _c("div", { staticClass: "container-fluid" }, [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" })
+              _c("div", { staticClass: "col-12" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-header" }, [
+                    _c("h3", { staticClass: "card-title" }, [
+                      _vm._v(
+                        "\n                  DataTable with minimal features & hover style\n                "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "dataTables_wrapper dt-bootstrap4",
+                        attrs: { id: "example2_wrapper" }
+                      },
+                      [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-sm-12 col-md-6" }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-12 col-md-6" })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-sm-12" }, [
+                            _c(
+                              "table",
+                              {
+                                staticClass:
+                                  "table table-bordered table-hover dataTable dtr-inline",
+                                attrs: {
+                                  id: "example2",
+                                  role: "grid",
+                                  "aria-describedby": "example2_info"
+                                }
+                              },
+                              [
+                                _c("thead", [
+                                  _c("tr", { attrs: { role: "row" } }, [
+                                    _c(
+                                      "th",
+                                      {
+                                        staticClass: "sorting_asc",
+                                        attrs: {
+                                          tabindex: "0",
+                                          "aria-controls": "example2",
+                                          rowspan: "1",
+                                          colspan: "1",
+                                          "aria-sort": "ascending",
+                                          "aria-label":
+                                            "Rendering engine: activate to sort column descending"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                              Rendering engine\n                            "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "th",
+                                      {
+                                        staticClass: "sorting",
+                                        attrs: {
+                                          tabindex: "0",
+                                          "aria-controls": "example2",
+                                          rowspan: "1",
+                                          colspan: "1",
+                                          "aria-label":
+                                            "Browser: activate to sort column ascending"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                              Browser\n                            "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "th",
+                                      {
+                                        staticClass: "sorting",
+                                        attrs: {
+                                          tabindex: "0",
+                                          "aria-controls": "example2",
+                                          rowspan: "1",
+                                          colspan: "1",
+                                          "aria-label":
+                                            "Platform(s): activate to sort column ascending"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                              Platform(s)\n                            "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "th",
+                                      {
+                                        staticClass: "sorting",
+                                        attrs: {
+                                          tabindex: "0",
+                                          "aria-controls": "example2",
+                                          rowspan: "1",
+                                          colspan: "1",
+                                          "aria-label":
+                                            "Engine version: activate to sort column ascending"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                              Engine version\n                            "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "th",
+                                      {
+                                        staticClass: "sorting",
+                                        attrs: {
+                                          tabindex: "0",
+                                          "aria-controls": "example2",
+                                          rowspan: "1",
+                                          colspan: "1",
+                                          "aria-label":
+                                            "CSS grade: activate to sort column ascending"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                              CSS grade\n                            "
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("tbody", [
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "odd",
+                                      attrs: { role: "row" }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "dtr-control sorting_1",
+                                          attrs: { tabindex: "0" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                              Gecko\n                            "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Firefox 1.0")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Win 98+ / OSX.2+")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("1.7")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("A")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "even",
+                                      attrs: { role: "row" }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "dtr-control sorting_1",
+                                          attrs: { tabindex: "0" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                              Gecko\n                            "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Firefox 1.5")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Win 98+ / OSX.2+")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("1.8")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("A")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "odd",
+                                      attrs: { role: "row" }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "dtr-control sorting_1",
+                                          attrs: { tabindex: "0" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                              Gecko\n                            "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Firefox 2.0")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Win 98+ / OSX.2+")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("1.8")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("A")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "even",
+                                      attrs: { role: "row" }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "dtr-control sorting_1",
+                                          attrs: { tabindex: "0" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                              Gecko\n                            "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Firefox 3.0")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Win 2k+ / OSX.3+")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("1.9")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("A")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "odd",
+                                      attrs: { role: "row" }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "sorting_1 dtr-control"
+                                        },
+                                        [_vm._v("Gecko")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Camino 1.0")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("OSX.2+")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("1.8")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("A")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "even",
+                                      attrs: { role: "row" }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "sorting_1 dtr-control"
+                                        },
+                                        [_vm._v("Gecko")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Camino 1.5")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("OSX.3+")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("1.8")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("A")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "odd",
+                                      attrs: { role: "row" }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "sorting_1 dtr-control"
+                                        },
+                                        [_vm._v("Gecko")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Netscape 7.2")]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v("Win 95+ / Mac OS 8.6-9.2")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("1.7")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("A")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "even",
+                                      attrs: { role: "row" }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "sorting_1 dtr-control"
+                                        },
+                                        [_vm._v("Gecko")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Netscape Browser 8")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Win 98SE+")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("1.7")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("A")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "odd",
+                                      attrs: { role: "row" }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "sorting_1 dtr-control"
+                                        },
+                                        [_vm._v("Gecko")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v("Netscape Navigator 9")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Win 98+ / OSX.2+")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("1.8")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("A")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "tr",
+                                    {
+                                      staticClass: "even",
+                                      attrs: { role: "row" }
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass: "sorting_1 dtr-control"
+                                        },
+                                        [_vm._v("Gecko")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Mozilla 1.0")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("Win 95+ / OSX.1+")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("1")]),
+                                      _vm._v(" "),
+                                      _c("td", [_vm._v("A")])
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("tfoot", [
+                                  _c("tr", [
+                                    _c(
+                                      "th",
+                                      { attrs: { rowspan: "1", colspan: "1" } },
+                                      [_vm._v("Rendering engine")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "th",
+                                      { attrs: { rowspan: "1", colspan: "1" } },
+                                      [_vm._v("Browser")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "th",
+                                      { attrs: { rowspan: "1", colspan: "1" } },
+                                      [_vm._v("Platform(s)")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "th",
+                                      { attrs: { rowspan: "1", colspan: "1" } },
+                                      [_vm._v("Engine version")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "th",
+                                      { attrs: { rowspan: "1", colspan: "1" } },
+                                      [_vm._v("CSS grade")]
+                                    )
+                                  ])
+                                ])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-sm-12 col-md-5" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "dataTables_info",
+                                attrs: {
+                                  id: "example2_info",
+                                  role: "status",
+                                  "aria-live": "polite"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                        Showing 1 to 10 of 57 entries\n                      "
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-sm-12 col-md-7" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "dataTables_paginate paging_simple_numbers",
+                                attrs: { id: "example2_paginate" }
+                              },
+                              [
+                                _c("ul", { staticClass: "pagination" }, [
+                                  _c(
+                                    "li",
+                                    {
+                                      staticClass:
+                                        "paginate_button page-item previous disabled",
+                                      attrs: { id: "example2_previous" }
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: {
+                                            href: "#",
+                                            "aria-controls": "example2",
+                                            "data-dt-idx": "0",
+                                            tabindex: "0"
+                                          }
+                                        },
+                                        [_vm._v("Previous")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      staticClass:
+                                        "paginate_button page-item active"
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: {
+                                            href: "#",
+                                            "aria-controls": "example2",
+                                            "data-dt-idx": "1",
+                                            tabindex: "0"
+                                          }
+                                        },
+                                        [_vm._v("1")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      staticClass: "paginate_button page-item"
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: {
+                                            href: "#",
+                                            "aria-controls": "example2",
+                                            "data-dt-idx": "2",
+                                            tabindex: "0"
+                                          }
+                                        },
+                                        [_vm._v("2")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      staticClass: "paginate_button page-item"
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: {
+                                            href: "#",
+                                            "aria-controls": "example2",
+                                            "data-dt-idx": "3",
+                                            tabindex: "0"
+                                          }
+                                        },
+                                        [_vm._v("3")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      staticClass: "paginate_button page-item"
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: {
+                                            href: "#",
+                                            "aria-controls": "example2",
+                                            "data-dt-idx": "4",
+                                            tabindex: "0"
+                                          }
+                                        },
+                                        [_vm._v("4")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      staticClass: "paginate_button page-item"
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: {
+                                            href: "#",
+                                            "aria-controls": "example2",
+                                            "data-dt-idx": "5",
+                                            tabindex: "0"
+                                          }
+                                        },
+                                        [_vm._v("5")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      staticClass: "paginate_button page-item"
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: {
+                                            href: "#",
+                                            "aria-controls": "example2",
+                                            "data-dt-idx": "6",
+                                            tabindex: "0"
+                                          }
+                                        },
+                                        [_vm._v("6")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      staticClass:
+                                        "paginate_button page-item next",
+                                      attrs: { id: "example2_next" }
+                                    },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticClass: "page-link",
+                                          attrs: {
+                                            href: "#",
+                                            "aria-controls": "example2",
+                                            "data-dt-idx": "7",
+                                            tabindex: "0"
+                                          }
+                                        },
+                                        [_vm._v("Next")]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
             ])
           ])
         ])
