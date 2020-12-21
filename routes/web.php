@@ -20,39 +20,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return Inertia\Inertia::render('Dashboard');
+// })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified', 'handleInertiaRequests'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    //home route
+    Route::get('/', [HomeController::class, 'index'])->name('Home');
+
+    //product categories route
     Route::get('/addNewCategory', [ProductCategoriesController::class, 'create'])->name('AddNewCategory');
     Route::get('/editProductCategory/{id}', [ProductCategoriesController::class, 'edit']);
     Route::post('/submitNewCategory', [ProductCategoriesController::class, 'store']);
     Route::patch('/updateProductCategory/{id}', [ProductCategoriesController::class, 'update']);
     Route::delete('/deleteProductCategory/{id}', [ProductCategoriesController::class, 'destroy']);
 
+    //brand routes
     Route::get('/addNewBrand', [BrandController::class, 'create'])->name('AddNewBrand');
     Route::get('/editBrand/{id}', [BrandController::class, 'edit'])->name('EditBrand');
     Route::post('/submitNewBrand', [BrandController::class, 'store']);
     Route::patch('/updateBrand/{id}', [BrandController::class, 'update']);
     Route::delete('/deleteBrand/{id}', [BrandController::class, 'destroy']);
 
+    //size routes
     Route::get('/addNewSize', [SizeController::class, 'create'])->name('AddNewSize');
     Route::get('/editSize/{id}', [SizeController::class, 'edit'])->name('EditSize');
     Route::post('/submitNewSize', [SizeController::class, 'store']);
 
+    //product routes
     Route::get('/addNewProduct', [ProductController::class, 'create'])->name('AddNewProduct');
     Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->name('EditProduct');
     Route::post('/submitNewProduct', [ProductController::class, 'store']);
     Route::patch('/updateProduct/{id}', [ProductController::class, 'update']);
     Route::delete('/deleteProduct/{id}', [ProductController::class, 'destroy']);
-    
+
+    //inventory routes
     Route::get('/inventory', [InventoryController::class, 'index'])->name('Inventory');
     Route::get('/editInventory', [InventoryController::class, 'edit'])->name('EditInventory');
     Route::post('/submitInventory', [InventoryController::class, 'store']);
     Route::patch('/updateInventory/{id}', [InventoryController::class, 'update']);
 
+    //sales routes
     Route::post('/sell', [SaleController::class, 'store']);
 });
