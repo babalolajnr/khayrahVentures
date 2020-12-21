@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 //     return Inertia\Inertia::render('Dashboard');
 // })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'handleInertiaRequests'])->group(function () {
 
     //home route
     Route::get('/', [HomeController::class, 'index'])->name('Home');
