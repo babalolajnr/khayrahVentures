@@ -3313,8 +3313,9 @@ __webpack_require__.r(__webpack_exports__);
     ProductsActive: function ProductsActive() {
       var activeClass = "active";
       var currentRoute = this.currentRoute;
+      var productsRoutes = ["AddNewCategory", "AddNewSize", "AddNewProduct"];
 
-      if (currentRoute == "AddNewCategory" || currentRoute == "AddNewSize") {
+      if (productsRoutes.includes(currentRoute)) {
         return activeClass;
       } else {
         return "";
@@ -32764,7 +32765,7 @@ var render = function() {
                                   "inertia-link",
                                   {
                                     staticClass: "nav-link",
-                                    class: _vm.route().current("AddNewCategory")
+                                    class: _vm.route().current("AddNewProduct")
                                       ? "active"
                                       : "",
                                     attrs: { href: "/addNewProduct" }

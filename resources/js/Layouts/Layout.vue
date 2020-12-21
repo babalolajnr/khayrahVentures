@@ -219,7 +219,7 @@
                   <li class="nav-item">
                     <inertia-link
                       href="/addNewProduct"
-                      :class="route().current('AddNewCategory') ? 'active' : ''"
+                      :class="route().current('AddNewProduct') ? 'active' : ''"
                       class="nav-link"
                     >
                       <i class="far fa-circle nav-icon"></i>
@@ -337,8 +337,8 @@ export default {
     ProductsActive() {
       let activeClass = "active";
       let currentRoute = this.currentRoute;
-
-      if (currentRoute == "AddNewCategory" || currentRoute == "AddNewSize") {
+      let productsRoutes = ["AddNewCategory", "AddNewSize", "AddNewProduct"];
+      if (productsRoutes.includes(currentRoute)) {
         return activeClass;
       } else {
         return "";
