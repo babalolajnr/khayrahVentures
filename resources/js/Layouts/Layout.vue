@@ -246,6 +246,16 @@
                       <p>Add New Size</p>
                     </inertia-link>
                   </li>
+                  <li class="nav-item">
+                    <inertia-link
+                      href="/inventory"
+                      :class="route().current('Inventory') ? 'active' : ''"
+                      class="nav-link"
+                    >
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Inventory</p>
+                    </inertia-link>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item has-treeview menu-open">
@@ -337,7 +347,9 @@ export default {
     ProductsActive() {
       let activeClass = "active";
       let currentRoute = this.currentRoute;
-      let productsRoutes = ["AddNewCategory", "AddNewSize", "AddNewProduct"];
+      let productsRoutes = ["AddNewCategory", "AddNewSize", "AddNewProduct", 'Inventory'];
+
+      //check if current route is present in products routes
       if (productsRoutes.includes(currentRoute)) {
         return activeClass;
       } else {
