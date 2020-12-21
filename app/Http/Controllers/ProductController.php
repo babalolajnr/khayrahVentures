@@ -30,7 +30,6 @@ class ProductController extends Controller
     public function create()
     {
 
-        $this->authorize('create', Product::class);
 
         $productCategories = ProductCategory::all();
         $sizes = Size::all();
