@@ -4196,8 +4196,7 @@ __webpack_require__.r(__webpack_exports__);
     errors: Object,
     productCategories: Array,
     sizes: Array,
-    brands: Array,
-    user: Object
+    brands: Array
   },
   components: {
     Layout: _Layouts_Layout_vue__WEBPACK_IMPORTED_MODULE_0__["default"],

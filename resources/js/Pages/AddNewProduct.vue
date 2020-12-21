@@ -205,7 +205,7 @@ export default {
     errors: Object,
     productCategories: Array,
     sizes: Array,
-    brands: Array
+    brands: Array,
   },
   components: {
     Layout,
