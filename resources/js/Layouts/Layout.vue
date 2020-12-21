@@ -216,7 +216,7 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
-                  <li class="nav-item">
+                  <li class="nav-item" v-if="this.$page.user.can.create_product">
                     <inertia-link
                       href="/addNewProduct"
                       :class="route().current('AddNewCategory') ? 'active' : ''"
@@ -224,6 +224,7 @@
                     >
                       <i class="far fa-circle nav-icon"></i>
                       <p>Add New Product</p>
+                      <!-- <p>{{ this.$page.user.firstname }}</p> -->
                     </inertia-link>
                   </li>
                   <li class="nav-item">
@@ -327,6 +328,7 @@ export default {
     return {
       date: new Date().getFullYear(),
       currentRoute: route().current(),
+      canCreateProduct: null,
     };
   },
   props: {
@@ -356,7 +358,13 @@ export default {
     logout() {
       this.$inertia.post("/logout");
     },
+    // getCan() {
+    //   this.data.canCreateProduct =  this.$props.user.can.create_product
+    // }
   },
+  // mounted: {
+  //   this.getCan();
+  // }
 };
 </script>
 

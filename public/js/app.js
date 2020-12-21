@@ -3298,11 +3298,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       date: new Date().getFullYear(),
-      currentRoute: route().current()
+      currentRoute: route().current(),
+      canCreateProduct: null
     };
   },
   props: {
@@ -3331,8 +3333,14 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     logout: function logout() {
       this.$inertia.post("/logout");
-    }
-  }
+    } // getCan() {
+    //   this.data.canCreateProduct =  this.$props.user.can.create_product
+    // }
+
+  } // mounted: {
+  //   this.getCan();
+  // }
+
 });
 
 /***/ }),
@@ -4188,7 +4196,8 @@ __webpack_require__.r(__webpack_exports__);
     errors: Object,
     productCategories: Array,
     sizes: Array,
-    brands: Array
+    brands: Array,
+    user: Object
   },
   components: {
     Layout: _Layouts_Layout_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -32745,30 +32754,34 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("ul", { staticClass: "nav nav-treeview" }, [
-                            _c(
-                              "li",
-                              { staticClass: "nav-item" },
-                              [
-                                _c(
-                                  "inertia-link",
-                                  {
-                                    staticClass: "nav-link",
-                                    class: _vm.route().current("AddNewCategory")
-                                      ? "active"
-                                      : "",
-                                    attrs: { href: "/addNewProduct" }
-                                  },
+                            this.$page.user.can.create_product
+                              ? _c(
+                                  "li",
+                                  { staticClass: "nav-item" },
                                   [
-                                    _c("i", {
-                                      staticClass: "far fa-circle nav-icon"
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v("Add New Product")])
-                                  ]
+                                    _c(
+                                      "inertia-link",
+                                      {
+                                        staticClass: "nav-link",
+                                        class: _vm
+                                          .route()
+                                          .current("AddNewCategory")
+                                          ? "active"
+                                          : "",
+                                        attrs: { href: "/addNewProduct" }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "far fa-circle nav-icon"
+                                        }),
+                                        _vm._v(" "),
+                                        _c("p", [_vm._v("Add New Product")])
+                                      ]
+                                    )
+                                  ],
+                                  1
                                 )
-                              ],
-                              1
-                            ),
+                              : _vm._e(),
                             _vm._v(" "),
                             _c(
                               "li",
