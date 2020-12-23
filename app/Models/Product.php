@@ -32,12 +32,12 @@ class Product extends Model
 
     public function sizes()
     {
-        return $this->belongsTo('App\Models\Size');
+        return $this->belongsTo('App\Models\Size', 'size_id');
     }
 
-    public function inventories()
+    public function inventory()
     {
-        return $this->hasOne('App\Models\Inventory');
+        return $this->belongsTo('App\Models\Inventory');
     }
 
     public static function validateIncomingRequest($request)
