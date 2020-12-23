@@ -9,6 +9,7 @@ use App\Utilities\TestUserGenerator;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Arr;
 use Tests\TestCase;
 
 class SalesTest extends TestCase
@@ -18,13 +19,15 @@ class SalesTest extends TestCase
 
     public function testSalesStoreMethod()
     {
-        // $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $user = TestUserGenerator::generateAnyUser();
-        $products = Inventory::where('quantity', '>', 0)->get();
-        $product = $products->random();
+        $product = Product::whereHas('inventory', function ($q) {
+            $q->where('quantity', '>', 0);
+        })->inRandomOrder()->first();
+
         $productID = $product->id;
-        $quantity = $product->quantity;
+        $quantity = $product->inventory->quantity;
         $quantity = $quantity - mt_rand(1, $quantity);
 
         $request = $this->actingAs($user)->post('/sell', [
