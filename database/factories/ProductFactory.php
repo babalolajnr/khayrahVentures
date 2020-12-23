@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Brand;
+use App\Models\Inventory;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Size;
@@ -47,9 +48,15 @@ class ProductFactory extends Factory
             ],
             ['Bedsheet']
         ];
+
         $randomArrayCategory = Arr::random($name);
         if ($randomArrayCategory == $name[0]) {
-            //mattress
+            /**
+             * if the randomly selected array is $name[0]
+             * then it is in the mattresses category
+             */
+
+
             $code = [
                 'M1SH',
                 'M2SH',
@@ -66,13 +73,20 @@ class ProductFactory extends Factory
                 'M5SH8',
             ];
             $code = $this->faker->unique()->randomElement($code);
+
+            //select a random item from the random array selected earlier
             $selectedName = $this->faker->randomElement($randomArrayCategory);
             $color = $this->faker->colorName;
             $size = $this->faker->randomElement($size);
             $categoryID = ProductCategory::where('name', 'Mattresses')->first();
             $categoryID = $categoryID->id;
         } elseif ($randomArrayCategory == $name[1]) {
-            //pillow
+             /**
+             * if the randomly selected array is $name[1]
+             * then it is in the pillows category
+             * 
+             * pillows don't have a code,color and size
+             */
             $code = null;
             $color = null;
             $size = null;
@@ -80,7 +94,12 @@ class ProductFactory extends Factory
             $categoryID = ProductCategory::where('name', 'Pillows')->first();
             $categoryID = $categoryID->id;
         } else {
-            //bedsheet
+            /**
+             * if the randomly selected array is $name[2]
+             * then it is in the bedsheets category
+             * 
+             * bedsheets don't have a code
+             */
             $code = null;
             $size = $this->faker->randomElement($size);
             $color = $this->faker->colorName;
@@ -92,7 +111,7 @@ class ProductFactory extends Factory
         $slug = Str::of($selectedName)->slug('-');
         $wholesalePrice = $this->faker->randomNumber(6);
         $retailPrice = $wholesalePrice*3/100+$wholesalePrice;
-        
+        $inventory = Inventory::pluck('id')->all();
 
         return [
             'name'                  => $selectedName,
@@ -105,7 +124,7 @@ class ProductFactory extends Factory
             'product_category_id'   => $categoryID,
             'brand_id'              => $this->faker->randomElement($brand),
             'user_id'               => $this->faker->randomElement($userID),
-
+            'inventory_id'          => $this->faker->unique()->randomElement($inventory)
         ];
     }
 }
