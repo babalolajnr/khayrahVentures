@@ -50,11 +50,11 @@ class Product extends Model
 
         $validator =  $request->validate(([
             'name'              => ['required'],
-            'code'              => ['required_if:productCategory,==, Mattresses'],
+            'code'              => ['required_if:productCategory,==, Mattresses', 'unique:App\Models\Product,code'],
             'productCategory'   => ['required'],
             'color'             => ['required_if:productCategory,==, Mattresses'],
-            'wholesale'         =>  ['required'],
-            'retail'            =>  ['required'],
+            'wholesale'         =>  ['required', 'integer'],
+            'retail'            =>  ['required', 'integer'],
             'size'              =>  ['required_if:productCategory,==, Mattresses'],
             'brand'             =>  ['required'],
             'quantity'          =>  ['integer']
