@@ -15,7 +15,7 @@ use Validator;
 
 class ProductController extends Controller
 {
-    
+
     /**
      * DONE
      * index
@@ -63,9 +63,19 @@ class ProductController extends Controller
         $slug = Str::of($request->name)->slug('-');
 
 
-        // dd($productCategoryID->id);
 
-        $newProduct =  Auth::user()->products()->create([
+        //check if user filled in the quantity
+        if (empty($request->quantity)) {
+            $quantity = 0;
+        } else {
+            $quantity = $request->quantity;
+        }
+
+        $inventory = Inventory::create([
+            'quantity'      =>  $quantity,
+        ]);
+
+         Auth::user()->products()->create([
             'name'                      => $request->name,
             'slug'                      => $slug,
             'code'                      => $request->code,
@@ -74,20 +84,12 @@ class ProductController extends Controller
             'retail_price'              => $request->retail,
             'size_id'                   => $sizeID,
             'brand_id'                  => $brandID,
-            'product_category_id'       => $productCategoryID
+            'product_category_id'       => $productCategoryID,
+            'inventory_id'              => $inventory->id,
         ]);
 
-        //check if user filled in the quantity
-        if (empty($request->quantity)) {
-            $quantity = 0;
-        }else {
-            $quantity = $request->quantity;
-        }
+        
 
-        Auth::user()->inventories()->create([
-            'product_id'   =>  $newProduct->id,
-            'quantity'      =>  $quantity,
-        ]);
 
         return redirect('/addNewProduct');
     }
@@ -120,7 +122,6 @@ class ProductController extends Controller
         $slug = Str::of($request->name)->slug('-');
 
 
-        // dd($productCategoryID->id);
 
         Auth::user()->products()->where('id', $id)->update([
             'name'                      => $request->name,
