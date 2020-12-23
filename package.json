@@ -28,6 +28,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "bootstrap": "^4.5.3",
+        "bootstrap-vue": "^2.21.1",
         "epic-spinners": "^1.1.0"
     }
 }
