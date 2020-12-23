@@ -27,9 +27,7 @@
           <div class="row">
             <div class="col-12">
               <div class="card">
-                <div class="card-header">
-                    Inventory
-                </div>
+                <div class="card-header">Inventory</div>
                 <!-- /.card-header -->
                 <div class="card-body">
                   <div
@@ -42,7 +40,32 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-12">
-                        <b-table striped hover :items="items"></b-table>
+                        <b-table
+                          striped
+                          responsive
+                          hover
+                          :items="items"
+                          :fields="fields"
+                        >
+                          <template #cell(index)="data">
+                            {{ data.index + 1 }}
+                          </template>
+
+                          <!-- sizes column -->
+                          <template #cell(sizes)="data">
+                            {{ data.value.name }}
+                          </template>
+
+                          <!-- product category column -->
+                          <template #cell(product_category)="data">
+                            {{ data.value.name }}
+                          </template>
+
+                          <!-- quantity column -->
+                          <template #cell(inventory)="data">
+                            {{ data.value.quantity }}
+                          </template>
+                        </b-table>
                       </div>
                     </div>
                   </div>
@@ -67,7 +90,7 @@ import Layout from "@/Layouts/Layout.vue";
 import { FulfillingSquareSpinner } from "epic-spinners";
 export default {
   props: {
-    inventory: Array
+    inventory: Array,
   },
   components: {
     Layout,
@@ -77,43 +100,48 @@ export default {
     return {
       date: new Date().getFullYear(),
       success: false,
-      // items: this.$props.inventory,
+      items: this.$props.inventory,
+
       fields: [
         {
           key: "index",
-          sortable: true
+          sortable: true,
         },
         {
-          key: 'name',
-          sortable: true
+          key: "name",
+          sortable: true,
         },
         {
-          key: 'code',
-          sortable: true
+          key: "code",
+          sortable: true,
+        },
+        { key: "sizes", label: "Size", sortable: true },
+        {
+          key: "product_category",
+          label: "Category",
+          sortable: true,
         },
         {
-          key: 'retail_price',
-          label: "Retail Price",
-          sortable: true
-        },
-        {
-          key: 'wholesale_price',
-          label: "Wholesale Price",
-          sortable: true
-        },
-        {
-          key: 'color',
+          key: "color",
           label: "Color",
-          sortable: true
-        }
-
+          sortable: true,
+        },
+        { key: "inventory", label: "Quantity", sortable: true },
+        {
+          key: "retail_price",
+          label: "Retail Price",
+          sortable: true,
+        },
+        {
+          key: "wholesale_price",
+          label: "Wholesale Price",
+          sortable: true,
+        },
       ],
       loading: false,
     };
   },
-  methods: {
-    
-  },
+  methods: {},
   computed: {
     checkIfUserIsAuthorized() {
       if (this.$page.user.can.createProduct) {
