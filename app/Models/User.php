@@ -82,11 +82,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Product');
     }
 
-    public function inventories()
-    {
-        return $this->hasMany('App\Models\Inventory');
-    }
-    
     public function userType()
     {
         return $this->belongsTo('App\Models\UserType');
