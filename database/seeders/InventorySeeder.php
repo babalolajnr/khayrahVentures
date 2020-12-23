@@ -17,25 +17,11 @@ class InventorySeeder extends Seeder
      */
     public function run()
     {
-        $product = Product::pluck('id')->all();
-        $productArrayLength = count($product);
+        /**
+         * Warning: The times() method has to have the same number 
+         * as the ProductSeeder class.
+         */
+        Inventory::factory()->times(7)->create();
 
-        //get a user that is an admin
-        $user = User::whereHas('userType', function ($q) {
-            $q->where('name', 'Admin');
-        })->pluck('id')->all();
-
-        
-        for ($i = 0; $i < $productArrayLength; $i++) {
-            $quantity = mt_rand(0, 100);
-            $userID = Arr::random($user);
-
-            Inventory::UpdateorCreate([
-                'product_id' => $product[$i]
-            ], [
-                'quantity'  => $quantity,
-                'user_id'   => $userID
-            ]);
-        }
     }
 }
