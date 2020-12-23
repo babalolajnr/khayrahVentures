@@ -25,7 +25,8 @@ class SaleController extends Controller
 
     public function store(Request $request)
     {
-        $productAvailableQuantity = Inventory::where('product_id', $request->product_id)->pluck('quantity')->first();
+        $inventoryID = Product::where('id', $request->product_id)->pluck('inventory_id')->first();
+        $productAvailableQuantity = Inventory::where('id', $inventoryID)->pluck('quantity')->first();
 
         Sale::validateIncomingRequest($request, $productAvailableQuantity);
 
@@ -62,7 +63,7 @@ class SaleController extends Controller
         $quantitySold = $sale->quantity_sold;
         $remainingQuantity = $productAvailableQuantity - $quantitySold;
 
-        $inventory = Inventory::where('product_id', $productID)->first();
+        $inventory = Inventory::where('id', $inventoryID)->first();
         $inventory->quantity = $remainingQuantity;
         $inventory->save();
 
