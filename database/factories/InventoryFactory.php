@@ -25,14 +25,8 @@ class InventoryFactory extends Factory
     public function definition()
     {
         $quantity = mt_rand(0,100);
-        $product = Product::pluck('id')->all();
-        $productID = $this->faker->unique()->randomElement($product);
-        $user = User::pluck('id')->all();
-        $userID = Arr::random($user);
         return [
             'quantity' => $quantity,
-            'product_id' => $productID,
-            'user_id' => $userID
         ];
     }
 }
