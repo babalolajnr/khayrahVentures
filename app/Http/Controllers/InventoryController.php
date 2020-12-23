@@ -13,7 +13,7 @@ class InventoryController extends Controller
 {
     public function index()
     {
-        $inventory = Inventory::with('products')->get();
+        $inventory = Product::with(['inventory', 'sizes', 'productCategory', 'brand'])->get();
         return Inertia::render('Inventory', [
             'inventory' => $inventory
         ]);
