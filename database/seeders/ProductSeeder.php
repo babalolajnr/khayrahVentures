@@ -14,6 +14,10 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
+        /**
+         * Warning: The times() method has to have the same number 
+         * as the InventorySeeder class.
+         */
         Product::factory()->times(7)->create();
     }
 }
