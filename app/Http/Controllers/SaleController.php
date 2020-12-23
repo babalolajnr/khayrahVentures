@@ -46,11 +46,13 @@ class SaleController extends Controller
         $quantity = $request->quantity;
         $amount = $productPrice * $quantity;
 
+        //generate a unique reference string
         do {
             $reference = Str::random(10);
             $checkReference = Sale::where('reference', $reference)->get();
         } while (!$checkReference->isEmpty());
 
+        //persist the sale in the database
         $sale = Auth::user()->sales()->create([
             'product_id'    => $productID,
             'quantity_sold' => $quantity,
@@ -59,7 +61,7 @@ class SaleController extends Controller
             'reference'     => $reference,
         ]);
 
-
+        //update the inventory    
         $quantitySold = $sale->quantity_sold;
         $remainingQuantity = $productAvailableQuantity - $quantitySold;
 
