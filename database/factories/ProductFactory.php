@@ -96,7 +96,8 @@ class ProductFactory extends Factory
         $slug = Str::of($selectedName)->slug('-');
         $wholesalePrice = $this->faker->randomNumber(6);
         $retailPrice = $wholesalePrice * 3 / 100 + $wholesalePrice;
-        $inventory = Inventory::pluck('id')->all();
+        $inventory = Inventory::factory()->create();
+        $inventory = $inventory->id;
 
         return [
             'name'                  => $selectedName,
@@ -108,7 +109,7 @@ class ProductFactory extends Factory
             'product_category_id'   => $categoryID,
             'brand_id'              => $this->faker->randomElement($brand),
             'user_id'               => $this->faker->randomElement($userID),
-            'inventory_id'          => $this->faker->unique()->randomElement($inventory)
+            'inventory_id'          => $inventory
         ];
     }
 }
