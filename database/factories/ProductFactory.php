@@ -76,7 +76,6 @@ class ProductFactory extends Factory
 
             //select a random item from the random array selected earlier
             $selectedName = $this->faker->randomElement($randomArrayCategory);
-            $color = $this->faker->colorName;
             $size = $this->faker->randomElement($size);
             $categoryID = ProductCategory::where('name', 'Mattresses')->first();
             $categoryID = $categoryID->id;
@@ -85,10 +84,9 @@ class ProductFactory extends Factory
              * if the randomly selected array is $name[1]
              * then it is in the pillows category
              * 
-             * pillows don't have a code,color and size
+             * pillows don't have a code and size
              */
             $code = null;
-            $color = null;
             $size = null;
             $selectedName = $this->faker->unique()->randomElement($randomArrayCategory);
             $categoryID = ProductCategory::where('name', 'Pillows')->first();
@@ -102,7 +100,6 @@ class ProductFactory extends Factory
              */
             $code = null;
             $size = $this->faker->randomElement($size);
-            $color = $this->faker->colorName;
             $selectedName = $this->faker->randomElement($randomArrayCategory);
             $categoryID = ProductCategory::where('name', 'Bedsheets')->first();
             $categoryID = $categoryID->id;
@@ -119,7 +116,6 @@ class ProductFactory extends Factory
             'code'                  => $code,
             'wholesale_price'       => $wholesalePrice,
             'retail_price'          => $retailPrice,
-            'color'                 => $color,
             'size_id'               => $size,
             'product_category_id'   => $categoryID,
             'brand_id'              => $this->faker->randomElement($brand),
