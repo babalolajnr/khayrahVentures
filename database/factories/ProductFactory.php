@@ -56,23 +56,11 @@ class ProductFactory extends Factory
              * then it is in the mattresses category
              */
 
-
-            $code = [
-                'M1SH',
-                'M2SH',
-                'M3SH',
-                'M4SH',
-                'M5SH',
-                'M1SH8',
-                'M2SH8',
-                'M3SH8',
-                'M4SH8',
-                'M9SH',
-                'M10SH',
-                'M15SH',
-                'M5SH8',
-            ];
-            $code = $this->faker->unique()->randomElement($code);
+            //generate unique code
+            do {
+                $code = Str::random(5);
+                $checkCode = Product::where('code', $code)->get();
+            } while (!$checkCode->isEmpty());
 
             //select a random item from the random array selected earlier
             $selectedName = $this->faker->randomElement($randomArrayCategory);
@@ -80,7 +68,7 @@ class ProductFactory extends Factory
             $categoryID = ProductCategory::where('name', 'Mattresses')->first();
             $categoryID = $categoryID->id;
         } elseif ($randomArrayCategory == $name[1]) {
-             /**
+            /**
              * if the randomly selected array is $name[1]
              * then it is in the pillows category
              * 
@@ -107,7 +95,7 @@ class ProductFactory extends Factory
 
         $slug = Str::of($selectedName)->slug('-');
         $wholesalePrice = $this->faker->randomNumber(6);
-        $retailPrice = $wholesalePrice*3/100+$wholesalePrice;
+        $retailPrice = $wholesalePrice * 3 / 100 + $wholesalePrice;
         $inventory = Inventory::pluck('id')->all();
 
         return [
