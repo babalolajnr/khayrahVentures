@@ -18,7 +18,7 @@ class AddForeignColumnsToProducts extends Migration
             $table->foreignId('product_category_id')->constrained('products_category')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('brand_id')->nullable()->constrained('brands')->onUpdate('cascade')->onDelete('set null');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->foreignId('inventory_id')->constrained('inventory')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('inventory_id')->unique()->constrained('inventory')->onUpdate('cascade')->onDelete('cascade');
             $table->index(['name', 'code', 'size_id', 'product_category_id']);
 
         });
