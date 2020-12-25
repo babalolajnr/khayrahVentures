@@ -44,15 +44,12 @@ class Product extends Model
     {
         $messages = [
             'unique'            => 'Size Exists',
-            'code.required_if'  => 'Code field required when product category is mattresses',
-            'color.required_if' => 'Color field required when product category is mattresses'
         ];
 
         $validator =  $request->validate(([
             'name'              => ['required'],
             'code'              => ['required_if:productCategory,==, Mattresses', 'unique:App\Models\Product,code'],
             'productCategory'   => ['required'],
-            'color'             => ['required_if:productCategory,==, Mattresses'],
             'wholesale'         =>  ['required', 'integer'],
             'retail'            =>  ['required', 'integer'],
             'size'              =>  ['required_if:productCategory,==, Mattresses'],

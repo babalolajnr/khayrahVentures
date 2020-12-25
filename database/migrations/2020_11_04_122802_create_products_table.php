@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->string('code')->unique()->nullable();
             $table->double('retail_price');
             $table->double('wholesale_price');
-            $table->string('color')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

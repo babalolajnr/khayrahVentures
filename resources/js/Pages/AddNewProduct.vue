@@ -68,18 +68,6 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="Color">Color</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder=""
-                        v-model="form.color"
-                      />
-                      <div v-if="errors.color" class="text-red-600">
-                        {{ errors.color }}
-                      </div>
-                    </div>
-                    <div class="form-group">
                       <label for="Wholesale">Wholesale price</label>
                       <input
                         type="text"
@@ -226,7 +214,6 @@ export default {
       form: {
         name: null,
         code: null,
-        color: null,
         wholesale: null,
         retail: null,
         productCategory: null,
@@ -265,7 +252,6 @@ export default {
     clearForm() {
       this.form.name = "";
       this.form.code = "";
-      this.form.color = "";
       this.form.wholesale = "";
       this.form.retail = "";
       this.form.productCategory = "";

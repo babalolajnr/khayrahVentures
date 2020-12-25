@@ -35,7 +35,6 @@ class ProductTest extends TestCase
             'name'              => '',
             'code'              => '',
             'productCategory'   => $productCategory,
-            'color'             => 'darkslateblue',
             'wholesale'         => '7000',
             'retail'            => '10000',
             'size'              => $sizeName,
@@ -61,7 +60,6 @@ class ProductTest extends TestCase
             'name'              => 'Vita Supreme',
             'code'              => 'M9SG',
             'productCategory'   => $productCategory,
-            'color'             => 'darkslateblue',
             'wholesale'         => '7000',
             'retail'            => '10000',
             'size'              => $sizeName,
@@ -87,7 +85,6 @@ class ProductTest extends TestCase
             'name'              => 'Vita Supreme',
             'code'              => 'M9SG',
             'productCategory'   => $productCategory,
-            'color'             => 'darkslateblue',
             'wholesale'         => '7000',
             'retail'            => '10000',
             'size'              => $sizeName,
@@ -111,7 +108,6 @@ class ProductTest extends TestCase
             'name'              => 'Vita Galaxy',
             'code'              => 'M9Sk4',
             'productCategory'   => $productCategory,
-            'color'             => 'darkslateblue',
             'wholesale'         => '7000',
             'retail'            => '10000',
             'size'              => $sizeName,
@@ -136,7 +132,6 @@ class ProductTest extends TestCase
             'name'              => 'Vita Galaxy',
             'code'              => 'M9SG4',
             'productCategory'   => $productCategory,
-            'color'             => 'darkslateblue',
             'wholesale'         => '7000',
             'retail'            => '10000',
             'size'              => $sizeName,
@@ -152,7 +147,7 @@ class ProductTest extends TestCase
         $product = Product::factory()->create();
         $productID = $product->id;
         $request = $this->actingAs($user)->delete('/deleteProduct/' . $productID);
-        
+
         $request->assertStatus(200);
     }
 
@@ -162,7 +157,7 @@ class ProductTest extends TestCase
         $product = Product::factory()->create();
         $productID = $product->id;
         $request = $this->actingAs($user)->delete('/deleteProduct/' . $productID);
-        
+
         $request->assertStatus(403);
     }
 }

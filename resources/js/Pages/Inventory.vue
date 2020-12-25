@@ -121,11 +121,7 @@ export default {
           label: "Category",
           sortable: true,
         },
-        {
-          key: "color",
-          label: "Color",
-          sortable: true,
-        },
+
         { key: "inventory", label: "Quantity", sortable: true },
         {
           key: "retail_price",
