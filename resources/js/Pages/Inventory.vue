@@ -46,6 +46,7 @@
                           hover
                           :items="items"
                           :fields="fields"
+                          :busy.sync="isBusy"
                         >
                           <template #cell(index)="data">
                             {{ data.index + 1 }}
@@ -154,12 +155,14 @@ export default {
           sortable: true,
         },
       ],
-      loading: false,
+       isBusy: false
     };
   },
   methods: {
     handlePageChange(value) {
-      this.$inertia.visit("/inventory?page=" + value);
+      //set busy state
+      this.isBusy = true
+      this.$inertia.visit("/inventory?page=" + value)
     },
   },
   computed: {
