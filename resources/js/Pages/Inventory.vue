@@ -67,6 +67,13 @@
                           </template>
                         </b-table>
                       </div>
+                      <b-pagination
+                        class="mt-3"
+                        v-model="ctx.currentPage"
+                        :total-rows="ctx.total"
+                        :per-page="ctx.perPage"
+                        @change="handlePageChange"
+                      ></b-pagination>
                     </div>
                   </div>
                 </div>
@@ -90,7 +97,7 @@ import Layout from "@/Layouts/Layout.vue";
 import { FulfillingSquareSpinner } from "epic-spinners";
 export default {
   props: {
-    inventory: Array,
+    inventory: Object,
   },
   components: {
     Layout,
@@ -100,7 +107,20 @@ export default {
     return {
       date: new Date().getFullYear(),
       success: false,
-      items: this.$props.inventory,
+      items: this.$props.inventory.data,
+      ctx: {
+        currentPage: this.$props.inventory.current_page,
+        firstPageUrl: this.$props.inventory.first_page_url,
+        from: this.$props.inventory.from,
+        lastPage: this.$props.inventory.last_page,
+        lastPageUrl: this.$props.inventory.last_page_url,
+        nextPageUrl: this.$props.inventory.next_page_url,
+        path: this.$props.inventory.path,
+        perPage: this.$props.inventory.per_page,
+        prevPageUrl: this.$props.inventory.prev_page_url,
+        to: this.$props.inventory.to,
+        total: this.$props.inventory.total,
+      },
 
       fields: [
         {
@@ -137,7 +157,11 @@ export default {
       loading: false,
     };
   },
-  methods: {},
+  methods: {
+    handlePageChange(value) {
+      this.$inertia.visit("/inventory?page=" + value);
+    },
+  },
   computed: {
     checkIfUserIsAuthorized() {
       if (this.$page.user.can.createProduct) {
