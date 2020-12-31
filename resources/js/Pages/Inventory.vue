@@ -40,6 +40,33 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-12">
+                        <b-col lg="6" class="my-1">
+                          <b-form-group
+                            label="Filter"
+                            label-for="filter-input"
+                            label-cols-sm="3"
+                            label-align-sm="right"
+                            label-size="sm"
+                            class="mb-0"
+                          >
+                            <b-input-group size="sm">
+                              <b-form-input
+                                id="filter-input"
+                                v-model="filter"
+                                type="search"
+                                placeholder="Type to Search"
+                              ></b-form-input>
+
+                              <b-input-group-append>
+                                <b-button
+                                  :disabled="!filter"
+                                  @click="filter = ''"
+                                  >Clear</b-button
+                                >
+                              </b-input-group-append>
+                            </b-input-group>
+                          </b-form-group>
+                        </b-col>
                         <b-table
                           striped
                           responsive
@@ -47,6 +74,11 @@
                           :items="items"
                           :fields="fields"
                           :busy.sync="isBusy"
+                          bordered
+                          head-variant="dark"
+                          :filter="filter"
+                          :filter-included-fields="filterOn"
+                          @filtered="onFiltered"
                         >
                           <template #cell(index)="data">
                             {{ data.index + 1 }}
@@ -122,6 +154,8 @@ export default {
         to: this.$props.inventory.to,
         total: this.$props.inventory.total,
       },
+      filter: null,
+      filterOn: [],
 
       fields: [
         {
@@ -155,14 +189,19 @@ export default {
           sortable: true,
         },
       ],
-       isBusy: false
+      isBusy: false,
     };
   },
   methods: {
     handlePageChange(value) {
       //set busy state
-      this.isBusy = true
-      this.$inertia.visit("/inventory?page=" + value)
+      this.isBusy = true;
+      this.$inertia.visit("/inventory?page=" + value);
+    },
+    onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
     },
   },
   computed: {
@@ -170,6 +209,14 @@ export default {
       if (this.$page.user.can.createProduct) {
         return true;
       }
+    },
+    sortOptions() {
+      // Create an options list from our fields
+      return this.fields
+        .filter((f) => f.sortable)
+        .map((f) => {
+          return { text: f.label, value: f.key };
+        });
     },
   },
 };
