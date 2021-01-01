@@ -43,7 +43,7 @@ class Product extends Model
     public static function validateIncomingRequest($request)
     {
         $messages = [
-            'unique'            => 'Size Exists',
+            'unique'            => 'Code Exists',
         ];
 
         $validator =  $request->validate(([
