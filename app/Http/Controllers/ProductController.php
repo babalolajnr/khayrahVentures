@@ -14,49 +14,8 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Validator;
 
-/**
- * this trait get sizeID, ProductCategoryID and brandID of the
- * incoming request
- */
-trait ProductUtilities
-{
-    public function getSizeID($size)
-    {
-        $size = Size::where('name', $size)->first();
-        $sizeID = $size->id;
-        return $sizeID;
-    }
-
-    public function getBrandID($brand)
-    {
-
-        $brand = Brand::where('name', $brand)->first();
-        $brandID = $brand->id;
-        return $brandID;
-    }
-
-    public function getProductCategoryID($productCategory)
-    {
-        $productCategory = ProductCategory::where('name', $productCategory)->first();
-        $productCategoryID = $productCategory->id;
-        return $productCategoryID;
-    }
-
-    public function checkProductExists($sizeID, $name)
-    {
-        $checkDatabase = Product::where('name', $name)->get();
-        $checkDatabase = $checkDatabase->contains('size_id', $sizeID);
-
-        if ($checkDatabase) {
-            throw ValidationException::withMessages(['name' => 'Product Exists!']);
-        }
-    }
-}
-
 class ProductController extends Controller
 {
-
-    use ProductUtilities;
 
     public function create()
     {
@@ -174,5 +133,37 @@ class ProductController extends Controller
         // $inventory->delete();
 
         return response(200);
+    }
+
+    public function getSizeID($size)
+    {
+        $size = Size::where('name', $size)->first();
+        $sizeID = $size->id;
+        return $sizeID;
+    }
+
+    public function getBrandID($brand)
+    {
+
+        $brand = Brand::where('name', $brand)->first();
+        $brandID = $brand->id;
+        return $brandID;
+    }
+
+    public function getProductCategoryID($productCategory)
+    {
+        $productCategory = ProductCategory::where('name', $productCategory)->first();
+        $productCategoryID = $productCategory->id;
+        return $productCategoryID;
+    }
+
+    public function checkProductExists($sizeID, $name)
+    {
+        $checkDatabase = Product::where('name', $name)->get();
+        $checkDatabase = $checkDatabase->contains('size_id', $sizeID);
+
+        if ($checkDatabase) {
+            throw ValidationException::withMessages(['name' => 'Product Exists!']);
+        }
     }
 }
