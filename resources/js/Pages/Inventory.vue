@@ -79,6 +79,7 @@
                           :filter="filter"
                           :filter-included-fields="filterOn"
                           @filtered="onFiltered"
+                          
                         >
                           <template #cell(index)="data">
                             {{ data.index + 1 }}
