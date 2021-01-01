@@ -14,19 +14,39 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Validator;
 
+/**
+ * this trait get sizeID, ProductCategoryID and brandID of the
+ * incoming request
+ */
+trait GetIDs
+{
+    public function getSizeID($size)
+    {
+        $size = Size::where('name', $size)->first();
+        $sizeID = $size->id;
+        return $sizeID;
+    }
+
+    public function getBrandID($brand)
+    {
+
+        $brand = Brand::where('name', $brand)->first();
+        $brandID = $brand->id;
+        return $brandID;
+    }
+
+    public function getProductCategoryID($productCategory)
+    {
+        $productCategory = ProductCategory::where('name', $productCategory)->first();
+        $productCategoryID = $productCategory->id;
+        return $productCategoryID;
+    }
+}
+
 class ProductController extends Controller
 {
 
-    /**
-     * DONE
-     * index
-     * store
-     * edit
-     * update
-     * destroy
-     * 
-     * TODO
-     */
+    use GetIDs;
 
     public function create()
     {
@@ -51,28 +71,22 @@ class ProductController extends Controller
         Product::validateIncomingRequest($request);
 
         //get the size ID
-        $size = $request->size;
-        $sizeID = Size::where('name', $size)->first();
-        $sizeID = $sizeID->id;
+        $sizeID = $this->getSizeID($request->size);
+
 
         //check if the product is already in the database
         $checkDatabase = Product::where('name', $request->name)->get();
         $checkDatabase = $checkDatabase->contains('size_id', $sizeID);
-        
+
         if ($checkDatabase) {
             throw ValidationException::withMessages(['name' => 'Product Exists!']);
         }
 
         //get the product category ID
-        $productCategory = $request->productCategory;
-        $productCategoryID = ProductCategory::where('name', $productCategory)->first();
-        $productCategoryID = $productCategoryID->id;
-
+        $productCategoryID = $this->getProductCategoryID($request->productCategory);
 
         //get brandID
-        $brand = $request->brand;
-        $brandID = Brand::where('name', $brand)->first();
-        $brandID = $brandID->id;
+        $brandID = $this->getBrandID($request->brand);
 
         $slug = Str::of($request->name)->slug('-');
 
@@ -87,7 +101,7 @@ class ProductController extends Controller
             'quantity'      =>  $quantity,
         ]);
 
-         Auth::user()->products()->create([
+        Auth::user()->products()->create([
             'name'                      => $request->name,
             'slug'                      => $slug,
             'code'                      => $request->code,
@@ -99,9 +113,6 @@ class ProductController extends Controller
             'product_category_id'       => $productCategoryID,
             'inventory_id'              => $inventory->id,
         ]);
-
-        
-
 
         return redirect('/addNewProduct');
     }
@@ -118,22 +129,13 @@ class ProductController extends Controller
     public function update(Request $request, $id, Product $product)
     {
         $this->authorize('update', $product);
+        
         Product::validateIncomingRequest($request);
 
-        $productCategory = $request->productCategory;
-        $productCategoryID = ProductCategory::where('name', $productCategory)->first();
-        $productCategoryID = $productCategoryID->id;
-
-        $size = $request->size;
-        $sizeID = Size::where('name', $size)->first();
-        $sizeID = $sizeID->id;
-
-        $brand = $request->brand;
-        $brandID = Brand::where('name', $brand)->first();
-        $brandID = $brandID->id;
+        $productCategoryID = $this->getProductCategoryID($request->productCategory);
+        $sizeID = $this->getSizeID($request->size);
+        $brandID = $this->brandID($request->brand);
         $slug = Str::of($request->name)->slug('-');
-
-
 
         Auth::user()->products()->where('id', $id)->update([
             'name'                      => $request->name,
