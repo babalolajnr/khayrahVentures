@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Validator;
 
 class ProductController extends Controller
@@ -49,20 +50,31 @@ class ProductController extends Controller
 
         Product::validateIncomingRequest($request);
 
-        $productCategory = $request->productCategory;
-        $productCategoryID = ProductCategory::where('name', $productCategory)->first();
-        $productCategoryID = $productCategoryID->id;
-
+        //get the size ID
         $size = $request->size;
         $sizeID = Size::where('name', $size)->first();
         $sizeID = $sizeID->id;
 
+        //check if the product is already in the database
+        $checkDatabase = Product::where('name', $request->name)->get();
+        $checkDatabase = $checkDatabase->contains('size_id', $sizeID);
+        
+        if ($checkDatabase) {
+            throw ValidationException::withMessages(['name' => 'Product Exists!']);
+        }
+
+        //get the product category ID
+        $productCategory = $request->productCategory;
+        $productCategoryID = ProductCategory::where('name', $productCategory)->first();
+        $productCategoryID = $productCategoryID->id;
+
+
+        //get brandID
         $brand = $request->brand;
         $brandID = Brand::where('name', $brand)->first();
         $brandID = $brandID->id;
+
         $slug = Str::of($request->name)->slug('-');
-
-
 
         //check if user filled in the quantity
         if (empty($request->quantity)) {

@@ -105,7 +105,7 @@ class ProductTest extends TestCase
         $productCategory = Arr::random($productCategory);
 
         $request = $this->actingAs($user)->post('/submitNewProduct', [
-            'name'              => 'Vita Galaxy',
+            'name'              => 'Vita Galaxy Orthopeadic',
             'code'              => 'M9Sk4',
             'productCategory'   => $productCategory,
             'wholesale'         => '7000',
