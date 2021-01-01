@@ -18,7 +18,7 @@ use Validator;
  * this trait get sizeID, ProductCategoryID and brandID of the
  * incoming request
  */
-trait GetIDs
+trait ProductUtilities
 {
     public function getSizeID($size)
     {
@@ -41,12 +41,22 @@ trait GetIDs
         $productCategoryID = $productCategory->id;
         return $productCategoryID;
     }
+
+    public function checkProductExists($sizeID, $name)
+    {
+        $checkDatabase = Product::where('name', $name)->get();
+        $checkDatabase = $checkDatabase->contains('size_id', $sizeID);
+
+        if ($checkDatabase) {
+            throw ValidationException::withMessages(['name' => 'Product Exists!']);
+        }
+    }
 }
 
 class ProductController extends Controller
 {
 
-    use GetIDs;
+    use ProductUtilities;
 
     public function create()
     {
@@ -73,14 +83,8 @@ class ProductController extends Controller
         //get the size ID
         $sizeID = $this->getSizeID($request->size);
 
-
         //check if the product is already in the database
-        $checkDatabase = Product::where('name', $request->name)->get();
-        $checkDatabase = $checkDatabase->contains('size_id', $sizeID);
-
-        if ($checkDatabase) {
-            throw ValidationException::withMessages(['name' => 'Product Exists!']);
-        }
+        $this->checkProductExists($sizeID, $request->name);
 
         //get the product category ID
         $productCategoryID = $this->getProductCategoryID($request->productCategory);
@@ -129,11 +133,16 @@ class ProductController extends Controller
     public function update(Request $request, $id, Product $product)
     {
         $this->authorize('update', $product);
-        
+
         Product::validateIncomingRequest($request);
 
-        $productCategoryID = $this->getProductCategoryID($request->productCategory);
         $sizeID = $this->getSizeID($request->size);
+
+        
+        //check if the product is already in the database
+        $this->checkProductExists($sizeID, $request->name);
+
+        $productCategoryID = $this->getProductCategoryID($request->productCategory);
         $brandID = $this->brandID($request->brand);
         $slug = Str::of($request->name)->slug('-');
 
