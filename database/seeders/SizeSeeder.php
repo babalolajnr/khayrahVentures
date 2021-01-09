@@ -34,7 +34,7 @@ class SizeSeeder extends Seeder
         $userID = User::factory()->create()->id;
         for ($i = 0; $i < $sizesArrayLength; $i++) {
             $size = $sizes[$i];
-            Size::updateorCreate(
+            Size::updateOrCreate(
                 [
                     'name' => $size,
                 ],
