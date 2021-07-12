@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Artisan;
 
 class UserFactory extends Factory
 {
@@ -25,7 +26,11 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $userType =UserType::pluck('id')->all();
+        $userType = UserType::first();
+        if (is_null($userType)) {
+            Artisan::call('db:seed', ['UserTypeSeeder']);
+        }
+        $userType = UserType::pluck('id')->all();
         $userType = Arr::random($userType);
         return [
             'firstname'         => $this->faker->firstName('male'),
@@ -34,7 +39,7 @@ class UserFactory extends Factory
             'user_type_id'      => $userType,
             'email'             => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password'          => Hash::make(111111111), // password
+            'password'          => Hash::make("password"), // password
             'remember_token'    => Str::random(10),
         ];
     }
